@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.root {
+  padding-top: 16px;
+  background-color: #A995B2;
+  border-radius: 16px;
+
+  .movie-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 85%;
+      height: 85%;
+    }
+
+    .movie-title {
+      text-align: center;
+    }
+
+  }
+
+}

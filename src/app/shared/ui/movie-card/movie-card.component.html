@@ -1,0 +1,10 @@
+<div class="root" >
+  <div class="movie-card" *ngIf="movie; else invalid_template">
+    <img [src]="movie.poster_path" alt="Movie Poster">
+    <h2 class="movie-title">{{ movie.title }}</h2>
+  </div>
+
+  <ng-template #invalid_template>
+    <h2>Invalid movie</h2>
+  </ng-template>
+</div>

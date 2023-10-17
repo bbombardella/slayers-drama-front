@@ -1,0 +1,31 @@
+.description{
+  margin-top: 20px;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+
+  div{
+    width: 70%;
+  }
+}
+
+.movie-list {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  app-movie-card{
+    margin: 10px;
+    width: 22%;
+  }
+}
+}

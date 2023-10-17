@@ -1,10 +1,13 @@
 <header>
   <nav>
     <ul>
-      <li>&lt;icon&gt;</li>
+      <li>💅🏻</li>
       <li><a routerLink="/login">Login</a></li>
-      <li>{{authService.currentUser?.email ?? 'Non connecté'}}</li>
+      <li class="status">{{authService.currentUser?.email ?? 'Non connecté'}}</li>
       <li *ngIf="authService?.currentUser" (click)="authService.logout()">Se déconnecter</li>
+    </ul>
+    <ul class="mr2">
+      <li><a routerLink="/about">A propos</a></li>
     </ul>
   </nav>
 </header>
