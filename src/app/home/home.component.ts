@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../shared/models/movie';
+import {MovieDto} from "../api/models/movie-dto";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
       .concat(this.movies);
   }
 
-  public movies: Movie[] = [
+  public movies: MovieDto[] = [
     {
       id: 1,
       title: 'Patte patrouille',
