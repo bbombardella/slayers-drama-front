@@ -20,19 +20,16 @@ export class HomeComponent implements OnInit {
 
   public movies: MovieDto[] = [
     {
+      budget: 600000,
       id: 1,
-      title: 'Patte patrouille',
-      release_date: new Date(2021, 6, 11),
-      overview: 'overview',
+      overview: 'ov',
       popularity: 5,
-      vote_average: 4.5,
-      budget: 60000000,
-      poster_path: 'https://upload.wikimedia.org/wikipedia/fr/7/70/PAW_Patrol_-_La_Pat%27Patrouille.png',
-      tagline: 'xxx',
-      published: true,
+      poster_path: 'https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
+      release_date: '2020-12-12',
+      tagline: 'tag',
+      title: 'STAR WARS',
       tmdb_id: -1,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      vote_average: 4.5,
     }
   ];
 
