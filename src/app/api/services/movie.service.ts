@@ -31,6 +31,9 @@ import { movieControllerUpdateImage } from '../fn/movie/movie-controller-update-
 import { MovieControllerUpdateImage$Params } from '../fn/movie/movie-controller-update-image';
 import { movieControllerUpdateImageTmdb } from '../fn/movie/movie-controller-update-image-tmdb';
 import { MovieControllerUpdateImageTmdb$Params } from '../fn/movie/movie-controller-update-image-tmdb';
+import { MovieDetails } from '../models/movie-details';
+import { MovieEntity } from '../models/movie-entity';
+import { PaginatedResult } from '../models/paginated-result';
 
 @Injectable({ providedIn: 'root' })
 export class MovieService extends BaseService {
@@ -51,7 +54,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAll$Response(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerFindAll$Response(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
     return movieControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
@@ -65,9 +68,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAll(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<void> {
+  movieControllerFindAll(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult> {
     return this.movieControllerFindAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
     );
   }
 
@@ -84,7 +87,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindOneTmdb$Response(params: MovieControllerFindOneTmdb$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerFindOneTmdb$Response(params: MovieControllerFindOneTmdb$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieDetails>> {
     return movieControllerFindOneTmdb(this.http, this.rootUrl, params, context);
   }
 
@@ -98,9 +101,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindOneTmdb(params: MovieControllerFindOneTmdb$Params, context?: HttpContext): Observable<void> {
+  movieControllerFindOneTmdb(params: MovieControllerFindOneTmdb$Params, context?: HttpContext): Observable<MovieDetails> {
     return this.movieControllerFindOneTmdb$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieDetails>): MovieDetails => r.body)
     );
   }
 
@@ -117,7 +120,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerCreate$Response(params: MovieControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerCreate$Response(params: MovieControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerCreate(this.http, this.rootUrl, params, context);
   }
 
@@ -131,9 +134,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerCreate(params: MovieControllerCreate$Params, context?: HttpContext): Observable<void> {
+  movieControllerCreate(params: MovieControllerCreate$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerCreate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 
@@ -150,7 +153,7 @@ export class MovieService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  movieControllerDetachGenre$Response(params: MovieControllerDetachGenre$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerDetachGenre$Response(params: MovieControllerDetachGenre$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerDetachGenre(this.http, this.rootUrl, params, context);
   }
 
@@ -164,9 +167,9 @@ export class MovieService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  movieControllerDetachGenre(params: MovieControllerDetachGenre$Params, context?: HttpContext): Observable<void> {
+  movieControllerDetachGenre(params: MovieControllerDetachGenre$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerDetachGenre$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 
@@ -183,7 +186,7 @@ export class MovieService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  movieControllerAttachGenre$Response(params: MovieControllerAttachGenre$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerAttachGenre$Response(params: MovieControllerAttachGenre$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerAttachGenre(this.http, this.rootUrl, params, context);
   }
 
@@ -197,9 +200,9 @@ export class MovieService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  movieControllerAttachGenre(params: MovieControllerAttachGenre$Params, context?: HttpContext): Observable<void> {
+  movieControllerAttachGenre(params: MovieControllerAttachGenre$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerAttachGenre$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 
@@ -216,7 +219,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerUpdateImageTmdb$Response(params: MovieControllerUpdateImageTmdb$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerUpdateImageTmdb$Response(params: MovieControllerUpdateImageTmdb$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerUpdateImageTmdb(this.http, this.rootUrl, params, context);
   }
 
@@ -230,9 +233,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerUpdateImageTmdb(params: MovieControllerUpdateImageTmdb$Params, context?: HttpContext): Observable<void> {
+  movieControllerUpdateImageTmdb(params: MovieControllerUpdateImageTmdb$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerUpdateImageTmdb$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 
@@ -249,7 +252,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerUpdateImage$Response(params: MovieControllerUpdateImage$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerUpdateImage$Response(params: MovieControllerUpdateImage$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerUpdateImage(this.http, this.rootUrl, params, context);
   }
 
@@ -263,9 +266,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerUpdateImage(params: MovieControllerUpdateImage$Params, context?: HttpContext): Observable<void> {
+  movieControllerUpdateImage(params: MovieControllerUpdateImage$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerUpdateImage$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 
@@ -282,7 +285,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerSearch$Response(params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerSearch$Response(params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
     return movieControllerSearch(this.http, this.rootUrl, params, context);
   }
 
@@ -296,9 +299,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerSearch(params: MovieControllerSearch$Params, context?: HttpContext): Observable<void> {
+  movieControllerSearch(params: MovieControllerSearch$Params, context?: HttpContext): Observable<PaginatedResult> {
     return this.movieControllerSearch$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
     );
   }
 
@@ -315,7 +318,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindOne$Response(params: MovieControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerFindOne$Response(params: MovieControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerFindOne(this.http, this.rootUrl, params, context);
   }
 
@@ -329,9 +332,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindOne(params: MovieControllerFindOne$Params, context?: HttpContext): Observable<void> {
+  movieControllerFindOne(params: MovieControllerFindOne$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerFindOne$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 
@@ -348,7 +351,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerDelete$Response(params: MovieControllerDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerDelete$Response(params: MovieControllerDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerDelete(this.http, this.rootUrl, params, context);
   }
 
@@ -362,9 +365,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerDelete(params: MovieControllerDelete$Params, context?: HttpContext): Observable<void> {
+  movieControllerDelete(params: MovieControllerDelete$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerDelete$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 
@@ -381,7 +384,7 @@ export class MovieService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  movieControllerUpdate$Response(params: MovieControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  movieControllerUpdate$Response(params: MovieControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
     return movieControllerUpdate(this.http, this.rootUrl, params, context);
   }
 
@@ -395,9 +398,9 @@ export class MovieService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  movieControllerUpdate(params: MovieControllerUpdate$Params, context?: HttpContext): Observable<void> {
+  movieControllerUpdate(params: MovieControllerUpdate$Params, context?: HttpContext): Observable<MovieEntity> {
     return this.movieControllerUpdate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<MovieEntity>): MovieEntity => r.body)
     );
   }
 

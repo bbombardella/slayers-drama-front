@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { ScreeningEntity } from '../../models/screening-entity';
 import { UpdateScreeningDto } from '../../models/update-screening-dto';
 
 export interface ScreeningControllerUpdate$Params {
@@ -17,7 +18,7 @@ export interface ScreeningControllerUpdate$Params {
       body: UpdateScreeningDto
 }
 
-export function screeningControllerUpdate(http: HttpClient, rootUrl: string, params: ScreeningControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function screeningControllerUpdate(http: HttpClient, rootUrl: string, params: ScreeningControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<ScreeningEntity>> {
   const rb = new RequestBuilder(rootUrl, screeningControllerUpdate.PATH, 'patch');
   if (params) {
     rb.path('id', params.id, {});
@@ -25,11 +26,11 @@ export function screeningControllerUpdate(http: HttpClient, rootUrl: string, par
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'json', accept: 'application/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<ScreeningEntity>;
     })
   );
 }

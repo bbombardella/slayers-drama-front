@@ -9,6 +9,7 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { PaginatedResult } from '../models/paginated-result';
 import { screeningControllerCreate } from '../fn/screening/screening-controller-create';
 import { ScreeningControllerCreate$Params } from '../fn/screening/screening-controller-create';
 import { screeningControllerFindAll } from '../fn/screening/screening-controller-find-all';
@@ -19,6 +20,7 @@ import { screeningControllerRemove } from '../fn/screening/screening-controller-
 import { ScreeningControllerRemove$Params } from '../fn/screening/screening-controller-remove';
 import { screeningControllerUpdate } from '../fn/screening/screening-controller-update';
 import { ScreeningControllerUpdate$Params } from '../fn/screening/screening-controller-update';
+import { ScreeningEntity } from '../models/screening-entity';
 
 @Injectable({ providedIn: 'root' })
 export class ScreeningService extends BaseService {
@@ -39,7 +41,7 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerFindAll$Response(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  screeningControllerFindAll$Response(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
     return screeningControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
@@ -53,9 +55,9 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerFindAll(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<void> {
+  screeningControllerFindAll(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult> {
     return this.screeningControllerFindAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
     );
   }
 
@@ -72,7 +74,7 @@ export class ScreeningService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  screeningControllerCreate$Response(params: ScreeningControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  screeningControllerCreate$Response(params: ScreeningControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<ScreeningEntity>> {
     return screeningControllerCreate(this.http, this.rootUrl, params, context);
   }
 
@@ -86,9 +88,9 @@ export class ScreeningService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  screeningControllerCreate(params: ScreeningControllerCreate$Params, context?: HttpContext): Observable<void> {
+  screeningControllerCreate(params: ScreeningControllerCreate$Params, context?: HttpContext): Observable<ScreeningEntity> {
     return this.screeningControllerCreate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<ScreeningEntity>): ScreeningEntity => r.body)
     );
   }
 
@@ -105,7 +107,7 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerFindOne$Response(params: ScreeningControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  screeningControllerFindOne$Response(params: ScreeningControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<ScreeningEntity>> {
     return screeningControllerFindOne(this.http, this.rootUrl, params, context);
   }
 
@@ -119,9 +121,9 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerFindOne(params: ScreeningControllerFindOne$Params, context?: HttpContext): Observable<void> {
+  screeningControllerFindOne(params: ScreeningControllerFindOne$Params, context?: HttpContext): Observable<ScreeningEntity> {
     return this.screeningControllerFindOne$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<ScreeningEntity>): ScreeningEntity => r.body)
     );
   }
 
@@ -138,7 +140,7 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerRemove$Response(params: ScreeningControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  screeningControllerRemove$Response(params: ScreeningControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<ScreeningEntity>> {
     return screeningControllerRemove(this.http, this.rootUrl, params, context);
   }
 
@@ -152,9 +154,9 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerRemove(params: ScreeningControllerRemove$Params, context?: HttpContext): Observable<void> {
+  screeningControllerRemove(params: ScreeningControllerRemove$Params, context?: HttpContext): Observable<ScreeningEntity> {
     return this.screeningControllerRemove$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<ScreeningEntity>): ScreeningEntity => r.body)
     );
   }
 
@@ -171,7 +173,7 @@ export class ScreeningService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  screeningControllerUpdate$Response(params: ScreeningControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  screeningControllerUpdate$Response(params: ScreeningControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<ScreeningEntity>> {
     return screeningControllerUpdate(this.http, this.rootUrl, params, context);
   }
 
@@ -185,9 +187,9 @@ export class ScreeningService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  screeningControllerUpdate(params: ScreeningControllerUpdate$Params, context?: HttpContext): Observable<void> {
+  screeningControllerUpdate(params: ScreeningControllerUpdate$Params, context?: HttpContext): Observable<ScreeningEntity> {
     return this.screeningControllerUpdate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<ScreeningEntity>): ScreeningEntity => r.body)
     );
   }
 

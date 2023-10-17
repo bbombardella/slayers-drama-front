@@ -23,6 +23,9 @@ import { cinemaControllerSearch } from '../fn/cinema/cinema-controller-search';
 import { CinemaControllerSearch$Params } from '../fn/cinema/cinema-controller-search';
 import { cinemaControllerUpdate } from '../fn/cinema/cinema-controller-update';
 import { CinemaControllerUpdate$Params } from '../fn/cinema/cinema-controller-update';
+import { CinemaDetailsDto } from '../models/cinema-details-dto';
+import { CinemaEntity } from '../models/cinema-entity';
+import { PaginatedResult } from '../models/paginated-result';
 
 @Injectable({ providedIn: 'root' })
 export class CinemaService extends BaseService {
@@ -43,7 +46,7 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindAll$Response(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  cinemaControllerFindAll$Response(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
     return cinemaControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
@@ -57,9 +60,9 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindAll(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<void> {
+  cinemaControllerFindAll(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult> {
     return this.cinemaControllerFindAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
     );
   }
 
@@ -76,7 +79,7 @@ export class CinemaService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  cinemaControllerCreate$Response(params: CinemaControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  cinemaControllerCreate$Response(params: CinemaControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<CinemaEntity>> {
     return cinemaControllerCreate(this.http, this.rootUrl, params, context);
   }
 
@@ -90,9 +93,9 @@ export class CinemaService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  cinemaControllerCreate(params: CinemaControllerCreate$Params, context?: HttpContext): Observable<void> {
+  cinemaControllerCreate(params: CinemaControllerCreate$Params, context?: HttpContext): Observable<CinemaEntity> {
     return this.cinemaControllerCreate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<CinemaEntity>): CinemaEntity => r.body)
     );
   }
 
@@ -109,7 +112,9 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerSearch$Response(params: CinemaControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  cinemaControllerSearch$Response(params: CinemaControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}>> {
     return cinemaControllerSearch(this.http, this.rootUrl, params, context);
   }
 
@@ -123,9 +128,15 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerSearch(params: CinemaControllerSearch$Params, context?: HttpContext): Observable<void> {
+  cinemaControllerSearch(params: CinemaControllerSearch$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}> {
     return this.cinemaControllerSearch$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}>): PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+} => r.body)
     );
   }
 
@@ -142,7 +153,7 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindOneDetails$Response(params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  cinemaControllerFindOneDetails$Response(params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<StrictHttpResponse<CinemaDetailsDto>> {
     return cinemaControllerFindOneDetails(this.http, this.rootUrl, params, context);
   }
 
@@ -156,9 +167,9 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindOneDetails(params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<void> {
+  cinemaControllerFindOneDetails(params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<CinemaDetailsDto> {
     return this.cinemaControllerFindOneDetails$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<CinemaDetailsDto>): CinemaDetailsDto => r.body)
     );
   }
 
@@ -175,7 +186,7 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindOne$Response(params: CinemaControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  cinemaControllerFindOne$Response(params: CinemaControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<CinemaEntity>> {
     return cinemaControllerFindOne(this.http, this.rootUrl, params, context);
   }
 
@@ -189,9 +200,9 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindOne(params: CinemaControllerFindOne$Params, context?: HttpContext): Observable<void> {
+  cinemaControllerFindOne(params: CinemaControllerFindOne$Params, context?: HttpContext): Observable<CinemaEntity> {
     return this.cinemaControllerFindOne$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<CinemaEntity>): CinemaEntity => r.body)
     );
   }
 
@@ -208,7 +219,7 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerRemove$Response(params: CinemaControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  cinemaControllerRemove$Response(params: CinemaControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<CinemaEntity>> {
     return cinemaControllerRemove(this.http, this.rootUrl, params, context);
   }
 
@@ -222,9 +233,9 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerRemove(params: CinemaControllerRemove$Params, context?: HttpContext): Observable<void> {
+  cinemaControllerRemove(params: CinemaControllerRemove$Params, context?: HttpContext): Observable<CinemaEntity> {
     return this.cinemaControllerRemove$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<CinemaEntity>): CinemaEntity => r.body)
     );
   }
 
@@ -241,7 +252,7 @@ export class CinemaService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  cinemaControllerUpdate$Response(params: CinemaControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  cinemaControllerUpdate$Response(params: CinemaControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<CinemaEntity>> {
     return cinemaControllerUpdate(this.http, this.rootUrl, params, context);
   }
 
@@ -255,9 +266,9 @@ export class CinemaService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  cinemaControllerUpdate(params: CinemaControllerUpdate$Params, context?: HttpContext): Observable<void> {
+  cinemaControllerUpdate(params: CinemaControllerUpdate$Params, context?: HttpContext): Observable<CinemaEntity> {
     return this.cinemaControllerUpdate$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<CinemaEntity>): CinemaEntity => r.body)
     );
   }
 

@@ -6,7 +6,8 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { MovieDto } from '../../models/movie-dto';
+import { MovieEntity } from '../../models/movie-entity';
+import { UpdateMovieDto } from '../../models/update-movie-dto';
 
 export interface MovieControllerUpdate$Params {
 
@@ -14,10 +15,10 @@ export interface MovieControllerUpdate$Params {
  * Movie's ID
  */
   id: number;
-      body: MovieDto
+      body: UpdateMovieDto
 }
 
-export function movieControllerUpdate(http: HttpClient, rootUrl: string, params: MovieControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function movieControllerUpdate(http: HttpClient, rootUrl: string, params: MovieControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
   const rb = new RequestBuilder(rootUrl, movieControllerUpdate.PATH, 'patch');
   if (params) {
     rb.path('id', params.id, {});
@@ -25,11 +26,11 @@ export function movieControllerUpdate(http: HttpClient, rootUrl: string, params:
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'json', accept: 'application/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<MovieEntity>;
     })
   );
 }

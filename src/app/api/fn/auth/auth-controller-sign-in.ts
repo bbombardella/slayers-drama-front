@@ -6,21 +6,25 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { LoginDto } from '../../models/login-dto';
+import { TokenResponseDto } from '../../models/token-response-dto';
 
 export interface AuthControllerSignIn$Params {
+      body: LoginDto
 }
 
-export function authControllerSignIn(http: HttpClient, rootUrl: string, params?: AuthControllerSignIn$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function authControllerSignIn(http: HttpClient, rootUrl: string, params: AuthControllerSignIn$Params, context?: HttpContext): Observable<StrictHttpResponse<TokenResponseDto>> {
   const rb = new RequestBuilder(rootUrl, authControllerSignIn.PATH, 'post');
   if (params) {
+    rb.body(params.body, 'application/json');
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'json', accept: 'application/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<TokenResponseDto>;
     })
   );
 }

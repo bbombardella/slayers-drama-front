@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MovieDto} from "../api/models/movie-dto";
+import {MovieEntity} from "../api/models/movie-entity";
+import {MovieService} from "../api/services";
+import {PaginatedResult} from "../api/models/paginated-result";
 
 @Component({
   selector: 'app-home',
@@ -7,31 +9,18 @@ import {MovieDto} from "../api/models/movie-dto";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  constructor(
+    private readonly movieService: MovieService,
+  ) { }
+
   ngOnInit(): void {
-    this.movies = this.movies
-      .concat(this.movies)
-      .concat(this.movies)
-      .concat(this.movies)
-      .concat(this.movies)
-      .concat(this.movies)
-      .concat(this.movies)
-      .concat(this.movies);
+    this.movieService.movieControllerFindAll().subscribe((pr: PaginatedResult) => {
+      this.movies = pr.data as MovieEntity[];
+    });
   }
 
-  public movies: MovieDto[] = [
-    {
-      budget: 600000,
-      id: 1,
-      overview: 'ov',
-      popularity: 5,
-      poster_path: 'https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg',
-      release_date: '2020-12-12',
-      tagline: 'tag',
-      title: 'STAR WARS',
-      tmdb_id: -1,
-      vote_average: 4.5,
-    }
-  ];
+  public movies: Array<MovieEntity> = [ ];
 
 
 }

@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { CinemaDetailsDto } from '../../models/cinema-details-dto';
 
 export interface CinemaControllerFindOneDetails$Params {
 
@@ -15,18 +16,18 @@ export interface CinemaControllerFindOneDetails$Params {
   id: number;
 }
 
-export function cinemaControllerFindOneDetails(http: HttpClient, rootUrl: string, params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function cinemaControllerFindOneDetails(http: HttpClient, rootUrl: string, params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<StrictHttpResponse<CinemaDetailsDto>> {
   const rb = new RequestBuilder(rootUrl, cinemaControllerFindOneDetails.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'json', accept: 'application/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<CinemaDetailsDto>;
     })
   );
 }

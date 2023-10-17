@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { MovieEntity } from '../../models/movie-entity';
 
 export interface MovieControllerAttachGenre$Params {
 
@@ -16,7 +17,7 @@ export interface MovieControllerAttachGenre$Params {
       body: Array<string>
 }
 
-export function movieControllerAttachGenre(http: HttpClient, rootUrl: string, params: MovieControllerAttachGenre$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function movieControllerAttachGenre(http: HttpClient, rootUrl: string, params: MovieControllerAttachGenre$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
   const rb = new RequestBuilder(rootUrl, movieControllerAttachGenre.PATH, 'patch');
   if (params) {
     rb.path('id', params.id, {});
@@ -24,11 +25,11 @@ export function movieControllerAttachGenre(http: HttpClient, rootUrl: string, pa
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'json', accept: 'application/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<MovieEntity>;
     })
   );
 }

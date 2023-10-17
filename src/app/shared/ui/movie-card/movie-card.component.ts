@@ -1,6 +1,6 @@
 import {Component, Input, NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {MovieDto} from "../../../api/models/movie-dto";
+import {MovieEntity} from "../../../api/models/movie-entity";
 
 @Component({
   selector: 'app-movie-card',
@@ -12,7 +12,7 @@ import {MovieDto} from "../../../api/models/movie-dto";
 export class MovieCardComponent {
 
   @Input()
-  public movie: MovieDto | undefined;
+  public movie: MovieEntity | undefined;
 
   @Input()
   public sizePercentage: number = 10;

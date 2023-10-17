@@ -1,14 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface MovieDto {
+export interface UpdateMovieDto {
   budget: number;
-  id: number;
   overview: string;
   popularity: number;
-  poster_path: string;
-  release_date: string;
+  published: boolean;
+  releaseDate: string;
   tagline: string;
   title: string;
-  tmdb_id: number;
-  vote_average: number;
+  voteAverage: number;
 }
