@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "gen:api": "ng-openapi-gen --input http://localhost:3000/swagger-json --output ./src/app/api"
   },
   "private": true,
   "dependencies": {
