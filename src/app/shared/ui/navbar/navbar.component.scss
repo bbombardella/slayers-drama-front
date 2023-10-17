@@ -10,6 +10,10 @@
     border-radius: 0 0 16px 16px;
     justify-content: space-between;
 
+    li:has(> a.home) {
+      width: 15%;
+    }
+
     .status {
       font-size: small;
       font-style: italic;
