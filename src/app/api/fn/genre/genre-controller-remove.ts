@@ -6,20 +6,20 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PaginatedResult } from '../../models/paginated-result';
+import { GenreEntity } from '../../models/genre-entity';
 
-export interface MovieControllerSearch$Params {
+export interface GenreControllerRemove$Params {
 
 /**
- * The search pattern
+ * Genre's ID
  */
-  query: string;
+  id: number;
 }
 
-export function movieControllerSearch(http: HttpClient, rootUrl: string, params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
-  const rb = new RequestBuilder(rootUrl, movieControllerSearch.PATH, 'get');
+export function genreControllerRemove(http: HttpClient, rootUrl: string, params: GenreControllerRemove$Params, context?: HttpContext): Observable<StrictHttpResponse<GenreEntity>> {
+  const rb = new RequestBuilder(rootUrl, genreControllerRemove.PATH, 'delete');
   if (params) {
-    rb.path('query', params.query, {});
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -27,9 +27,9 @@ export function movieControllerSearch(http: HttpClient, rootUrl: string, params:
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PaginatedResult>;
+      return r as StrictHttpResponse<GenreEntity>;
     })
   );
 }
 
-movieControllerSearch.PATH = '/movie/search/{query}';
+genreControllerRemove.PATH = '/genre/{id}';

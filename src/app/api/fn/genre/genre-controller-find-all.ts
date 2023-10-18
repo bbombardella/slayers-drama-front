@@ -8,18 +8,12 @@ import { RequestBuilder } from '../../request-builder';
 
 import { PaginatedResult } from '../../models/paginated-result';
 
-export interface MovieControllerSearch$Params {
-
-/**
- * The search pattern
- */
-  query: string;
+export interface GenreControllerFindAll$Params {
 }
 
-export function movieControllerSearch(http: HttpClient, rootUrl: string, params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
-  const rb = new RequestBuilder(rootUrl, movieControllerSearch.PATH, 'get');
+export function genreControllerFindAll(http: HttpClient, rootUrl: string, params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+  const rb = new RequestBuilder(rootUrl, genreControllerFindAll.PATH, 'get');
   if (params) {
-    rb.path('query', params.query, {});
   }
 
   return http.request(
@@ -32,4 +26,4 @@ export function movieControllerSearch(http: HttpClient, rootUrl: string, params:
   );
 }
 
-movieControllerSearch.PATH = '/movie/search/{query}';
+genreControllerFindAll.PATH = '/genre';

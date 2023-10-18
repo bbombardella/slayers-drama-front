@@ -14,7 +14,7 @@ export interface CinemaControllerSearch$Params {
 /**
  * The search pattern
  */
-  query: any;
+  query: string;
 }
 
 export function cinemaControllerSearch(http: HttpClient, rootUrl: string, params: CinemaControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {

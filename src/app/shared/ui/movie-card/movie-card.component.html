@@ -1,6 +1,6 @@
 <div class="root" >
   <div class="movie-card" *ngIf="movie; else invalid_template">
-    <img [src]="movie.posterImageId" alt="Movie Poster">
+    <img [src]="movie?.poster?.url" alt="Movie Poster">
     <h2 class="movie-title">{{ movie.title }}</h2>
   </div>
 

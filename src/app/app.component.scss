@@ -3,6 +3,11 @@
   height: 100%;
   margin: 0;
 
+  app-navbar{
+    position: sticky;
+    top: 0px;
+  }
+
   main{
     padding: 1%;
   }

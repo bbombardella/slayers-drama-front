@@ -6,8 +6,10 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AuthService } from './services/auth.service';
 import { MovieService } from './services/movie.service';
+import { GenreService } from './services/genre.service';
 import { CinemaService } from './services/cinema.service';
 import { ScreeningService } from './services/screening.service';
+import { ApiService } from './services/api.service';
 
 /**
  * Module that provides all services and configuration.
@@ -19,8 +21,10 @@ import { ScreeningService } from './services/screening.service';
   providers: [
     AuthService,
     MovieService,
+    GenreService,
     CinemaService,
     ScreeningService,
+    ApiService,
     ApiConfiguration
   ],
 })

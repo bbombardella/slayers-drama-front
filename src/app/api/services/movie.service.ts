@@ -23,6 +23,8 @@ import { movieControllerFindOne } from '../fn/movie/movie-controller-find-one';
 import { MovieControllerFindOne$Params } from '../fn/movie/movie-controller-find-one';
 import { movieControllerFindOneTmdb } from '../fn/movie/movie-controller-find-one-tmdb';
 import { MovieControllerFindOneTmdb$Params } from '../fn/movie/movie-controller-find-one-tmdb';
+import { movieControllerGetMostPopular } from '../fn/movie/movie-controller-get-most-popular';
+import { MovieControllerGetMostPopular$Params } from '../fn/movie/movie-controller-get-most-popular';
 import { movieControllerSearch } from '../fn/movie/movie-controller-search';
 import { MovieControllerSearch$Params } from '../fn/movie/movie-controller-search';
 import { movieControllerUpdate } from '../fn/movie/movie-controller-update';
@@ -302,6 +304,39 @@ export class MovieService extends BaseService {
   movieControllerSearch(params: MovieControllerSearch$Params, context?: HttpContext): Observable<PaginatedResult> {
     return this.movieControllerSearch$Response(params, context).pipe(
       map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
+    );
+  }
+
+  /** Path part for operation `movieControllerGetMostPopular()` */
+  static readonly MovieControllerGetMostPopularPath = '/movie/popular/{count}';
+
+  /**
+   * get most popular movies.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `movieControllerGetMostPopular()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerGetMostPopular$Response(params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<any>>> {
+    return movieControllerGetMostPopular(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * get most popular movies.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `movieControllerGetMostPopular$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerGetMostPopular(params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<Array<any>> {
+    return this.movieControllerGetMostPopular$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<any>>): Array<any> => r.body)
     );
   }
 

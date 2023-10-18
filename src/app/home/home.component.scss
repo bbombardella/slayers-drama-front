@@ -20,10 +20,12 @@
 .container{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
 
   app-movie-card{
+    flex-grow: 0;
     margin: 12px;
     width: 22%;
   }

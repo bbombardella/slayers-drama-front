@@ -6,20 +6,19 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PaginatedResult } from '../../models/paginated-result';
 
-export interface MovieControllerSearch$Params {
+export interface MovieControllerGetMostPopular$Params {
 
 /**
- * The search pattern
+ * number of movies u want
  */
-  query: string;
+  count: any;
 }
 
-export function movieControllerSearch(http: HttpClient, rootUrl: string, params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
-  const rb = new RequestBuilder(rootUrl, movieControllerSearch.PATH, 'get');
+export function movieControllerGetMostPopular(http: HttpClient, rootUrl: string, params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<any>>> {
+  const rb = new RequestBuilder(rootUrl, movieControllerGetMostPopular.PATH, 'get');
   if (params) {
-    rb.path('query', params.query, {});
+    rb.path('count', params.count, {});
   }
 
   return http.request(
@@ -27,9 +26,9 @@ export function movieControllerSearch(http: HttpClient, rootUrl: string, params:
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PaginatedResult>;
+      return r as StrictHttpResponse<Array<any>>;
     })
   );
 }
 
-movieControllerSearch.PATH = '/movie/search/{query}';
+movieControllerGetMostPopular.PATH = '/movie/popular/{count}';
