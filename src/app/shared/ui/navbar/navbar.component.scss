@@ -5,6 +5,9 @@
     display: flex;
     background: linear-gradient(#A980C2 15%, #A995B2);
     -webkit-backdrop-filter: blur(10px);
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
     backdrop-filter: blur(10px);
     margin: 0;
     border-radius: 0 0 16px 16px;
