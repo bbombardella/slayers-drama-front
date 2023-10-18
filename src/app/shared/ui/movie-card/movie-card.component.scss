@@ -6,6 +6,10 @@
   border-radius: 16px;
 }
 
+:host:hover{
+  cursor: pointer;
+}
+
 .root {
   padding-top: 16px;
   background-color: #A995B2;

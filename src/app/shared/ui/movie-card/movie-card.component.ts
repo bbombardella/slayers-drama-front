@@ -1,6 +1,7 @@
 import {Component, Input, NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {MovieEntity} from "../../../api/models/movie-entity";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-card',
@@ -11,9 +12,20 @@ import {MovieEntity} from "../../../api/models/movie-entity";
 })
 export class MovieCardComponent {
 
+  constructor(
+    private readonly router: Router
+  ) {
+  }
+
   @Input()
   public movie: MovieEntity | undefined;
 
   @Input()
   public sizePercentage: number = 10;
+
+  async goToMoviePage() {
+    await this.router.navigate(['/movie'], {
+      queryParams: {movie: this.movie?.id},
+    });
+  }
 }

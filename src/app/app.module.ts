@@ -9,6 +9,7 @@ import {CommonModule} from "@angular/common";
 import { LogoComponent } from './shared/ui/logo/logo.component';
 import {ApiModule} from "./api/api.module";
 import {environment} from "../environments/environment";
+import {MovieModule} from "./movie/movie.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {environment} from "../environments/environment";
     HttpClientModule,
     AppRoutingModule,
     NavbarComponent,
+    MovieModule,
     CommonModule,
     ApiModule.forRoot({rootUrl: environment.api.baseUrl}),
   ],

@@ -1,0 +1,9 @@
+<div class="root" [className]="!movie ? 'loading' : 'loaded'" *ngIf="movie; else loading">
+
+
+
+</div>
+
+<ng-template #loading>
+  loading bar
+</ng-template>

@@ -1,4 +1,4 @@
-<div class="root" >
+<div class="root" (click)="goToMoviePage()">
   <div class="movie-card" *ngIf="movie; else invalid_template">
     <img [src]="movie?.poster?.url" alt="Movie Poster">
     <h2 class="movie-title">{{ movie.title }}</h2>
