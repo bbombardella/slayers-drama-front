@@ -1,0 +1,29 @@
+div {
+  display: flex;
+}
+.star {
+  display: inline-block;
+  margin: 0;
+  line-height: 1em;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 150%;
+}
+
+.full{
+  background: linear-gradient(to right, #DE541E 50%, #DE541E 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.half{
+  background: linear-gradient(to right, #DE541E 50%, transparent 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zero{
+  color: red;
+}

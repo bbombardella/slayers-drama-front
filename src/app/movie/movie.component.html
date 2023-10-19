@@ -1,9 +1,44 @@
 <div class="root" [className]="!movie ? 'loading' : 'loaded'" *ngIf="movie; else loading">
+  <div class="container_master">
+    <div class="left">
+      <img [src]="movie.poster?.url" alt="Movie Poster">
+    </div>
+    <div class="right">
+      <div class="up">
+        <h1>{{movie.title}}</h1>
+        <p>
+          {{ movie.overview }}
+        </p>
+        <p>
+          <strong>Note :</strong>
+          <app-stars [count]="movie.popularity"></app-stars>
+        </p>
+      </div>
 
+      <div class="mid">
+        <p>|</p>
+        <p>|</p>
+        <p>|</p>
+        <p>|</p>
+        <p>TODO</p>
+        <p>|</p>
+        <p>|</p>
+        <p>|</p>
+        <p>|</p>
+      </div>
 
+      <div class="down">
+        <div class="stat">
+          <span *ngIf="movie.tagline"><strong>Tags</strong><span class="dots">:</span><div>{{movie.tagline}}</div></span>
+          <span *ngIf="movie.releaseDate"><strong>Sortie</strong><span class="dots">:</span><div>{{movie.releaseDate | date}}</div></span>
+          <span *ngIf="movie.budget"><strong>Budget</strong><span class="dots">:</span><div>{{movie.budget | date}}</div></span>
+        </div>
 
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #loading>
-  loading bar
+  <app-loading-bar/>
 </ng-template>

@@ -25,7 +25,7 @@ export class MovieComponent implements OnInit {
       .pipe(
         take(1)
       ).subscribe((params: any) => {
-      this.movieService.movieControllerFindOne(params.movie).subscribe((r) => this.movie = r)
+      this.movieService.movieControllerFindOne({id: params.movie}).subscribe((r) => this.movie = r)
     });
   }
 

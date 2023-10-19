@@ -1,7 +1,7 @@
-import {Component, Input, NgModule} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {MovieEntity} from "../../../api/models/movie-entity";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-card',

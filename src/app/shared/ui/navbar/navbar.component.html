@@ -1,13 +1,39 @@
 <header>
   <nav>
     <ul>
-      <li><a routerLink="/" class="home"><app-logo/></a></li>
+      <li><a routerLink="/" class="home">
+        <app-logo/>
+      </a></li>
       <li><a routerLink="/login">Login</a></li>
       <li class="status">{{authService.currentUser?.email ?? 'Non connecté'}}</li>
       <li *ngIf="authService?.currentUser" (click)="authService.logout()">Se déconnecter</li>
     </ul>
     <ul class="mr2">
+      <li>
+        <ng-autocomplete
+          [searchKeyword]="keyword"
+          [placeholder]="'Rechercher un film'"
+          [data]="autocompleteData"
+          (selected)='autocompleteSelected($event)'
+          (inputChanged)="autocompleteChanged($event)"
+
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate"
+        />
+        </li>
       <li><a routerLink="/about">A propos</a></li>
     </ul>
   </nav>
 </header>
+
+
+<ng-template #itemTemplate let-item>
+  <a [innerHTML]="item.title"></a>
+</ng-template>
+
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="'Aucun résultat'"
+       [style.color]="'gray'"
+       [style.font-style]="'italic'"
+  ></div>
+</ng-template>
