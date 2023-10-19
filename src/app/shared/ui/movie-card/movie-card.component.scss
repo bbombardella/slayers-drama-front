@@ -4,6 +4,7 @@
   -moz-box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
   box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
   border-radius: 16px;
+  transition-duration: 1s;
 }
 
 :host:hover{
@@ -23,7 +24,7 @@
     align-items: center;
     justify-content: space-between;
 
-    img {
+    img, .img-l {
       object-fit: contain;
       min-width: 85%;
       min-height: 85%;
@@ -38,4 +39,11 @@
 
   }
 
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

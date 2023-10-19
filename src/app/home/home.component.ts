@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MovieEntity} from "../api/models/movie-entity";
 import {MovieService} from "../api/services";
 import {PaginatedResult} from "../api/models/paginated-result";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private readonly movieService: MovieService,
+    private readonly router: Router,
   ) {
   }
 
@@ -23,7 +25,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public movies: Array<MovieEntity> = [];
+  public movies: Array<MovieEntity> = new Array<MovieEntity>(8);
 
-
+  async navigateToMovies() {
+    await this.router.navigate(['/movies'])
+  }
 }

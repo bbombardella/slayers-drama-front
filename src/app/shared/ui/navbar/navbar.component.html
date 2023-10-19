@@ -7,6 +7,7 @@
       <li><a routerLink="/login">Login</a></li>
       <li class="status">{{authService.currentUser?.email ?? 'Non connecté'}}</li>
       <li *ngIf="authService?.currentUser" (click)="authService.logout()">Se déconnecter</li>
+      <li><a routerLink="/movies">Tous les films</a></li>
     </ul>
     <ul class="mr2">
       <li>
