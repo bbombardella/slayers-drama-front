@@ -17,6 +17,15 @@
       width: 15%;
     }
 
+    li:has(> ng-autocomplete){
+      width: 25vw;
+      border-radius: 16px;
+
+      ng-autpcomplete{
+        border-radius: 16px;
+      }
+    }
+
     .status {
       font-size: small;
       font-style: italic;
