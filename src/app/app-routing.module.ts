@@ -27,6 +27,14 @@ const routes: Routes = [
     path: 'movies',
     loadChildren: () => import('./movies/movies.module').then(m => m.MoviesModule),
   },
+  {
+    path: 'cinema',
+    loadChildren: () => import('./cinema/cinema.module').then(m => m.CinemaModule),
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then(m => m.CartModule),
+  }
 ];
 
 @NgModule({

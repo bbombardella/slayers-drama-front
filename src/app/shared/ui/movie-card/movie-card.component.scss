@@ -7,6 +7,12 @@
   transition-duration: 1s;
 }
 
+:host:hover {
+  -webkit-box-shadow: -15px 17px 27px 6px rgba(0,0,0,0.75);
+  -moz-box-shadow: -15px 17px 27px 6px rgba(0,0,0,0.75);
+  box-shadow: -15px 17px 27px 6px rgba(0,0,0,0.75);
+}
+
 :host:hover{
   cursor: pointer;
 }

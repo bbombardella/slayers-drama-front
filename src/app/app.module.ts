@@ -13,6 +13,7 @@ import {MovieModule} from "./movie/movie.module";
 import { ChipComponent } from './shared/ui/chip/chip.component';
 import {ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy} from "@angular/router";
 import {CustomRouteReuseStrategy} from "./custom-route-reuse-strategy";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import {CustomRouteReuseStrategy} from "./custom-route-reuse-strategy";
     MovieModule,
     CommonModule,
     ApiModule.forRoot({rootUrl: environment.api.baseUrl}),
+    BrowserAnimationsModule,
   ],
   providers: [
     {

@@ -7,6 +7,9 @@ import {AutocompleteLibModule} from "angular-ng-autocomplete";
 import {MovieEntity} from "../../../api/models/movie-entity";
 import {debounceTime, distinctUntilChanged, Subject} from "rxjs";
 import {MovieService} from "../../../api/services";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @Component({
   standalone: true,
@@ -17,7 +20,10 @@ import {MovieService} from "../../../api/services";
     NgIf,
     LogoComponent,
     AutocompleteLibModule,
-    JsonPipe
+    JsonPipe,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   styleUrls: ['./navbar.component.scss']
 })

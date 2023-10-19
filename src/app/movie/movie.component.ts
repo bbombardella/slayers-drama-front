@@ -17,9 +17,7 @@ export class MovieComponent implements OnInit {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly movieService: MovieService
-  ) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams
@@ -29,6 +27,4 @@ export class MovieComponent implements OnInit {
       this.movieService.movieControllerFindOne({id: params.movie}).subscribe((r) => this.movie = r)
     });
   }
-
-
 }
