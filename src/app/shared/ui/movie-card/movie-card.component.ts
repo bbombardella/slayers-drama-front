@@ -34,7 +34,6 @@ export class MovieCardComponent {
   }
 
   get loaded():boolean {
-    console.log(this.img.complete)
-    return this.img.complete && this.img.naturalHeight !== 0;
+    return this.img && this.img.complete && this.img.naturalHeight !== 0;
   }
 }

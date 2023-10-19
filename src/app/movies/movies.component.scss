@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+  app-movie-card {
+    margin: 5px 12px 45px 12px;
+    width: 22%;
+  }
+}

@@ -56,7 +56,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAll$Response(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+  movieControllerFindAll$Response(params: MovieControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>> {
     return movieControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
@@ -70,9 +72,15 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAll(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult> {
+  movieControllerFindAll(params: MovieControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}> {
     return this.movieControllerFindAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>): PaginatedResult & {
+'data'?: Array<MovieEntity>;
+} => r.body)
     );
   }
 
@@ -311,7 +319,7 @@ export class MovieService extends BaseService {
   static readonly MovieControllerGetMostPopularPath = '/movie/popular/{count}';
 
   /**
-   * get most popular movies.
+   * Find most popular movies.
    *
    *
    *
@@ -320,12 +328,12 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerGetMostPopular$Response(params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<any>>> {
+  movieControllerGetMostPopular$Response(params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<MovieEntity>>> {
     return movieControllerGetMostPopular(this.http, this.rootUrl, params, context);
   }
 
   /**
-   * get most popular movies.
+   * Find most popular movies.
    *
    *
    *
@@ -334,9 +342,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerGetMostPopular(params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<Array<any>> {
+  movieControllerGetMostPopular(params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<Array<MovieEntity>> {
     return this.movieControllerGetMostPopular$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<any>>): Array<any> => r.body)
+      map((r: StrictHttpResponse<Array<MovieEntity>>): Array<MovieEntity> => r.body)
     );
   }
 

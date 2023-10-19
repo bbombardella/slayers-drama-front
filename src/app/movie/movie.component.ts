@@ -18,6 +18,7 @@ export class MovieComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly movieService: MovieService
   ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {

@@ -11,7 +11,8 @@ import {ApiModule} from "./api/api.module";
 import {environment} from "../environments/environment";
 import {MovieModule} from "./movie/movie.module";
 import { ChipComponent } from './shared/ui/chip/chip.component';
-
+import {ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy} from "@angular/router";
+import {CustomRouteReuseStrategy} from "./custom-route-reuse-strategy";
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,14 @@ import { ChipComponent } from './shared/ui/chip/chip.component';
     CommonModule,
     ApiModule.forRoot({rootUrl: environment.api.baseUrl}),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomRouteReuseStrategy
+    },
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
+

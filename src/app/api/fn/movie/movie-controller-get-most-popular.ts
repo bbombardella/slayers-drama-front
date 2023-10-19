@@ -6,16 +6,17 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { MovieEntity } from '../../models/movie-entity';
 
 export interface MovieControllerGetMostPopular$Params {
 
 /**
- * number of movies u want
+ * Number of movies wanted
  */
-  count: any;
+  count: number;
 }
 
-export function movieControllerGetMostPopular(http: HttpClient, rootUrl: string, params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<any>>> {
+export function movieControllerGetMostPopular(http: HttpClient, rootUrl: string, params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<MovieEntity>>> {
   const rb = new RequestBuilder(rootUrl, movieControllerGetMostPopular.PATH, 'get');
   if (params) {
     rb.path('count', params.count, {});
@@ -26,7 +27,7 @@ export function movieControllerGetMostPopular(http: HttpClient, rootUrl: string,
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<any>>;
+      return r as StrictHttpResponse<Array<MovieEntity>>;
     })
   );
 }
