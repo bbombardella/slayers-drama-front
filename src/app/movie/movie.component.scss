@@ -14,7 +14,7 @@
 
       .left {
         height: 100%;
-        width: 25%;
+        width: 27%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -42,6 +42,14 @@
             letter-spacing: 2px;
           }
 
+          h2 {
+            font-size: 150%;
+            letter-spacing: 1px;
+            font-style: oblique;
+            font-weight: lighter;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+          }
+
           p {
             display: flex;
             font-size: 150%;
@@ -61,6 +69,8 @@
 
         .down {
           padding-bottom: 2%;
+          display: flex;
+          justify-content: space-between;
 
           .stat {
             display: flex;
@@ -69,7 +79,7 @@
             > span {
               display: flex;
 
-              .dots{
+              .dots {
                 display: block;
                 margin-right: 5px;
               }
@@ -80,8 +90,21 @@
               }
             }
           }
+
+          .genre{
+            display: flex;
+          }
         }
       }
     }
   }
+}
+
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }

@@ -10,6 +10,7 @@ import { LogoComponent } from './shared/ui/logo/logo.component';
 import {ApiModule} from "./api/api.module";
 import {environment} from "../environments/environment";
 import {MovieModule} from "./movie/movie.module";
+import { ChipComponent } from './shared/ui/chip/chip.component';
 
 @NgModule({
   declarations: [

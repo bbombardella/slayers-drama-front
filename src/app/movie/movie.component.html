@@ -1,17 +1,18 @@
 <div class="root" [className]="!movie ? 'loading' : 'loaded'" *ngIf="movie; else loading">
   <div class="container_master">
     <div class="left">
-      <img [src]="movie.poster?.url" alt="Movie Poster">
+      <img [src]="movie.poster?.url" alt="Movie Poster" *ngIf="movie.poster.url; else loading">
     </div>
     <div class="right">
       <div class="up">
         <h1>{{movie.title}}</h1>
+        <h2 *ngIf="movie.tagline">“{{movie.tagline}}”</h2>
         <p>
           {{ movie.overview }}
         </p>
         <p>
           <strong>Note :</strong>
-          <app-stars [count]="movie.popularity"></app-stars>
+          <app-stars [count]="movie.voteAverage / 2"></app-stars>
         </p>
       </div>
 
@@ -19,9 +20,7 @@
         <p>|</p>
         <p>|</p>
         <p>|</p>
-        <p>|</p>
         <p>TODO</p>
-        <p>|</p>
         <p>|</p>
         <p>|</p>
         <p>|</p>
@@ -29,16 +28,20 @@
 
       <div class="down">
         <div class="stat">
-          <span *ngIf="movie.tagline"><strong>Tags</strong><span class="dots">:</span><div>{{movie.tagline}}</div></span>
           <span *ngIf="movie.releaseDate"><strong>Sortie</strong><span class="dots">:</span><div>{{movie.releaseDate | date}}</div></span>
-          <span *ngIf="movie.budget"><strong>Budget</strong><span class="dots">:</span><div>{{movie.budget | date}}</div></span>
+          <span *ngIf="movie.budget"><strong>Budget</strong><span class="dots">:</span><div>{{movie.budget | currency}}</div></span>
         </div>
 
+        <div class="genre">
+          <app-chip *ngFor="let genre of movie.genres" [label]="genre.title"></app-chip>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <ng-template #loading>
+  <div class="loading">
   <app-loading-bar/>
+  </div>
 </ng-template>
