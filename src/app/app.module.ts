@@ -3,18 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ToolbarComponent } from './shared/toolbar/toolbar.component';
-import { LogoComponent } from './shared/logo/logo.component';
+import {HttpClientModule} from "@angular/common/http";
+import {NavbarComponent} from "./shared/ui/navbar/navbar.component";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ToolbarComponent,
-    LogoComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    NavbarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

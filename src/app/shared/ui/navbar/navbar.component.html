@@ -1,0 +1,10 @@
+<header>
+  <nav>
+    <ul>
+      <li>&lt;icon&gt;</li>
+      <li><a routerLink="/login">Login</a></li>
+      <li>{{authService.currentUser?.email ?? 'Non connecté'}}</li>
+      <li *ngIf="authService?.currentUser" (click)="authService.logout()">Se déconnecter</li>
+    </ul>
+  </nav>
+</header>
