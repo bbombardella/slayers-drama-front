@@ -37,6 +37,15 @@ export class AuthWebservice {
     )
   }
 
+  refreshToken(refreshToken: string): Observable<TokenResponse> {
+    return this.http.get<TokenResponse>(`${this.root}/refresh`, {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`
+        }
+      }
+    )
+  }
+
   logout(token: string): Observable<void> {
     return this.http.delete<void>(`${this.root}/logout`, {
       headers: {

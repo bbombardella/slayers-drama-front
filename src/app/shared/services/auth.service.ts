@@ -12,22 +12,79 @@ import {User} from "../models/user.model";
 export class AuthService {
   readonly userSubject: Subject<AuthRequest<AuthPayload>> = new Subject();
 
+  private readonly _localStorageKey: string = 'auth';
   private _tokenResponse: TokenResponse | undefined;
 
+  private get tokenResponse(): TokenResponse | undefined {
+    return this._tokenResponse;
+  }
+
+  private set tokenResponse(value: TokenResponse | undefined) {
+    this.storeInLocalStorage(value);
+    this._tokenResponse = value;
+  }
+
   get currentUser(): User | undefined {
-    return this._tokenResponse?.user;
+    return this.tokenResponse?.user;
   }
 
   constructor(private readonly authWebservice: AuthWebservice) {
     this.userSubject
       .pipe(map(v => this.handleNewAuth(v)))
       .subscribe(res => this.logTokenResponse(res));
+
+    this.init();
+  }
+
+  private init(): void {
+    const oldTokenReponse = this.getFromLocalStorage();
+
+    if (!oldTokenReponse?.refresh_token) {
+      return;
+    }
+
+    if (this.tokenExpired(oldTokenReponse.refresh_token)) {
+      return;
+    }
+
+    this.userSubject.next({
+      provider: ProviderEnum.REFRESH,
+      payload: {
+        token: oldTokenReponse.refresh_token
+      }
+    });
+  }
+
+  private getFromLocalStorage(): TokenResponse | undefined {
+    const auth = localStorage.getItem(this._localStorageKey);
+
+    if (auth) {
+      return JSON.parse(auth);
+    }
+
+    return undefined;
+  }
+
+  private storeInLocalStorage(tokenResponse: TokenResponse | undefined): void {
+    if (!tokenResponse) {
+      localStorage.removeItem(this._localStorageKey);
+    }
+
+    localStorage.setItem(
+      this._localStorageKey,
+      JSON.stringify(tokenResponse)
+    );
+  }
+
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
 
   private logTokenResponse(user: Observable<TokenResponse>): void {
     user
       .pipe(take(1), filter(v => !!v))
-      .subscribe(v => this._tokenResponse = v)
+      .subscribe(v => this.tokenResponse = v)
   }
 
   private handleNewAuth(authRequest: AuthRequest<AuthPayload>): Observable<TokenResponse> {
@@ -38,6 +95,8 @@ export class AuthService {
         return this.handleGoogleAuth(authRequest.payload as BearerPayload);
       case ProviderEnum.MICROSOFT:
         return this.handleMicrosoftAuth(authRequest.payload as BearerPayload);
+      case ProviderEnum.REFRESH:
+        return this.handleRefreshAuth(authRequest.payload as BearerPayload)
     }
 
     //TODO handle error
@@ -56,11 +115,15 @@ export class AuthService {
     return this.authWebservice.getToken(payload);
   }
 
+  private handleRefreshAuth(payload: BearerPayload): Observable<TokenResponse> {
+    return this.authWebservice.refreshToken(payload.token);
+  }
+
   public logout(): void {
-    if(this._tokenResponse?.access_token) {
+    if (this.tokenResponse?.access_token) {
       this.authWebservice
-        .logout(this._tokenResponse.access_token)
-        .subscribe(() => this._tokenResponse = undefined)
+        .logout(this.tokenResponse.access_token)
+        .subscribe(() => this.tokenResponse = undefined)
     }
   }
 }
