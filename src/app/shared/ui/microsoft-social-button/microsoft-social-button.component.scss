@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  width: fit-content;
+
+  button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #8C8C8C;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 41px;
+    overflow: visible;
+    background: #FFFFFF;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+
+    /* Remove excess padding and border in Firefox 4+ */
+    &::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+    }
+
+    img {
+      margin: 0 12px;
+    }
+
+    span {
+      flex: 1;
+      font-family: "Segoe UI", serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #5E5E5E;
+      margin-right: 12px;
+    }
+  }
+}

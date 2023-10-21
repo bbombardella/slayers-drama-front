@@ -1,3 +1,9 @@
-* { 
-    font-family: comic-sans-ms, sans-serif;
+:host {
+  display: block;
+  height: 100%;
+  margin: 0;
+
+  main {
+    height: 100%;
+  }
 }
