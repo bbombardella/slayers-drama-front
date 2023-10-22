@@ -10,6 +10,9 @@ import { GenreService } from './services/genre.service';
 import { CinemaService } from './services/cinema.service';
 import { ScreeningService } from './services/screening.service';
 import { ApiService } from './services/api.service';
+import { OrderService } from './services/order.service';
+import { ReservationService } from './services/reservation.service';
+import { ProductService } from './services/product.service';
 
 /**
  * Module that provides all services and configuration.
@@ -25,6 +28,9 @@ import { ApiService } from './services/api.service';
     CinemaService,
     ScreeningService,
     ApiService,
+    OrderService,
+    ReservationService,
+    ProductService,
     ApiConfiguration
   ],
 })

@@ -2,6 +2,7 @@
 /* eslint-disable */
 export interface UpdateMovieDto {
   budget: number;
+  duration: number;
   overview: string;
   popularity: number;
   published: boolean;

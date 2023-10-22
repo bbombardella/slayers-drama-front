@@ -6,12 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { GenreEntity } from '../../models/genre-entity';
 import { PaginatedResult } from '../../models/paginated-result';
 
 export interface GenreControllerFindAll$Params {
 }
 
-export function genreControllerFindAll(http: HttpClient, rootUrl: string, params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+export function genreControllerFindAll(http: HttpClient, rootUrl: string, params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<GenreEntity>;
+}>> {
   const rb = new RequestBuilder(rootUrl, genreControllerFindAll.PATH, 'get');
   if (params) {
   }
@@ -21,7 +24,9 @@ export function genreControllerFindAll(http: HttpClient, rootUrl: string, params
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PaginatedResult>;
+      return r as StrictHttpResponse<PaginatedResult & {
+      'data'?: Array<GenreEntity>;
+      }>;
     })
   );
 }

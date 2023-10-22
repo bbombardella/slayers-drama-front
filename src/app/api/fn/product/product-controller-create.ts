@@ -6,15 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { CreateUserDto } from '../../models/create-user-dto';
-import { UserEntity } from '../../models/user-entity';
+import { CreateProductDto } from '../../models/create-product-dto';
+import { ProductEntity } from '../../models/product-entity';
 
-export interface AuthControllerSignUp$Params {
-      body: CreateUserDto
+export interface ProductControllerCreate$Params {
+      body: CreateProductDto
 }
 
-export function authControllerSignUp(http: HttpClient, rootUrl: string, params: AuthControllerSignUp$Params, context?: HttpContext): Observable<StrictHttpResponse<UserEntity>> {
-  const rb = new RequestBuilder(rootUrl, authControllerSignUp.PATH, 'post');
+export function productControllerCreate(http: HttpClient, rootUrl: string, params: ProductControllerCreate$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductEntity>> {
+  const rb = new RequestBuilder(rootUrl, productControllerCreate.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/json');
   }
@@ -24,9 +24,9 @@ export function authControllerSignUp(http: HttpClient, rootUrl: string, params: 
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<UserEntity>;
+      return r as StrictHttpResponse<ProductEntity>;
     })
   );
 }
 
-authControllerSignUp.PATH = '/auth/sign-up';
+productControllerCreate.PATH = '/product';

@@ -5,6 +5,7 @@ import { ImageEntity } from '../models/image-entity';
 export interface MovieEntity {
   budget: number;
   createdAt: string;
+  duration: number;
   genres: Array<GenreEntity>;
   id: number;
   overview: string;

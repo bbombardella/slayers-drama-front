@@ -7,11 +7,14 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { PaginatedResult } from '../../models/paginated-result';
+import { ScreeningEntity } from '../../models/screening-entity';
 
 export interface ScreeningControllerFindAll$Params {
 }
 
-export function screeningControllerFindAll(http: HttpClient, rootUrl: string, params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+export function screeningControllerFindAll(http: HttpClient, rootUrl: string, params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<ScreeningEntity>;
+}>> {
   const rb = new RequestBuilder(rootUrl, screeningControllerFindAll.PATH, 'get');
   if (params) {
   }
@@ -21,7 +24,9 @@ export function screeningControllerFindAll(http: HttpClient, rootUrl: string, pa
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PaginatedResult>;
+      return r as StrictHttpResponse<PaginatedResult & {
+      'data'?: Array<ScreeningEntity>;
+      }>;
     })
   );
 }

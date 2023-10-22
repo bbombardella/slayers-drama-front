@@ -41,7 +41,9 @@ export class GenreService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  genreControllerFindAll$Response(params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+  genreControllerFindAll$Response(params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<GenreEntity>;
+}>> {
     return genreControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
@@ -55,9 +57,15 @@ export class GenreService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  genreControllerFindAll(params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult> {
+  genreControllerFindAll(params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<GenreEntity>;
+}> {
     return this.genreControllerFindAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<GenreEntity>;
+}>): PaginatedResult & {
+'data'?: Array<GenreEntity>;
+} => r.body)
     );
   }
 

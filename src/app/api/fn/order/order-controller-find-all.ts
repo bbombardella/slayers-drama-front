@@ -6,23 +6,17 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { MovieEntity } from '../../models/movie-entity';
+import { OrderEntity } from '../../models/order-entity';
 import { PaginatedResult } from '../../models/paginated-result';
 
-export interface MovieControllerSearch$Params {
-
-/**
- * The search pattern
- */
-  query: string;
+export interface OrderControllerFindAll$Params {
 }
 
-export function movieControllerSearch(http: HttpClient, rootUrl: string, params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
-'data'?: Array<MovieEntity>;
+export function orderControllerFindAll(http: HttpClient, rootUrl: string, params?: OrderControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<OrderEntity>;
 }>> {
-  const rb = new RequestBuilder(rootUrl, movieControllerSearch.PATH, 'get');
+  const rb = new RequestBuilder(rootUrl, orderControllerFindAll.PATH, 'get');
   if (params) {
-    rb.path('query', params.query, {});
   }
 
   return http.request(
@@ -31,10 +25,10 @@ export function movieControllerSearch(http: HttpClient, rootUrl: string, params:
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<PaginatedResult & {
-      'data'?: Array<MovieEntity>;
+      'data'?: Array<OrderEntity>;
       }>;
     })
   );
 }
 
-movieControllerSearch.PATH = '/movie/search/{query}';
+orderControllerFindAll.PATH = '/order';

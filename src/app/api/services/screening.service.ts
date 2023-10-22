@@ -41,7 +41,9 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerFindAll$Response(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+  screeningControllerFindAll$Response(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<ScreeningEntity>;
+}>> {
     return screeningControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
@@ -55,9 +57,15 @@ export class ScreeningService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  screeningControllerFindAll(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult> {
+  screeningControllerFindAll(params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<ScreeningEntity>;
+}> {
     return this.screeningControllerFindAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<ScreeningEntity>;
+}>): PaginatedResult & {
+'data'?: Array<ScreeningEntity>;
+} => r.body)
     );
   }
 

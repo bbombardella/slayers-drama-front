@@ -46,7 +46,9 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindAll$Response(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+  cinemaControllerFindAll$Response(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}>> {
     return cinemaControllerFindAll(this.http, this.rootUrl, params, context);
   }
 
@@ -60,9 +62,15 @@ export class CinemaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  cinemaControllerFindAll(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult> {
+  cinemaControllerFindAll(params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}> {
     return this.cinemaControllerFindAll$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}>): PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+} => r.body)
     );
   }
 

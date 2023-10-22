@@ -295,7 +295,9 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerSearch$Response(params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult>> {
+  movieControllerSearch$Response(params: MovieControllerSearch$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>> {
     return movieControllerSearch(this.http, this.rootUrl, params, context);
   }
 
@@ -309,9 +311,15 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerSearch(params: MovieControllerSearch$Params, context?: HttpContext): Observable<PaginatedResult> {
+  movieControllerSearch(params: MovieControllerSearch$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}> {
     return this.movieControllerSearch$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PaginatedResult>): PaginatedResult => r.body)
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>): PaginatedResult & {
+'data'?: Array<MovieEntity>;
+} => r.body)
     );
   }
 
