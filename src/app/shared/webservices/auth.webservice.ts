@@ -10,7 +10,7 @@ import {UsernamePayload} from "../models/auth-request.model";
   providedIn: 'root'
 })
 export class AuthWebservice {
-  private readonly root: string = `${environment.api.baseUrl}auth`
+  private readonly root: string = `${environment.api.baseUrl}/auth`
 
   constructor(private readonly http: HttpClient) {
   }

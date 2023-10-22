@@ -5,6 +5,7 @@ import {AuthPayload, AuthRequest, BearerPayload, UsernamePayload} from "../model
 import {ProviderEnum} from "../models/provider.enum";
 import {TokenResponse} from "../models/token-response.model";
 import {User} from "../models/user.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +29,10 @@ export class AuthService {
     return this.tokenResponse?.user;
   }
 
-  constructor(private readonly authWebservice: AuthWebservice) {
+  constructor(private readonly authWebservice: AuthWebservice,
+              private readonly router: Router) {
     this.userSubject
-      .pipe(map(v => this.handleNewAuth(v)))
+      .pipe(map(v => this.handleNewAuthAndRedirect(v)))
       .subscribe(res => this.logTokenResponse(res));
 
     this.init();
@@ -51,7 +53,8 @@ export class AuthService {
       provider: ProviderEnum.REFRESH,
       payload: {
         token: oldTokenReponse.refresh_token
-      }
+      },
+      redirect: false
     });
   }
 
@@ -81,10 +84,24 @@ export class AuthService {
     return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
 
-  private logTokenResponse(user: Observable<TokenResponse>): void {
+  private logTokenResponse(user: Observable<{ redirect: boolean, tokenResponse: TokenResponse }>): void {
     user
       .pipe(take(1), filter(v => !!v))
-      .subscribe(v => this.tokenResponse = v)
+      .subscribe(v => {
+        this.tokenResponse = v.tokenResponse;
+
+        if (v.redirect) {
+          this.router.navigate(['home']);
+        }
+      });
+  }
+
+  private handleNewAuthAndRedirect(authRequest: AuthRequest<AuthPayload>): Observable<{ redirect: boolean, tokenResponse: TokenResponse }> {
+    return this.handleNewAuth(authRequest)
+      .pipe(map(v => ({
+        redirect: authRequest.redirect,
+        tokenResponse: v
+      })));
   }
 
   private handleNewAuth(authRequest: AuthRequest<AuthPayload>): Observable<TokenResponse> {

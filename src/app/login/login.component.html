@@ -1,32 +1,25 @@
-<div class="login-page">
-  <aside></aside>
-  <section class="login-form">
-    <section class="login-container">
-      <h1>Se connecter</h1>
-      <hr>
-      <form>
-        <div>
-          <label for="mail">Adresse mail</label>
-          <input [(ngModel)]="username" type="text" name="mail" id="mail" placeholder="xyz@host.com">
-        </div>
-        <div>
-          <label for="password">Mot de passe</label>
-          <input [(ngModel)]="password" type="password" name="password" id="password" placeholder="•••••••••">
-        </div>
-      </form>
-      <div class="login-container-buttons">
-        <button (click)="localLogin()">Se connecter</button>
-        <button>S'inscrire</button>
-      </div>
-      <hr>
-      <h2>Ou</h2>
-      <div class="provider-buttons">
-        <asl-google-signin-button type="standard"
-                                  logo_alignment="center"
-                                  shape="square"
-                                  size="large"></asl-google-signin-button>
-        <app-microsoft-social-button (click)="microsoftLogin()"></app-microsoft-social-button>
-      </div>
-    </section>
-  </section>
-</div>
+<app-credentials-container label="Se connecter">
+  <form>
+    <div>
+      <label for="mail">Adresse mail</label>
+      <input [(ngModel)]="username" type="text" name="mail" id="mail" placeholder="xyz@host.com">
+    </div>
+    <div>
+      <label for="password">Mot de passe</label>
+      <input [(ngModel)]="password" type="password" name="password" id="password" placeholder="•••••••••">
+    </div>
+  </form>
+  <div class="login-container-buttons">
+    <button (click)="localLogin()">Se connecter</button>
+    <button routerLink="/signup">S'inscrire</button>
+  </div>
+  <hr>
+  <h2>Ou</h2>
+  <div class="provider-buttons">
+    <asl-google-signin-button type="standard"
+                              logo_alignment="center"
+                              shape="square"
+                              size="large"></asl-google-signin-button>
+    <app-microsoft-social-button (click)="microsoftLogin()"></app-microsoft-social-button>
+  </div>
+</app-credentials-container>

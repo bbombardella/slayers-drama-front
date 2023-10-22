@@ -13,6 +13,7 @@ import {LoginRoutingModule} from "./login-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {MicrosoftSocialButtonComponent} from "../shared/ui/microsoft-social-button/microsoft-social-button.component";
+import {CredentialsContainerComponent} from "../shared/ui/credentials-container/credentials-container.component";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {MicrosoftSocialButtonComponent} from "../shared/ui/microsoft-social-butt
         SocialLoginModule,
         GoogleSigninButtonModule,
         FormsModule,
+        CredentialsContainerComponent,
         MicrosoftSocialButtonComponent
     ],
   providers: [

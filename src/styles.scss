@@ -176,3 +176,9 @@ body {
 
 html, body { height: auto; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+p, span {
+  &.error {
+    color: red;
+  }
+}

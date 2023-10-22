@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
           provider: v.provider as ProviderEnum,
           payload: {
             token: v.idToken
-          }
+          },
+          redirect: true
         })
       });
   }
@@ -40,7 +41,8 @@ export class LoginComponent implements OnInit {
         payload: {
           username: this.username,
           password: this.password
-        }
+        },
+        redirect: true
       });
     }
   }

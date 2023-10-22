@@ -3,10 +3,12 @@ import {ProviderEnum} from "./provider.enum";
 export class AuthRequest<T extends AuthPayload> {
   provider: ProviderEnum;
   payload: T;
+  redirect: boolean;
 
-  constructor(provider: ProviderEnum, payload: T) {
+  constructor(provider: ProviderEnum, payload: T, redirect: boolean = true) {
     this.provider = provider;
     this.payload = payload;
+    this.redirect = redirect;
   }
 }
 
