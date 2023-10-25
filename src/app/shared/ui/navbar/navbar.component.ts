@@ -10,6 +10,8 @@ import {MovieService} from "../../../api/services";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatDialog} from "@angular/material/dialog";
+import {CinemaComponent} from "../../../cinema/cinema.component";
 
 @Component({
   standalone: true,
@@ -32,6 +34,7 @@ export class NavbarComponent implements OnInit {
     public readonly authService: AuthService,
     private readonly movieService: MovieService,
     private readonly router: Router,
+    private readonly dialog: MatDialog,
   ) {
   }
 
@@ -64,6 +67,15 @@ export class NavbarComponent implements OnInit {
   }
 
   goToCinema() {
-    this.router.navigate(['cinema']);
+    // this.router.navigate(['cinema']);
+    const dialogRef = this.dialog.open(CinemaComponent,
+      {
+        width: '50%',
+        height: '55%',
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

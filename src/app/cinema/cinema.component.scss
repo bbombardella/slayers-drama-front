@@ -1,0 +1,19 @@
+.body{
+  height: 75%;
+  .state{
+
+  }
+
+  .list{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+  }
+}
+.controllers{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
