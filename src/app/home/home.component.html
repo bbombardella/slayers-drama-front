@@ -11,6 +11,15 @@
 
 <div class="movie-list">
   <h1>Les tendances</h1>
+  <div class="screening-filter">
+    <mat-slide-toggle
+      color="primary"
+      [(ngModel)]="plannedOnly"
+      (change)="togglePlannedOnly()"
+    >
+      Montrer les films à l'affiche uniquement
+    </mat-slide-toggle>
+  </div>
   <div class="container">
     <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
   </div>

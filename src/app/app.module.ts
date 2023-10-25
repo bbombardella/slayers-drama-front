@@ -16,10 +16,12 @@ import {Storage} from "@ionic/storage-angular";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
 import {ErrorHandlerInterceptor} from "./shared/interceptors/error-handler.interceptor";
+import { ScreeningComponent } from './shared/ui/screening/screening.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ScreeningComponent,
   ],
   imports: [
     BrowserModule,

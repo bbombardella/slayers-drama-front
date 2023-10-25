@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MovieEntity} from "../api/models/movie-entity";
 import {MovieService} from "../api/services";
 import {Router} from "@angular/router";
+import {PaginatedResult} from "../api/models/paginated-result";
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public plannedOnly: boolean = true;
 
   constructor(
     private readonly movieService: MovieService,
@@ -17,16 +19,28 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieService.movieControllerGetMostPopular(
-      {count: 8}
-    ).subscribe((pr: MovieEntity[]) => {
-      this.movies = pr;
-    });
+    this.fillMovies();
   }
 
   public movies: Array<MovieEntity> = new Array<MovieEntity>(8);
 
   async navigateToMovies() {
     await this.router.navigate(['/movies'])
+  }
+
+  togglePlannedOnly(): void {
+    this.fillMovies();
+  }
+
+  private fillMovies(): void {
+    if (this.plannedOnly) {
+      this.movieService.movieControllerGetMostPopularPlanned({count: 8}).subscribe((r: MovieEntity[]) => {
+        this.movies = r;
+      });
+    } else {
+      this.movieService.movieControllerGetMostPopular({count: 8}).subscribe((r: MovieEntity[]) => {
+        this.movies = r;
+      });
+    }
   }
 }
