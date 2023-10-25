@@ -1,9 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-import {GenreEntity} from '../models/genre-entity';
-import {GroupedScreeningDto} from '../models/grouped-screening-dto';
-import {ImageEntity} from '../models/image-entity';
-
+import { GenreEntity } from '../models/genre-entity';
+import { GroupedScreeningDto } from '../models/grouped-screening-dto';
+import { ImageEntity } from '../models/image-entity';
 export interface CinemaMoviesDetailsDto {
   budget: number;
   createdAt: string;

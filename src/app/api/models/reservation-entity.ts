@@ -1,8 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-import {ReservationProductEntity} from '../models/reservation-product-entity';
-import {ScreeningEntity} from '../models/screening-entity';
-
+import { ReservationProductEntity } from '../models/reservation-product-entity';
+import { ScreeningEntity } from '../models/screening-entity';
 export interface ReservationEntity {
   createdAt: string;
   customerId: number;

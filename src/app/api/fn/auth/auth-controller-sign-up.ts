@@ -1,13 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {filter, map} from 'rxjs/operators';
-import {StrictHttpResponse} from '../../strict-http-response';
-import {RequestBuilder} from '../../request-builder';
+import { HttpClient, HttpContext, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { StrictHttpResponse } from '../../strict-http-response';
+import { RequestBuilder } from '../../request-builder';
 
-import {CreateUserDto} from '../../models/create-user-dto';
-import {UserEntity} from '../../models/user-entity';
+import { CreateUserDto } from '../../models/create-user-dto';
+import { UserEntity } from '../../models/user-entity';
 
 export interface AuthControllerSignUp$Params {
       body: CreateUserDto

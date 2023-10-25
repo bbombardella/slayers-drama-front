@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import {BelongsToCollection} from '../models/belongs-to-collection';
-
+import { BelongsToCollection } from '../models/belongs-to-collection';
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string;

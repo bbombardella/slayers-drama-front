@@ -1,7 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-import {CinemaEntity} from '../models/cinema-entity';
-
+import { CinemaEntity } from '../models/cinema-entity';
 export interface ScreeningEntity {
   cinema: CinemaEntity;
   cinemaId: number;

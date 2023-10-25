@@ -1,24 +1,25 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import {BaseService} from '../base-service';
-import {ApiConfiguration} from '../api-configuration';
-import {StrictHttpResponse} from '../strict-http-response';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
 
-import {orderControllerCreate, OrderControllerCreate$Params} from '../fn/order/order-controller-create';
-import {orderControllerFindAll, OrderControllerFindAll$Params} from '../fn/order/order-controller-find-all';
-import {orderControllerFindOne, OrderControllerFindOne$Params} from '../fn/order/order-controller-find-one';
-import {
-  orderControllerPaymentCallback,
-  OrderControllerPaymentCallback$Params
-} from '../fn/order/order-controller-payment-callback';
-import {OrderEntity} from '../models/order-entity';
-import {OrderPaymentRequiredDto} from '../models/order-payment-required-dto';
-import {PaginatedResult} from '../models/paginated-result';
+import { orderControllerCreate } from '../fn/order/order-controller-create';
+import { OrderControllerCreate$Params } from '../fn/order/order-controller-create';
+import { orderControllerFindAll } from '../fn/order/order-controller-find-all';
+import { OrderControllerFindAll$Params } from '../fn/order/order-controller-find-all';
+import { orderControllerFindOne } from '../fn/order/order-controller-find-one';
+import { OrderControllerFindOne$Params } from '../fn/order/order-controller-find-one';
+import { orderControllerPaymentCallback } from '../fn/order/order-controller-payment-callback';
+import { OrderControllerPaymentCallback$Params } from '../fn/order/order-controller-payment-callback';
+import { OrderEntity } from '../models/order-entity';
+import { OrderPaymentRequiredDto } from '../models/order-payment-required-dto';
+import { PaginatedResult } from '../models/paginated-result';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService extends BaseService {

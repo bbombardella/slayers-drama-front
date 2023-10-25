@@ -1,27 +1,26 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import {BaseService} from '../base-service';
-import {ApiConfiguration} from '../api-configuration';
-import {StrictHttpResponse} from '../strict-http-response';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
 
-import {PaginatedResult} from '../models/paginated-result';
-import {screeningControllerCreate, ScreeningControllerCreate$Params} from '../fn/screening/screening-controller-create';
-import {
-  screeningControllerFindAll,
-  ScreeningControllerFindAll$Params
-} from '../fn/screening/screening-controller-find-all';
-import {
-  screeningControllerFindOne,
-  ScreeningControllerFindOne$Params
-} from '../fn/screening/screening-controller-find-one';
-import {screeningControllerRemove, ScreeningControllerRemove$Params} from '../fn/screening/screening-controller-remove';
-import {screeningControllerUpdate, ScreeningControllerUpdate$Params} from '../fn/screening/screening-controller-update';
-import {ScreeningEntity} from '../models/screening-entity';
+import { PaginatedResult } from '../models/paginated-result';
+import { screeningControllerCreate } from '../fn/screening/screening-controller-create';
+import { ScreeningControllerCreate$Params } from '../fn/screening/screening-controller-create';
+import { screeningControllerFindAll } from '../fn/screening/screening-controller-find-all';
+import { ScreeningControllerFindAll$Params } from '../fn/screening/screening-controller-find-all';
+import { screeningControllerFindOne } from '../fn/screening/screening-controller-find-one';
+import { ScreeningControllerFindOne$Params } from '../fn/screening/screening-controller-find-one';
+import { screeningControllerRemove } from '../fn/screening/screening-controller-remove';
+import { ScreeningControllerRemove$Params } from '../fn/screening/screening-controller-remove';
+import { screeningControllerUpdate } from '../fn/screening/screening-controller-update';
+import { ScreeningControllerUpdate$Params } from '../fn/screening/screening-controller-update';
+import { ScreeningEntity } from '../models/screening-entity';
 
 @Injectable({ providedIn: 'root' })
 export class ScreeningService extends BaseService {

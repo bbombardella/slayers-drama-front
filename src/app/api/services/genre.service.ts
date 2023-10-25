@@ -1,21 +1,26 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import {BaseService} from '../base-service';
-import {ApiConfiguration} from '../api-configuration';
-import {StrictHttpResponse} from '../strict-http-response';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
 
-import {genreControllerCreate, GenreControllerCreate$Params} from '../fn/genre/genre-controller-create';
-import {genreControllerFindAll, GenreControllerFindAll$Params} from '../fn/genre/genre-controller-find-all';
-import {genreControllerFindOne, GenreControllerFindOne$Params} from '../fn/genre/genre-controller-find-one';
-import {genreControllerRemove, GenreControllerRemove$Params} from '../fn/genre/genre-controller-remove';
-import {genreControllerUpdate, GenreControllerUpdate$Params} from '../fn/genre/genre-controller-update';
-import {GenreEntity} from '../models/genre-entity';
-import {PaginatedResult} from '../models/paginated-result';
+import { genreControllerCreate } from '../fn/genre/genre-controller-create';
+import { GenreControllerCreate$Params } from '../fn/genre/genre-controller-create';
+import { genreControllerFindAll } from '../fn/genre/genre-controller-find-all';
+import { GenreControllerFindAll$Params } from '../fn/genre/genre-controller-find-all';
+import { genreControllerFindOne } from '../fn/genre/genre-controller-find-one';
+import { GenreControllerFindOne$Params } from '../fn/genre/genre-controller-find-one';
+import { genreControllerRemove } from '../fn/genre/genre-controller-remove';
+import { GenreControllerRemove$Params } from '../fn/genre/genre-controller-remove';
+import { genreControllerUpdate } from '../fn/genre/genre-controller-update';
+import { GenreControllerUpdate$Params } from '../fn/genre/genre-controller-update';
+import { GenreEntity } from '../models/genre-entity';
+import { PaginatedResult } from '../models/paginated-result';
 
 @Injectable({ providedIn: 'root' })
 export class GenreService extends BaseService {

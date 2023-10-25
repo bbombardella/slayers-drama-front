@@ -1,28 +1,28 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import {BaseService} from '../base-service';
-import {ApiConfiguration} from '../api-configuration';
-import {StrictHttpResponse} from '../strict-http-response';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
 
-import {
-  authControllerGoogleCallback,
-  AuthControllerGoogleCallback$Params
-} from '../fn/auth/auth-controller-google-callback';
-import {authControllerLogout, AuthControllerLogout$Params} from '../fn/auth/auth-controller-logout';
-import {
-  authControllerMicrosoftCallback,
-  AuthControllerMicrosoftCallback$Params
-} from '../fn/auth/auth-controller-microsoft-callback';
-import {authControllerRefresh, AuthControllerRefresh$Params} from '../fn/auth/auth-controller-refresh';
-import {authControllerSignIn, AuthControllerSignIn$Params} from '../fn/auth/auth-controller-sign-in';
-import {authControllerSignUp, AuthControllerSignUp$Params} from '../fn/auth/auth-controller-sign-up';
-import {TokenResponseDto} from '../models/token-response-dto';
-import {UserEntity} from '../models/user-entity';
+import { authControllerGoogleCallback } from '../fn/auth/auth-controller-google-callback';
+import { AuthControllerGoogleCallback$Params } from '../fn/auth/auth-controller-google-callback';
+import { authControllerLogout } from '../fn/auth/auth-controller-logout';
+import { AuthControllerLogout$Params } from '../fn/auth/auth-controller-logout';
+import { authControllerMicrosoftCallback } from '../fn/auth/auth-controller-microsoft-callback';
+import { AuthControllerMicrosoftCallback$Params } from '../fn/auth/auth-controller-microsoft-callback';
+import { authControllerRefresh } from '../fn/auth/auth-controller-refresh';
+import { AuthControllerRefresh$Params } from '../fn/auth/auth-controller-refresh';
+import { authControllerSignIn } from '../fn/auth/auth-controller-sign-in';
+import { AuthControllerSignIn$Params } from '../fn/auth/auth-controller-sign-in';
+import { authControllerSignUp } from '../fn/auth/auth-controller-sign-up';
+import { AuthControllerSignUp$Params } from '../fn/auth/auth-controller-sign-up';
+import { TokenResponseDto } from '../models/token-response-dto';
+import { UserEntity } from '../models/user-entity';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {

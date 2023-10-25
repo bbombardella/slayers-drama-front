@@ -1,15 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import {BaseService} from '../base-service';
-import {ApiConfiguration} from '../api-configuration';
-import {StrictHttpResponse} from '../strict-http-response';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
 
-import {debugControllerPopulate, DebugControllerPopulate$Params} from '../fn/operations/debug-controller-populate';
+import { debugControllerPopulate } from '../fn/operations/debug-controller-populate';
+import { DebugControllerPopulate$Params } from '../fn/operations/debug-controller-populate';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService extends BaseService {

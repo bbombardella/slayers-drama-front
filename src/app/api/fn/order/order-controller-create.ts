@@ -1,13 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-import {HttpClient, HttpContext, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {filter, map} from 'rxjs/operators';
-import {StrictHttpResponse} from '../../strict-http-response';
-import {RequestBuilder} from '../../request-builder';
+import { HttpClient, HttpContext, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { StrictHttpResponse } from '../../strict-http-response';
+import { RequestBuilder } from '../../request-builder';
 
-import {CreateOrderDto} from '../../models/create-order-dto';
-import {OrderPaymentRequiredDto} from '../../models/order-payment-required-dto';
+import { CreateOrderDto } from '../../models/create-order-dto';
+import { OrderPaymentRequiredDto } from '../../models/order-payment-required-dto';
 
 export interface OrderControllerCreate$Params {
       body: CreateOrderDto
