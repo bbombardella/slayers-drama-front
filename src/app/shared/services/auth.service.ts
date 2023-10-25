@@ -61,7 +61,7 @@ export class AuthService {
   private getFromLocalStorage(): TokenResponse | undefined {
     const auth = localStorage.getItem(this._localStorageKey);
 
-    if (auth) {
+    if (auth && auth !== "undefined") {
       return JSON.parse(auth);
     }
 
