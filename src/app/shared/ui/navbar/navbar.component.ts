@@ -58,4 +58,12 @@ export class NavbarComponent implements OnInit {
       });
     });
   }
+
+  goToCart() {
+    this.router.navigate(['cart']);
+  }
+
+  goToCinema() {
+    this.router.navigate(['cinema']);
+  }
 }
