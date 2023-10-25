@@ -53,7 +53,7 @@
           <ng-container *ngIf="authService?.currentUser; else noUser">
             <p class="user-info">Bonjour, {{ authService.currentUser?.firstName }}</p>
             <button mat-menu-item>Mes informations</button>
-            <button *ngIf="authService.isAdmin" mat-menu-item>Admin</button>
+            <button *ngIf="authService.isAdmin" routerLink="/admin" mat-menu-item>Admin</button>
             <mat-divider></mat-divider>
             <button (click)="authService.logout()" mat-menu-item>Se déconnecter</button>
           </ng-container>

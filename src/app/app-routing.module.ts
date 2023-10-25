@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {authGuard} from "./shared/guards/auth.guard";
+import {RoleEnum} from "./shared/models/role.enum";
 
 const routes: Routes = [
   {
@@ -38,7 +40,11 @@ const routes: Routes = [
   {
     path: 'cart',
     loadChildren: () => import('./cart/cart.module').then(m => m.CartModule),
-  }
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
 ];
 
 @NgModule({

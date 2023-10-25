@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {filter, map, Observable, of, Subject, take} from "rxjs";
+import {BehaviorSubject, filter, map, Observable, of, Subject, take} from "rxjs";
 import {AuthWebservice} from "../webservices/auth.webservice";
 import {AuthPayload, AuthRequest, BearerPayload, UsernamePayload} from "../models/auth-request.model";
 import {ProviderEnum} from "../models/provider.enum";
@@ -13,6 +13,7 @@ import {RoleEnum} from "../models/role.enum";
 })
 export class AuthService {
   readonly userSubject: Subject<AuthRequest<AuthPayload>> = new Subject();
+  readonly authentificated: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null);
 
   private readonly _localStorageKey: string = 'auth';
   private _tokenResponse: TokenResponseDto | undefined;
@@ -28,6 +29,7 @@ export class AuthService {
   private set tokenResponse(value: TokenResponseDto | undefined) {
     this.storeInLocalStorage(value);
     this._tokenResponse = value;
+    this.authentificated.next(true);
   }
 
   get currentUser(): UserEntity | undefined {
@@ -47,10 +49,12 @@ export class AuthService {
     const oldTokenReponse = this.getFromLocalStorage();
 
     if (!oldTokenReponse?.refresh_token) {
+      this.authentificated.next(false);
       return;
     }
 
     if (this.tokenExpired(oldTokenReponse.refresh_token)) {
+      this.authentificated.next(false);
       return;
     }
 
