@@ -2,8 +2,8 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {TokenResponse} from "../models/token-response.model";
 import {UsernamePayload} from "../models/auth-request.model";
+import {TokenResponseDto} from "../../api/models/token-response-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,12 @@ export class AuthWebservice {
   constructor(private readonly http: HttpClient) {
   }
 
-  getToken(payload: UsernamePayload): Observable<TokenResponse> {
-    return this.http.post<TokenResponse>(`${this.root}/login`, payload);
+  getToken(payload: UsernamePayload): Observable<TokenResponseDto> {
+    return this.http.post<TokenResponseDto>(`${this.root}/login`, payload);
   }
 
-  getGoogleToken(googleToken: string): Observable<TokenResponse> {
-    return this.http.get<TokenResponse>(`${this.root}/google/login`, {
+  getGoogleToken(googleToken: string): Observable<TokenResponseDto> {
+    return this.http.get<TokenResponseDto>(`${this.root}/google/login`, {
         headers: {
           Authorization: `Bearer ${googleToken}`
         }
@@ -27,8 +27,8 @@ export class AuthWebservice {
     )
   }
 
-  getMicrosoftToken(microsoftToken: string): Observable<TokenResponse> {
-    return this.http.get<TokenResponse>(`${this.root}/microsoft/login`, {
+  getMicrosoftToken(microsoftToken: string): Observable<TokenResponseDto> {
+    return this.http.get<TokenResponseDto>(`${this.root}/microsoft/login`, {
         headers: {
           Authorization: `Bearer ${microsoftToken}`
         }
@@ -36,8 +36,8 @@ export class AuthWebservice {
     )
   }
 
-  refreshToken(refreshToken: string): Observable<TokenResponse> {
-    return this.http.get<TokenResponse>(`${this.root}/refresh`, {
+  refreshToken(refreshToken: string): Observable<TokenResponseDto> {
+    return this.http.get<TokenResponseDto>(`${this.root}/refresh`, {
         headers: {
           Authorization: `Bearer ${refreshToken}`
         }

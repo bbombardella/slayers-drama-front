@@ -3,9 +3,10 @@ import {filter, map, Observable, of, Subject, take} from "rxjs";
 import {AuthWebservice} from "../webservices/auth.webservice";
 import {AuthPayload, AuthRequest, BearerPayload, UsernamePayload} from "../models/auth-request.model";
 import {ProviderEnum} from "../models/provider.enum";
-import {TokenResponse} from "../models/token-response.model";
-import {User} from "../models/user.model";
 import {Router} from "@angular/router";
+import {UserEntity} from "../../api/models/user-entity";
+import {TokenResponseDto} from "../../api/models/token-response-dto";
+import {RoleEnum} from "../models/role.enum";
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +15,22 @@ export class AuthService {
   readonly userSubject: Subject<AuthRequest<AuthPayload>> = new Subject();
 
   private readonly _localStorageKey: string = 'auth';
-  private _tokenResponse: TokenResponse | undefined;
+  private _tokenResponse: TokenResponseDto | undefined;
 
-  get tokenResponse(): TokenResponse | undefined {
+  get tokenResponse(): TokenResponseDto | undefined {
     return this._tokenResponse;
   }
 
-  private set tokenResponse(value: TokenResponse | undefined) {
+  get isAdmin(): boolean {
+    return this.currentUser?.role === RoleEnum.ADMIN;
+  }
+
+  private set tokenResponse(value: TokenResponseDto | undefined) {
     this.storeInLocalStorage(value);
     this._tokenResponse = value;
   }
 
-  get currentUser(): User | undefined {
+  get currentUser(): UserEntity | undefined {
     return this.tokenResponse?.user;
   }
 
@@ -58,7 +63,7 @@ export class AuthService {
     });
   }
 
-  private getFromLocalStorage(): TokenResponse | undefined {
+  private getFromLocalStorage(): TokenResponseDto | undefined {
     const auth = localStorage.getItem(this._localStorageKey);
 
     if (auth && auth !== "undefined") {
@@ -68,7 +73,7 @@ export class AuthService {
     return undefined;
   }
 
-  private storeInLocalStorage(tokenResponse: TokenResponse | undefined): void {
+  private storeInLocalStorage(tokenResponse: TokenResponseDto | undefined): void {
     if (!tokenResponse) {
       localStorage.removeItem(this._localStorageKey);
     }
@@ -84,7 +89,7 @@ export class AuthService {
     return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
 
-  private logTokenResponse(user: Observable<{ redirect: boolean, tokenResponse: TokenResponse }>): void {
+  private logTokenResponse(user: Observable<{ redirect: boolean, tokenResponse: TokenResponseDto }>): void {
     user
       .pipe(take(1), filter(v => !!v))
       .subscribe(v => {
@@ -96,7 +101,7 @@ export class AuthService {
       });
   }
 
-  private handleNewAuthAndRedirect(authRequest: AuthRequest<AuthPayload>): Observable<{ redirect: boolean, tokenResponse: TokenResponse }> {
+  private handleNewAuthAndRedirect(authRequest: AuthRequest<AuthPayload>): Observable<{ redirect: boolean, tokenResponse: TokenResponseDto }> {
     return this.handleNewAuth(authRequest)
       .pipe(map(v => ({
         redirect: authRequest.redirect,
@@ -104,7 +109,7 @@ export class AuthService {
       })));
   }
 
-  private handleNewAuth(authRequest: AuthRequest<AuthPayload>): Observable<TokenResponse> {
+  private handleNewAuth(authRequest: AuthRequest<AuthPayload>): Observable<TokenResponseDto> {
     switch (authRequest?.provider) {
       case ProviderEnum.LOCAL:
         return this.handleLocalAuth(authRequest.payload as UsernamePayload);
@@ -117,22 +122,22 @@ export class AuthService {
     }
 
     //TODO handle error
-    return of({} as TokenResponse);
+    return of({} as TokenResponseDto);
   }
 
-  private handleGoogleAuth(payload: BearerPayload): Observable<TokenResponse> {
+  private handleGoogleAuth(payload: BearerPayload): Observable<TokenResponseDto> {
     return this.authWebservice.getGoogleToken(payload.token);
   }
 
-  private handleMicrosoftAuth(payload: BearerPayload): Observable<TokenResponse> {
+  private handleMicrosoftAuth(payload: BearerPayload): Observable<TokenResponseDto> {
     return this.authWebservice.getMicrosoftToken(payload.token);
   }
 
-  private handleLocalAuth(payload: UsernamePayload): Observable<TokenResponse> {
+  private handleLocalAuth(payload: UsernamePayload): Observable<TokenResponseDto> {
     return this.authWebservice.getToken(payload);
   }
 
-  private handleRefreshAuth(payload: BearerPayload): Observable<TokenResponse> {
+  private handleRefreshAuth(payload: BearerPayload): Observable<TokenResponseDto> {
     return this.authWebservice.refreshToken(payload.token);
   }
 

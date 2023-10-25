@@ -12,6 +12,9 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialog} from "@angular/material/dialog";
 import {CinemaComponent} from "../../../cinema/cinema.component";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatListModule} from "@angular/material/list";
+import {UserEntity} from "../../../api/models/user-entity";
 
 @Component({
   standalone: true,
@@ -25,7 +28,9 @@ import {CinemaComponent} from "../../../cinema/cinema.component";
     JsonPipe,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    MatListModule
   ],
   styleUrls: ['./navbar.component.scss']
 })
