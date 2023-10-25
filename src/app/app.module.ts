@@ -15,6 +15,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {Storage} from "@ionic/storage-angular";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
+import {ErrorHandlerInterceptor} from "./shared/interceptors/error-handler.interceptor";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,11 @@ import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
       multi: true
     },
     Storage,
