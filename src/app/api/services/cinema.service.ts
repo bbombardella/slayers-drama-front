@@ -1,31 +1,27 @@
 /* tslint:disable */
 /* eslint-disable */
-import { HttpClient, HttpContext } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient, HttpContext} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import {BaseService} from '../base-service';
+import {ApiConfiguration} from '../api-configuration';
+import {StrictHttpResponse} from '../strict-http-response';
 
-import { cinemaControllerCreate } from '../fn/cinema/cinema-controller-create';
-import { CinemaControllerCreate$Params } from '../fn/cinema/cinema-controller-create';
-import { cinemaControllerFindAll } from '../fn/cinema/cinema-controller-find-all';
-import { CinemaControllerFindAll$Params } from '../fn/cinema/cinema-controller-find-all';
-import { cinemaControllerFindOne } from '../fn/cinema/cinema-controller-find-one';
-import { CinemaControllerFindOne$Params } from '../fn/cinema/cinema-controller-find-one';
-import { cinemaControllerFindOneDetails } from '../fn/cinema/cinema-controller-find-one-details';
-import { CinemaControllerFindOneDetails$Params } from '../fn/cinema/cinema-controller-find-one-details';
-import { cinemaControllerRemove } from '../fn/cinema/cinema-controller-remove';
-import { CinemaControllerRemove$Params } from '../fn/cinema/cinema-controller-remove';
-import { cinemaControllerSearch } from '../fn/cinema/cinema-controller-search';
-import { CinemaControllerSearch$Params } from '../fn/cinema/cinema-controller-search';
-import { cinemaControllerUpdate } from '../fn/cinema/cinema-controller-update';
-import { CinemaControllerUpdate$Params } from '../fn/cinema/cinema-controller-update';
-import { CinemaDetailsDto } from '../models/cinema-details-dto';
-import { CinemaEntity } from '../models/cinema-entity';
-import { PaginatedResult } from '../models/paginated-result';
+import {cinemaControllerCreate, CinemaControllerCreate$Params} from '../fn/cinema/cinema-controller-create';
+import {cinemaControllerFindAll, CinemaControllerFindAll$Params} from '../fn/cinema/cinema-controller-find-all';
+import {cinemaControllerFindOne, CinemaControllerFindOne$Params} from '../fn/cinema/cinema-controller-find-one';
+import {
+  cinemaControllerFindOneDetails,
+  CinemaControllerFindOneDetails$Params
+} from '../fn/cinema/cinema-controller-find-one-details';
+import {cinemaControllerRemove, CinemaControllerRemove$Params} from '../fn/cinema/cinema-controller-remove';
+import {cinemaControllerSearch, CinemaControllerSearch$Params} from '../fn/cinema/cinema-controller-search';
+import {cinemaControllerUpdate, CinemaControllerUpdate$Params} from '../fn/cinema/cinema-controller-update';
+import {CinemaDetailsDto} from '../models/cinema-details-dto';
+import {CinemaEntity} from '../models/cinema-entity';
+import {PaginatedResult} from '../models/paginated-result';
 
 @Injectable({ providedIn: 'root' })
 export class CinemaService extends BaseService {

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieEntity} from "../api/models/movie-entity";
 import {MovieService} from "../api/services";
-import {PaginatedResult} from "../api/models/paginated-result";
 import {Router} from "@angular/router";
 
 @Component({

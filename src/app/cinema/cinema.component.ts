@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CinemaManagerService} from "../shared/services/cinema-manager.service";
 import {CinemaEntity} from "../api/models/cinema-entity";

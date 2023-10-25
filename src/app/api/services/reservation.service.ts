@@ -1,20 +1,24 @@
 /* tslint:disable */
 /* eslint-disable */
-import { HttpClient, HttpContext } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient, HttpContext} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import {BaseService} from '../base-service';
+import {ApiConfiguration} from '../api-configuration';
+import {StrictHttpResponse} from '../strict-http-response';
 
-import { PaginatedResult } from '../models/paginated-result';
-import { reservationControllerFindAll } from '../fn/reservation/reservation-controller-find-all';
-import { ReservationControllerFindAll$Params } from '../fn/reservation/reservation-controller-find-all';
-import { reservationControllerFindOne } from '../fn/reservation/reservation-controller-find-one';
-import { ReservationControllerFindOne$Params } from '../fn/reservation/reservation-controller-find-one';
-import { ReservationEntity } from '../models/reservation-entity';
+import {PaginatedResult} from '../models/paginated-result';
+import {
+  reservationControllerFindAll,
+  ReservationControllerFindAll$Params
+} from '../fn/reservation/reservation-controller-find-all';
+import {
+  reservationControllerFindOne,
+  ReservationControllerFindOne$Params
+} from '../fn/reservation/reservation-controller-find-one';
+import {ReservationEntity} from '../models/reservation-entity';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationService extends BaseService {

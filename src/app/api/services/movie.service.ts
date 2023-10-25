@@ -1,41 +1,38 @@
 /* tslint:disable */
 /* eslint-disable */
-import { HttpClient, HttpContext } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient, HttpContext} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import {BaseService} from '../base-service';
+import {ApiConfiguration} from '../api-configuration';
+import {StrictHttpResponse} from '../strict-http-response';
 
-import { movieControllerAttachGenre } from '../fn/movie/movie-controller-attach-genre';
-import { MovieControllerAttachGenre$Params } from '../fn/movie/movie-controller-attach-genre';
-import { movieControllerCreate } from '../fn/movie/movie-controller-create';
-import { MovieControllerCreate$Params } from '../fn/movie/movie-controller-create';
-import { movieControllerDelete } from '../fn/movie/movie-controller-delete';
-import { MovieControllerDelete$Params } from '../fn/movie/movie-controller-delete';
-import { movieControllerDetachGenre } from '../fn/movie/movie-controller-detach-genre';
-import { MovieControllerDetachGenre$Params } from '../fn/movie/movie-controller-detach-genre';
-import { movieControllerFindAll } from '../fn/movie/movie-controller-find-all';
-import { MovieControllerFindAll$Params } from '../fn/movie/movie-controller-find-all';
-import { movieControllerFindOne } from '../fn/movie/movie-controller-find-one';
-import { MovieControllerFindOne$Params } from '../fn/movie/movie-controller-find-one';
-import { movieControllerFindOneTmdb } from '../fn/movie/movie-controller-find-one-tmdb';
-import { MovieControllerFindOneTmdb$Params } from '../fn/movie/movie-controller-find-one-tmdb';
-import { movieControllerGetMostPopular } from '../fn/movie/movie-controller-get-most-popular';
-import { MovieControllerGetMostPopular$Params } from '../fn/movie/movie-controller-get-most-popular';
-import { movieControllerSearch } from '../fn/movie/movie-controller-search';
-import { MovieControllerSearch$Params } from '../fn/movie/movie-controller-search';
-import { movieControllerUpdate } from '../fn/movie/movie-controller-update';
-import { MovieControllerUpdate$Params } from '../fn/movie/movie-controller-update';
-import { movieControllerUpdateImage } from '../fn/movie/movie-controller-update-image';
-import { MovieControllerUpdateImage$Params } from '../fn/movie/movie-controller-update-image';
-import { movieControllerUpdateImageTmdb } from '../fn/movie/movie-controller-update-image-tmdb';
-import { MovieControllerUpdateImageTmdb$Params } from '../fn/movie/movie-controller-update-image-tmdb';
-import { MovieDetails } from '../models/movie-details';
-import { MovieEntity } from '../models/movie-entity';
-import { PaginatedResult } from '../models/paginated-result';
+import {movieControllerAttachGenre, MovieControllerAttachGenre$Params} from '../fn/movie/movie-controller-attach-genre';
+import {movieControllerCreate, MovieControllerCreate$Params} from '../fn/movie/movie-controller-create';
+import {movieControllerDelete, MovieControllerDelete$Params} from '../fn/movie/movie-controller-delete';
+import {movieControllerDetachGenre, MovieControllerDetachGenre$Params} from '../fn/movie/movie-controller-detach-genre';
+import {movieControllerFindAll, MovieControllerFindAll$Params} from '../fn/movie/movie-controller-find-all';
+import {movieControllerFindOne, MovieControllerFindOne$Params} from '../fn/movie/movie-controller-find-one';
+import {
+  movieControllerFindOneTmdb,
+  MovieControllerFindOneTmdb$Params
+} from '../fn/movie/movie-controller-find-one-tmdb';
+import {
+  movieControllerGetMostPopular,
+  MovieControllerGetMostPopular$Params
+} from '../fn/movie/movie-controller-get-most-popular';
+import {movieControllerSearch, MovieControllerSearch$Params} from '../fn/movie/movie-controller-search';
+import {movieControllerUpdate, MovieControllerUpdate$Params} from '../fn/movie/movie-controller-update';
+import {movieControllerUpdateImage, MovieControllerUpdateImage$Params} from '../fn/movie/movie-controller-update-image';
+import {
+  movieControllerUpdateImageTmdb,
+  MovieControllerUpdateImageTmdb$Params
+} from '../fn/movie/movie-controller-update-image-tmdb';
+import {MovieDetails} from '../models/movie-details';
+import {MovieEntity} from '../models/movie-entity';
+import {PaginatedResult} from '../models/paginated-result';
 
 @Injectable({ providedIn: 'root' })
 export class MovieService extends BaseService {

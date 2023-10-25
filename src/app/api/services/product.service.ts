@@ -1,26 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
-import { HttpClient, HttpContext } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient, HttpContext} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import {BaseService} from '../base-service';
+import {ApiConfiguration} from '../api-configuration';
+import {StrictHttpResponse} from '../strict-http-response';
 
-import { PaginatedResult } from '../models/paginated-result';
-import { productControllerCreate } from '../fn/product/product-controller-create';
-import { ProductControllerCreate$Params } from '../fn/product/product-controller-create';
-import { productControllerFindAll } from '../fn/product/product-controller-find-all';
-import { ProductControllerFindAll$Params } from '../fn/product/product-controller-find-all';
-import { productControllerFindOne } from '../fn/product/product-controller-find-one';
-import { ProductControllerFindOne$Params } from '../fn/product/product-controller-find-one';
-import { productControllerRemove } from '../fn/product/product-controller-remove';
-import { ProductControllerRemove$Params } from '../fn/product/product-controller-remove';
-import { productControllerUpdate } from '../fn/product/product-controller-update';
-import { ProductControllerUpdate$Params } from '../fn/product/product-controller-update';
-import { ProductEntity } from '../models/product-entity';
+import {PaginatedResult} from '../models/paginated-result';
+import {productControllerCreate, ProductControllerCreate$Params} from '../fn/product/product-controller-create';
+import {productControllerFindAll, ProductControllerFindAll$Params} from '../fn/product/product-controller-find-all';
+import {productControllerFindOne, ProductControllerFindOne$Params} from '../fn/product/product-controller-find-one';
+import {productControllerRemove, ProductControllerRemove$Params} from '../fn/product/product-controller-remove';
+import {productControllerUpdate, ProductControllerUpdate$Params} from '../fn/product/product-controller-update';
+import {ProductEntity} from '../models/product-entity';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService extends BaseService {

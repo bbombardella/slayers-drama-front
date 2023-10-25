@@ -1,7 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-import { GenreEntity } from '../models/genre-entity';
-import { ImageEntity } from '../models/image-entity';
+import {GenreEntity} from '../models/genre-entity';
+import {ImageEntity} from '../models/image-entity';
+
 export interface MovieEntity {
   budget: number;
   createdAt: string;

@@ -6,18 +6,15 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NavbarComponent} from "./shared/ui/navbar/navbar.component";
 import {CommonModule} from "@angular/common";
-import {LogoComponent} from './shared/ui/logo/logo.component';
 import {ApiModule} from "./api/api.module";
 import {environment} from "../environments/environment";
 import {MovieModule} from "./movie/movie.module";
-import {ChipComponent} from './shared/ui/chip/chip.component';
-import {ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy} from "@angular/router";
+import {RouteReuseStrategy} from "@angular/router";
 import {CustomRouteReuseStrategy} from "./custom-route-reuse-strategy";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {CinemaManagerService} from "./shared/services/cinema-manager.service";
+import {MatDialogModule} from "@angular/material/dialog";
 import {Storage} from "@ionic/storage-angular";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
