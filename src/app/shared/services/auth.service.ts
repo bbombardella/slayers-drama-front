@@ -16,7 +16,7 @@ export class AuthService {
   private readonly _localStorageKey: string = 'auth';
   private _tokenResponse: TokenResponse | undefined;
 
-  private get tokenResponse(): TokenResponse | undefined {
+  get tokenResponse(): TokenResponse | undefined {
     return this._tokenResponse;
   }
 

@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NavbarComponent} from "./shared/ui/navbar/navbar.component";
 import {CommonModule} from "@angular/common";
 import {ApiModule} from "./api/api.module";
@@ -15,6 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from "@angular/material/dialog";
 import {Storage} from "@ionic/storage-angular";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -36,6 +36,11 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     {
       provide: RouteReuseStrategy,
       useClass: CustomRouteReuseStrategy
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
     },
     Storage,
   ],
