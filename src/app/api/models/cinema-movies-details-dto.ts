@@ -3,7 +3,6 @@
 import { GenreEntity } from '../models/genre-entity';
 import { GroupedScreeningDto } from '../models/grouped-screening-dto';
 import { ImageEntity } from '../models/image-entity';
-import { ScreeningEntity } from '../models/screening-entity';
 export interface CinemaMoviesDetailsDto {
   budget: number;
   createdAt: string;
@@ -16,7 +15,6 @@ export interface CinemaMoviesDetailsDto {
   posterImageId: number;
   published: boolean;
   releaseDate: string;
-  screening: Array<ScreeningEntity>;
   screenings: GroupedScreeningDto;
   tagline: string;
   title: string;

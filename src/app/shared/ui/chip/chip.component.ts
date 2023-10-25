@@ -12,4 +12,7 @@ export class ChipComponent {
 
   @Input()
   public label: string = '';
+
+  @Input()
+  public hoverable: boolean = false;
 }

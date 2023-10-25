@@ -6,19 +6,21 @@ import {MovieComponent} from './movie.component';
 import {LoadingBarComponent} from "../shared/ui/loading-bar/loading-bar.component";
 import {StarsComponent} from "../shared/ui/stars/stars.component";
 import {ChipComponent} from "../shared/ui/chip/chip.component";
+import {ScreeningComponent} from "../shared/ui/screening/screening.component";
 
 
 @NgModule({
   declarations: [
     MovieComponent
   ],
-  imports: [
-    CommonModule,
-    MovieRoutingModule,
-    LoadingBarComponent,
-    StarsComponent,
-    ChipComponent,
-  ],
+    imports: [
+        CommonModule,
+        MovieRoutingModule,
+        LoadingBarComponent,
+        StarsComponent,
+        ChipComponent,
+        ScreeningComponent,
+    ],
   providers: [
 
   ]

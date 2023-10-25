@@ -8,8 +8,16 @@
   margin: 4px; // Marge extérieure
   font-size: 14px; // Taille de police
   align-items: center;
+  transition-duration: 500ms;
 
   .chip-text {
     text-align: center;
+  }
+}
+
+.hoverable {
+  &:hover {
+    color: #A995B2; // Couleur de fond
+    background-color: #4B3D51; // Couleur du texte
   }
 }

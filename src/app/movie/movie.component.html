@@ -16,8 +16,8 @@
         </p>
       </div>
 
-      <div class="mid">
-
+      <div class="mid" *ngIf="movie">
+        <app-screening [movie]="movie"/>
       </div>
 
       <div class="down">
@@ -36,6 +36,6 @@
 
 <ng-template #loading>
   <div class="loading">
-  <app-loading-bar/>
+    <app-loading-bar/>
   </div>
 </ng-template>

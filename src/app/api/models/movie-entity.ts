@@ -15,7 +15,7 @@ export interface MovieEntity {
   posterImageId: number;
   published: boolean;
   releaseDate: string;
-  screening: Array<ScreeningEntity>;
+  screenings: Array<ScreeningEntity>;
   tagline: string;
   title: string;
   tmdbId: number;
