@@ -1,4 +1,4 @@
-<div *ngIf="count > 0; else zero">
+<div *ngIf="count > 0; else zero" [matTooltip]="numeric">
   <ng-container *ngFor="let i of countIterator">
     <ng-container *ngIf="i == 1; else half_star">
       <ng-container *ngTemplateOutlet="full_star"/>
