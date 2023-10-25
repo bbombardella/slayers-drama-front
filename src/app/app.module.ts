@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NavbarComponent} from "./shared/ui/navbar/navbar.component";
-import {CommonModule} from "@angular/common";
+import {CommonModule, registerLocaleData} from "@angular/common";
 import {ApiModule} from "./api/api.module";
 import {environment} from "../environments/environment";
 import {MovieModule} from "./movie/movie.module";
@@ -16,6 +16,9 @@ import {Storage} from "@ionic/storage-angular";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
 import {ErrorHandlerInterceptor} from "./shared/interceptors/error-handler.interceptor";
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import {ErrorHandlerInterceptor} from "./shared/interceptors/error-handler.inter
     MatSnackBarModule,
   ],
   providers: [
+    {provide: LOCALE_ID, useValue: 'fr-FR'},
     {
       provide: RouteReuseStrategy,
       useClass: CustomRouteReuseStrategy
