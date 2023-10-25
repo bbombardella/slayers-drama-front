@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {authGuard} from "./shared/guards/auth.guard";
-import {RoleEnum} from "./shared/models/role.enum";
+import {provideRouter, RouterModule, Routes, withComponentInputBinding} from '@angular/router';
 
 const routes: Routes = [
   {
@@ -55,6 +53,9 @@ const routes: Routes = [
       paramsInheritanceStrategy: 'always',
     }
   )],
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

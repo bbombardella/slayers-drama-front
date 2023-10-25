@@ -4,7 +4,7 @@ import {MovieComponent} from "./movie.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: MovieComponent,
   }
 ];

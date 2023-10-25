@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MovieService} from "../api/services/movie.service";
-import {take} from "rxjs";
 import {MovieEntity} from "../api/models/movie-entity";
 
 @Component({
@@ -9,7 +8,7 @@ import {MovieEntity} from "../api/models/movie-entity";
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.scss']
 })
-export class MovieComponent implements OnInit {
+export class MovieComponent {
 
   public movie: MovieEntity | undefined;
 
@@ -17,14 +16,11 @@ export class MovieComponent implements OnInit {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly movieService: MovieService
-  ) {}
+  ) {
+  }
 
-  ngOnInit(): void {
-    this.route.queryParams
-      .pipe(
-        take(1)
-      ).subscribe((params: any) => {
-      this.movieService.movieControllerFindOne({id: params.movie}).subscribe((r) => this.movie = r)
-    });
+  @Input()
+  set id(movieId: string) {
+    this.movieService.movieControllerFindOne({id: +movieId}).subscribe((r) => this.movie = r)
   }
 }
