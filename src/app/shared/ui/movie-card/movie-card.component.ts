@@ -28,9 +28,7 @@ export class MovieCardComponent {
   public img!: HTMLImageElement;
 
   async goToMoviePage() {
-    await this.router.navigate(['/movie'], {
-      queryParams: {movie: this.movie?.id},
-    });
+    await this.router.navigate(['/movie', this.movie?.id]);
   }
 
   get loaded():boolean {
