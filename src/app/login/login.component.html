@@ -1,17 +1,22 @@
 <app-credentials-container label="Se connecter">
   <form>
     <div>
-      <label for="mail">Adresse mail</label>
-      <input [(ngModel)]="username" type="text" name="mail" id="mail" placeholder="xyz@host.com">
+      <mat-form-field>
+        <mat-label>Adresse mail</mat-label>
+        <input matInput [(ngModel)]="username" type="text" name="mail" id="mail" placeholder="xyz@host.com">
+      </mat-form-field>
     </div>
+
     <div>
-      <label for="password">Mot de passe</label>
-      <input [(ngModel)]="password" type="password" name="password" id="password" placeholder="•••••••••">
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput [(ngModel)]="password" type="password" name="password" id="password" placeholder="•••••••••">
+      </mat-form-field>
     </div>
   </form>
   <div class="login-container-buttons">
-    <button (click)="localLogin()">Se connecter</button>
-    <button routerLink="/signup">S'inscrire</button>
+    <button mat-raised-button color="primary" (click)="localLogin()">Se connecter</button>
+    <button mat-raised-button routerLink="/signup">S'inscrire</button>
   </div>
   <hr>
   <h2>Ou</h2>

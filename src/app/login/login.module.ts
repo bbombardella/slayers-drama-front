@@ -14,6 +14,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {MicrosoftSocialButtonComponent} from "../shared/ui/microsoft-social-button/microsoft-social-button.component";
 import {CredentialsContainerComponent} from "../shared/ui/credentials-container/credentials-container.component";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {CredentialsContainerComponent} from "../shared/ui/credentials-container/
         GoogleSigninButtonModule,
         FormsModule,
         CredentialsContainerComponent,
-        MicrosoftSocialButtonComponent
+        MicrosoftSocialButtonComponent,
+        MatInputModule,
+        MatButtonModule
     ],
   providers: [
     {
