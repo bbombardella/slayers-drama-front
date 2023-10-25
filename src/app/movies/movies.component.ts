@@ -12,10 +12,13 @@ export class MoviesComponent implements OnInit {
 
   public movies: Array<MovieEntity> = new Array<MovieEntity>();
   public i = 1;
+  public plannedOnly: boolean = true;
+
   constructor(
     private readonly movieService: MovieService,
   ) {
   }
+
 
   loadMore(event: any) {
     this.fillMovies();
@@ -26,10 +29,21 @@ export class MoviesComponent implements OnInit {
   }
 
   private fillMovies(): void {
-    this.movieService.movieControllerFindAll({page: this.i++, perPage: 8}).subscribe((pr: PaginatedResult) => {
-      this.movies.push(...(pr.data as Array<MovieEntity>));
-    });
+    if (this.plannedOnly) {
+      this.movieService.movieControllerFindAllPlanned({page: this.i++, perPage: 8}).subscribe((pr: PaginatedResult) => {
+        this.movies.push(...(pr.data as Array<MovieEntity>));
+      });
+    } else {
+      this.movieService.movieControllerFindAll({page: this.i++, perPage: 8}).subscribe((pr: PaginatedResult) => {
+        this.movies.push(...(pr.data as Array<MovieEntity>));
+      });
+    }
   }
 
+  togglePlannedOnly(): void {
+    this.i = 1;
+    this.movies = [];
+    this.fillMovies();
+  }
 
 }

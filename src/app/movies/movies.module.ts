@@ -5,6 +5,8 @@ import {MoviesRoutingModule} from './movies-routing.module';
 import {MoviesComponent} from './movies.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import {MovieCardComponent} from "../shared/ui/movie-card/movie-card.component";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {MovieCardComponent} from "../shared/ui/movie-card/movie-card.component";
     CommonModule,
     MoviesRoutingModule,
     InfiniteScrollModule,
-    MovieCardComponent
+    MovieCardComponent,
+    MatSlideToggleModule,
+    FormsModule
   ]
 })
 export class MoviesModule { }

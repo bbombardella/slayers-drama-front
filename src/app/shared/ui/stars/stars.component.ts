@@ -17,7 +17,6 @@ export class StarsComponent {
   public get countIterator() {
     let value: number[] = Array(Math.floor(this.count)).fill(1);
     if (this.count % 1 >= 0.25 && this.count % 1 <= 0.75) value.push(0.5);
-    console.log(this.count, this.count % 1, value)
     return value;
   }
 

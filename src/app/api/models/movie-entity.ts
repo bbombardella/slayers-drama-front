@@ -2,6 +2,7 @@
 /* eslint-disable */
 import { GenreEntity } from '../models/genre-entity';
 import { ImageEntity } from '../models/image-entity';
+import { ScreeningEntity } from '../models/screening-entity';
 export interface MovieEntity {
   budget: number;
   createdAt: string;
@@ -14,6 +15,7 @@ export interface MovieEntity {
   posterImageId: number;
   published: boolean;
   releaseDate: string;
+  screening: Array<ScreeningEntity>;
   tagline: string;
   title: string;
   tmdbId: number;

@@ -19,12 +19,16 @@ import { movieControllerDetachGenre } from '../fn/movie/movie-controller-detach-
 import { MovieControllerDetachGenre$Params } from '../fn/movie/movie-controller-detach-genre';
 import { movieControllerFindAll } from '../fn/movie/movie-controller-find-all';
 import { MovieControllerFindAll$Params } from '../fn/movie/movie-controller-find-all';
+import { movieControllerFindAllPlanned } from '../fn/movie/movie-controller-find-all-planned';
+import { MovieControllerFindAllPlanned$Params } from '../fn/movie/movie-controller-find-all-planned';
 import { movieControllerFindOne } from '../fn/movie/movie-controller-find-one';
 import { MovieControllerFindOne$Params } from '../fn/movie/movie-controller-find-one';
 import { movieControllerFindOneTmdb } from '../fn/movie/movie-controller-find-one-tmdb';
 import { MovieControllerFindOneTmdb$Params } from '../fn/movie/movie-controller-find-one-tmdb';
 import { movieControllerGetMostPopular } from '../fn/movie/movie-controller-get-most-popular';
 import { MovieControllerGetMostPopular$Params } from '../fn/movie/movie-controller-get-most-popular';
+import { movieControllerGetMostPopularPlanned } from '../fn/movie/movie-controller-get-most-popular-planned';
+import { MovieControllerGetMostPopularPlanned$Params } from '../fn/movie/movie-controller-get-most-popular-planned';
 import { movieControllerSearch } from '../fn/movie/movie-controller-search';
 import { MovieControllerSearch$Params } from '../fn/movie/movie-controller-search';
 import { movieControllerUpdate } from '../fn/movie/movie-controller-update';
@@ -76,6 +80,47 @@ export class MovieService extends BaseService {
 'data'?: Array<MovieEntity>;
 }> {
     return this.movieControllerFindAll$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>): PaginatedResult & {
+'data'?: Array<MovieEntity>;
+} => r.body)
+    );
+  }
+
+  /** Path part for operation `movieControllerFindAllPlanned()` */
+  static readonly MovieControllerFindAllPlannedPath = '/movie/planned';
+
+  /**
+   * Retrieve all movies with a screening in the future with pagination results.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `movieControllerFindAllPlanned()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerFindAllPlanned$Response(params: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>> {
+    return movieControllerFindAllPlanned(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Retrieve all movies with a screening in the future with pagination results.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `movieControllerFindAllPlanned$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerFindAllPlanned(params: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}> {
+    return this.movieControllerFindAllPlanned$Response(params, context).pipe(
       map((r: StrictHttpResponse<PaginatedResult & {
 'data'?: Array<MovieEntity>;
 }>): PaginatedResult & {
@@ -352,6 +397,39 @@ export class MovieService extends BaseService {
    */
   movieControllerGetMostPopular(params: MovieControllerGetMostPopular$Params, context?: HttpContext): Observable<Array<MovieEntity>> {
     return this.movieControllerGetMostPopular$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<MovieEntity>>): Array<MovieEntity> => r.body)
+    );
+  }
+
+  /** Path part for operation `movieControllerGetMostPopularPlanned()` */
+  static readonly MovieControllerGetMostPopularPlannedPath = '/movie/popular/planned/{count}';
+
+  /**
+   * Find most popular movies.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `movieControllerGetMostPopularPlanned()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerGetMostPopularPlanned$Response(params: MovieControllerGetMostPopularPlanned$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<MovieEntity>>> {
+    return movieControllerGetMostPopularPlanned(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Find most popular movies.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `movieControllerGetMostPopularPlanned$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerGetMostPopularPlanned(params: MovieControllerGetMostPopularPlanned$Params, context?: HttpContext): Observable<Array<MovieEntity>> {
+    return this.movieControllerGetMostPopularPlanned$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<MovieEntity>>): Array<MovieEntity> => r.body)
     );
   }
