@@ -19,10 +19,16 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === HttpStatusCode.Unauthorized) {
-          this.snackBar.open("Accès non autorisé", 'OK', {duration: 5 * 1000});
-        } else {
-          this.snackBar.open("Une erreur s'est produite", 'OK', {duration: 5 * 1000});
+        switch (error.status) {
+          case HttpStatusCode.Unauthorized:
+            this.snackBar.open("Accès non autorisé", 'OK', {duration: 5 * 1000});
+            break;
+          case HttpStatusCode.NotFound:
+            this.snackBar.open("La ressource demandée est introuvable", 'OK', {duration: 5 * 1000});
+            break;
+          default:
+            this.snackBar.open("Une erreur s'est produite", 'OK', {duration: 5 * 1000});
+            break;
         }
 
         throw error;
