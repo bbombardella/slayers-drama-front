@@ -1,1 +1,9 @@
-<p>admin-cinema works!</p>
+<div class="header">
+  <h1>Les cinémas</h1>
+  <button mat-raised-button color="accent" routerLink="new">Créer un cinéma</button>
+</div>
+
+<app-table-paginated [displayedColumns]="columns"
+                     [fetchMethod]="fetchMethod"
+                     (clickTriggered)="handleClick($event)">
+</app-table-paginated>

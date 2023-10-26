@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ actionLabel }} un cinéma</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form *ngIf="cinemaForm" [formGroup]="cinemaForm">
+      <div>
+        <mat-form-field>
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" name="name" id="name" formControlName="name">
+          <mat-error *ngIf="cinemaForm.get('name')?.hasError('invalid')">
+            L'adresse email est <strong>incorrect</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Ville</mat-label>
+          <input matInput type="text" name="city" id="city" formControlName="city">
+          <mat-error *ngIf="cinemaForm.get('city')?.hasError('invalid')">
+            L'adresse email est <strong>incorrect</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="cinemaForm" mat-raised-button color="accent"
+            [disabled]="cinemaForm.invalid || performingAction"
+            (click)="action()">{{ actionLabel }}</button>
+  </mat-card-actions>
+  <mat-card-footer>
+    <mat-progress-bar *ngIf="!cinemaForm || performingAction" mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
+</mat-card>

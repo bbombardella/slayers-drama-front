@@ -20,7 +20,7 @@ const routes: Routes = [
     children: [
       {
         path: 'cinema',
-        loadChildren: () => import('./admin-cinema/admin-cinema-routing.module').then(m => m.AdminCinemaRoutingModule)
+        loadChildren: () => import('./admin-cinema/admin-cinema.module').then(m => m.AdminCinemaModule)
       },
       {
         path: 'movies',
@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: 'screenings',
-        loadChildren: () => import('./admin-screenings/admin-screenings-routing.module').then(m => m.AdminScreeningsRoutingModule)
+        loadChildren: () => import('./admin-screenings/admin-screenings.module').then(m => m.AdminScreeningsModule)
       },
       {
         path: 'genres',
