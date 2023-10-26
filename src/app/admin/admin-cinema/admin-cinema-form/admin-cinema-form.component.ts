@@ -6,6 +6,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CinemaService} from "../../../api/services/cinema.service";
 import {Subject, take, takeUntil} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-admin-cinema-form',
@@ -25,7 +26,8 @@ export class AdminCinemaFormComponent {
   constructor(private readonly activatedRoute: ActivatedRoute,
               private readonly cinemaService: CinemaService,
               private readonly destroyRef: DestroyRef,
-              private readonly router: Router) {
+              private readonly router: Router,
+              private readonly snackBar: MatSnackBar) {
   }
 
   get mode(): FormModeEnum | undefined {
@@ -92,6 +94,7 @@ export class AdminCinemaFormComponent {
             next: v => {
               this.cinema = v;
               this.initForm();
+              this.snackBar.open('Modification effectuée !', 'OK', {duration: 5 * 1000})
             },
             complete: () => this.performingAction = false
           })
