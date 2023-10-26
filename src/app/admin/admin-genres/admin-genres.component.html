@@ -1,1 +1,9 @@
-<p>admin-genres works!</p>
+<div class="header">
+  <h1>Les genres</h1>
+  <button mat-raised-button color="accent" routerLink="new">Créer un genre</button>
+</div>
+
+<app-table-paginated [displayedColumns]="columns"
+                     [fetchMethod]="fetchMethod"
+                     (clickTriggered)="handleClick($event)">
+</app-table-paginated>

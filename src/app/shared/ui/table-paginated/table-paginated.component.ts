@@ -9,7 +9,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MatTableDataSource, MatTableModule} from "@angular/material/table";
+import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
@@ -82,6 +82,25 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
   clickEvent(data: TData) {
     this.clickTriggered.emit(data);
   }
+
+  getPropByString(object: any, path: string): any {
+    return this.getProp(object, path.split('.'));
+  }
+
+  private getProp(object: any, path: string[]): any {
+    if (path.length === 1) {
+      return object[path[0]];
+    } else if (path.length === 0) {
+      return;
+    } else {
+      if (object[path[0]]) {
+        return this.getProp(object[path[0]], path.slice(1))
+      } else {
+        object[path[0]] = {};
+        return this.getProp(object[path[0]], path.slice(1));
+      }
+    }
+  };
 }
 
 export interface TableColumns {

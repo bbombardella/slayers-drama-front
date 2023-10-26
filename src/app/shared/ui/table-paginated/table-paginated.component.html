@@ -12,11 +12,11 @@
                     [matColumnDef]="columnDef.field">
         <mat-header-cell *matHeaderCellDef>{{ columnDef.name }}</mat-header-cell>
         <ng-container *ngIf="columnDef.pipe; else noPipe">
-          <mat-cell *matCellDef="let row">{{ columnDef.pipe.transform(row[columnDef.field]) }}</mat-cell>
+          <mat-cell *matCellDef="let row">{{ columnDef.pipe.transform(getPropByString(row, columnDef.field)) }}</mat-cell>
         </ng-container>
 
         <ng-template #noPipe>
-          <mat-cell *matCellDef="let row">{{ row[columnDef.field] }}</mat-cell>
+          <mat-cell *matCellDef="let row">{{ getPropByString(row, columnDef.field) }}</mat-cell>
         </ng-template>
       </ng-container>
 
