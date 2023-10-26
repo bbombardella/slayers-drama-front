@@ -106,7 +106,7 @@ export class AdminCinemaFormComponent {
             body: this.cinemaForm.value
           })
           .subscribe({
-            next: v => this.router.navigate(['..', v.id], {relativeTo: this.activatedRoute}),
+            next: v => this.router.navigate(['..'], {relativeTo: this.activatedRoute}),
             complete: () => this.performingAction = false
           })
         break;
