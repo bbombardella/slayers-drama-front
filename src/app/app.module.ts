@@ -17,6 +17,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
 import {ErrorHandlerInterceptor} from "./shared/interceptors/error-handler.interceptor";
 import localeFr from '@angular/common/locales/fr';
+import {MatPaginatorIntl} from "@angular/material/paginator";
+import {FrenchMatPaginatorIntl} from "./shared/translations/french-paginator.translation";
 
 registerLocaleData(localeFr);
 
@@ -53,6 +55,7 @@ registerLocaleData(localeFr);
       multi: true
     },
     Storage,
+    {provide: MatPaginatorIntl, useClass: FrenchMatPaginatorIntl}
   ],
   bootstrap: [AppComponent]
 })
