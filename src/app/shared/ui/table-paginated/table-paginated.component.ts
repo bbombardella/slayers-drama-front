@@ -34,7 +34,7 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
   }>;
   @Output() clickTriggered: EventEmitter<TData> = new EventEmitter();
 
-  readonly dataSource: MatTableDataSource<TData> = new MatTableDataSource<TData>();
+  data: TData[] = [];
   totalCount: number = 0;
   loading: boolean = false;
 
@@ -50,7 +50,6 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
     this.refreshData();
   }
 
@@ -71,12 +70,12 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
         this.loading = false;
 
         if (!value) {
-          this.dataSource.data = [];
+          this.data = [];
           return;
         }
 
         this.totalCount = value.meta.total;
-        this.dataSource.data = value.data;
+        this.data = value.data;
       });
   }
 
