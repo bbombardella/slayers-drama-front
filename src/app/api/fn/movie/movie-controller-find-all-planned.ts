@@ -10,11 +10,11 @@ import { MovieEntity } from '../../models/movie-entity';
 import { PaginatedResult } from '../../models/paginated-result';
 
 export interface MovieControllerFindAllPlanned$Params {
-  page: any;
-  perPage: any;
+  page?: number;
+  perPage?: number;
 }
 
-export function movieControllerFindAllPlanned(http: HttpClient, rootUrl: string, params: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+export function movieControllerFindAllPlanned(http: HttpClient, rootUrl: string, params?: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
 'data'?: Array<MovieEntity>;
 }>> {
   const rb = new RequestBuilder(rootUrl, movieControllerFindAllPlanned.PATH, 'get');

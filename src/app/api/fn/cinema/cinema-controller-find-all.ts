@@ -10,6 +10,8 @@ import { CinemaEntity } from '../../models/cinema-entity';
 import { PaginatedResult } from '../../models/paginated-result';
 
 export interface CinemaControllerFindAll$Params {
+  page?: number;
+  perPage?: number;
 }
 
 export function cinemaControllerFindAll(http: HttpClient, rootUrl: string, params?: CinemaControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
@@ -17,6 +19,8 @@ export function cinemaControllerFindAll(http: HttpClient, rootUrl: string, param
 }>> {
   const rb = new RequestBuilder(rootUrl, cinemaControllerFindAll.PATH, 'get');
   if (params) {
+    rb.query('page', params.page, {});
+    rb.query('perPage', params.perPage, {});
   }
 
   return http.request(

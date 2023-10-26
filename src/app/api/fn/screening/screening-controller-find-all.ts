@@ -10,6 +10,8 @@ import { PaginatedResult } from '../../models/paginated-result';
 import { ScreeningEntity } from '../../models/screening-entity';
 
 export interface ScreeningControllerFindAll$Params {
+  page?: number;
+  perPage?: number;
 }
 
 export function screeningControllerFindAll(http: HttpClient, rootUrl: string, params?: ScreeningControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
@@ -17,6 +19,8 @@ export function screeningControllerFindAll(http: HttpClient, rootUrl: string, pa
 }>> {
   const rb = new RequestBuilder(rootUrl, screeningControllerFindAll.PATH, 'get');
   if (params) {
+    rb.query('page', params.page, {});
+    rb.query('perPage', params.perPage, {});
   }
 
   return http.request(

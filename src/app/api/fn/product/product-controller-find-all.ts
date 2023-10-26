@@ -10,6 +10,8 @@ import { PaginatedResult } from '../../models/paginated-result';
 import { ProductEntity } from '../../models/product-entity';
 
 export interface ProductControllerFindAll$Params {
+  page?: number;
+  perPage?: number;
 }
 
 export function productControllerFindAll(http: HttpClient, rootUrl: string, params?: ProductControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
@@ -17,6 +19,8 @@ export function productControllerFindAll(http: HttpClient, rootUrl: string, para
 }>> {
   const rb = new RequestBuilder(rootUrl, productControllerFindAll.PATH, 'get');
   if (params) {
+    rb.query('page', params.page, {});
+    rb.query('perPage', params.perPage, {});
   }
 
   return http.request(

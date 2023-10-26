@@ -10,6 +10,8 @@ import { GenreEntity } from '../../models/genre-entity';
 import { PaginatedResult } from '../../models/paginated-result';
 
 export interface GenreControllerFindAll$Params {
+  page?: number;
+  perPage?: number;
 }
 
 export function genreControllerFindAll(http: HttpClient, rootUrl: string, params?: GenreControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
@@ -17,6 +19,8 @@ export function genreControllerFindAll(http: HttpClient, rootUrl: string, params
 }>> {
   const rb = new RequestBuilder(rootUrl, genreControllerFindAll.PATH, 'get');
   if (params) {
+    rb.query('page', params.page, {});
+    rb.query('perPage', params.perPage, {});
   }
 
   return http.request(

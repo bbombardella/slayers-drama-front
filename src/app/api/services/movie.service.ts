@@ -60,7 +60,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAll$Response(params: MovieControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+  movieControllerFindAll$Response(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
 'data'?: Array<MovieEntity>;
 }>> {
     return movieControllerFindAll(this.http, this.rootUrl, params, context);
@@ -76,7 +76,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAll(params: MovieControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult & {
+  movieControllerFindAll(params?: MovieControllerFindAll$Params, context?: HttpContext): Observable<PaginatedResult & {
 'data'?: Array<MovieEntity>;
 }> {
     return this.movieControllerFindAll$Response(params, context).pipe(
@@ -101,7 +101,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAllPlanned$Response(params: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+  movieControllerFindAllPlanned$Response(params?: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
 'data'?: Array<MovieEntity>;
 }>> {
     return movieControllerFindAllPlanned(this.http, this.rootUrl, params, context);
@@ -117,7 +117,7 @@ export class MovieService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  movieControllerFindAllPlanned(params: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<PaginatedResult & {
+  movieControllerFindAllPlanned(params?: MovieControllerFindAllPlanned$Params, context?: HttpContext): Observable<PaginatedResult & {
 'data'?: Array<MovieEntity>;
 }> {
     return this.movieControllerFindAllPlanned$Response(params, context).pipe(
