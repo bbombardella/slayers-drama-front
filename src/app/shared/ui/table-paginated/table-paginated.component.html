@@ -20,8 +20,18 @@
         </ng-template>
       </ng-container>
 
+      <ng-container matColumnDef="actions">
+        <mat-header-cell class="actions" *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell class="actions" *matCellDef="let row">
+          <div class="actions-container">
+            <button mat-mini-fab color="none" (click)="editClicked(row)"><mat-icon>edit</mat-icon></button>
+            <button *ngIf="displayDelete" mat-mini-fab color="accent" (click)="deleteClicked(row)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="headers"></mat-header-row>
-      <mat-row mat-ripple matRipple (click)="clickEvent(row)" *matRowDef="let row; columns: headers;"></mat-row>
+      <mat-row *matRowDef="let row; columns: headers;"></mat-row>
     </mat-table>
 
     <mat-divider></mat-divider>

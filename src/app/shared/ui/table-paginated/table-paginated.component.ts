@@ -18,11 +18,13 @@ import {PaginatedResult} from "../../../api/models/paginated-result";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatRippleModule} from "@angular/material/core";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-table-paginated',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatDividerModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatRippleModule],
+  imports: [CommonModule, MatTableModule, MatDividerModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatRippleModule, MatButtonModule, MatIconModule],
   templateUrl: './table-paginated.component.html',
   styleUrls: ['./table-paginated.component.scss']
 })
@@ -32,7 +34,9 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
   @Input({required: true}) fetchMethod!: (params: { page?: number, perPage?: number }) => Observable<PaginatedResult & {
     'data'?: Array<TData>;
   }>;
-  @Output() clickTriggered: EventEmitter<TData> = new EventEmitter();
+  @Input({required: false}) displayDelete: boolean = false;
+  @Output() editTriggered: EventEmitter<TData> = new EventEmitter();
+  @Output() deleteTriggered: EventEmitter<TData> = new EventEmitter();
 
   data: TData[] = [];
   totalCount: number = 0;
@@ -43,7 +47,7 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   get headers(): string[] {
-    return this.displayedColumns.map(c => c.field);
+    return [...this.displayedColumns.map(c => c.field), "actions"];
   }
 
   constructor(private readonly destroyRef: DestroyRef) {
@@ -79,8 +83,12 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
       });
   }
 
-  clickEvent(data: TData) {
-    this.clickTriggered.emit(data);
+  editClicked(data: TData) {
+    this.editTriggered.emit(data);
+  }
+
+  deleteClicked(data: TData) {
+    this.deleteTriggered.emit(data);
   }
 
   getPropByString(object: any, path: string): any {

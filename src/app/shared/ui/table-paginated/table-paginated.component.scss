@@ -26,6 +26,17 @@
     .table-wrapper {
       width: 100%;
       flex: 1;
+
+      .actions {
+        justify-content: center;
+      }
+
+      .actions-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+      }
     }
   }
 }
