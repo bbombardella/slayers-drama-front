@@ -35,6 +35,7 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
     'data'?: Array<TData>;
   }>;
   @Input({required: false}) displayDelete: boolean = false;
+  @Input({required: false}) refresh: Subject<void> = new Subject<void>();
   @Output() editTriggered: EventEmitter<TData> = new EventEmitter();
   @Output() deleteTriggered: EventEmitter<TData> = new EventEmitter();
 
@@ -55,6 +56,10 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.refreshData();
+
+    this.refresh
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(_ => this.refreshData());
   }
 
   refreshData(): void {
