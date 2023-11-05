@@ -3,6 +3,8 @@ import {CommonModule} from "@angular/common";
 import {MovieEntity} from "../../../api/models/movie-entity";
 import {ScreeningEntity} from "../../../api/models/screening-entity";
 import {ChipComponent} from "../chip/chip.component";
+import {CartModalComponent} from "../cart-modal/cart-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-screening',
@@ -16,7 +18,9 @@ export class ScreeningComponent {
   @Input()
   public movie!: MovieEntity;
 
-  constructor() {
+  constructor(
+    public dialog: MatDialog
+  ) {
   }
 
   get screening(): Array<ScreeningEntity> {
@@ -44,6 +48,11 @@ export class ScreeningComponent {
 
   public chipClicked(screening: ScreeningEntity): void {
     console.log('chipClicked : ', screening)
+    const dialogRef = this.dialog.open(CartModalComponent);
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
 
