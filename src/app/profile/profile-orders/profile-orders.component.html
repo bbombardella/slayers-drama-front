@@ -3,5 +3,6 @@
 <app-table-paginated [displayedColumns]="columns"
                      [fetchMethod]="fetchMethod"
                      [displayEye]="true"
-                     [displayEdit]="false">
+                     [displayEdit]="false"
+                     (rowClickTriggered)="redirectToOrder($event)">
 </app-table-paginated>
