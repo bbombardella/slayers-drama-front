@@ -52,6 +52,7 @@ export class CinemaComponent implements AfterViewInit {
       city: '---',
       name: '---',
       updatedAt: '---',
+      active: true,
     }
   }
 

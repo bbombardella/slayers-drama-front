@@ -13,6 +13,8 @@ import { cinemaControllerCreate } from '../fn/cinema/cinema-controller-create';
 import { CinemaControllerCreate$Params } from '../fn/cinema/cinema-controller-create';
 import { cinemaControllerFindAll } from '../fn/cinema/cinema-controller-find-all';
 import { CinemaControllerFindAll$Params } from '../fn/cinema/cinema-controller-find-all';
+import { cinemaControllerFindAllWithNonActive } from '../fn/cinema/cinema-controller-find-all-with-non-active';
+import { CinemaControllerFindAllWithNonActive$Params } from '../fn/cinema/cinema-controller-find-all-with-non-active';
 import { cinemaControllerFindOne } from '../fn/cinema/cinema-controller-find-one';
 import { CinemaControllerFindOne$Params } from '../fn/cinema/cinema-controller-find-one';
 import { cinemaControllerFindOneDetails } from '../fn/cinema/cinema-controller-find-one-details';
@@ -104,6 +106,47 @@ export class CinemaService extends BaseService {
   cinemaControllerCreate(params: CinemaControllerCreate$Params, context?: HttpContext): Observable<CinemaEntity> {
     return this.cinemaControllerCreate$Response(params, context).pipe(
       map((r: StrictHttpResponse<CinemaEntity>): CinemaEntity => r.body)
+    );
+  }
+
+  /** Path part for operation `cinemaControllerFindAllWithNonActive()` */
+  static readonly CinemaControllerFindAllWithNonActivePath = '/cinema/with-non-active/{state}';
+
+  /**
+   * Retrieve all cinemas with pagination results.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `cinemaControllerFindAllWithNonActive()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  cinemaControllerFindAllWithNonActive$Response(params: CinemaControllerFindAllWithNonActive$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}>> {
+    return cinemaControllerFindAllWithNonActive(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Retrieve all cinemas with pagination results.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `cinemaControllerFindAllWithNonActive$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  cinemaControllerFindAllWithNonActive(params: CinemaControllerFindAllWithNonActive$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}> {
+    return this.cinemaControllerFindAllWithNonActive$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+}>): PaginatedResult & {
+'data'?: Array<CinemaEntity>;
+} => r.body)
     );
   }
 

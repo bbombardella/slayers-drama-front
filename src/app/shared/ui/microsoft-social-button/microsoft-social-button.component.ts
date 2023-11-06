@@ -13,6 +13,8 @@ export class MicrosoftSocialButtonComponent {
   private readonly config: Record<MicrosoftSocialButtonType, string> = {
     'signin': 'Se connecter avec Microsoft',
     'signup': 'S\'inscrire avec Microsoft',
+    'attach': 'Attacher son compte Microsoft',
+    'detach': 'Détacher son compte Microsoft',
   }
 
   @Input() type: MicrosoftSocialButtonType = 'signin';
@@ -22,4 +24,4 @@ export class MicrosoftSocialButtonComponent {
   }
 }
 
-export type MicrosoftSocialButtonType = 'signin' | 'signup';
+export type MicrosoftSocialButtonType = 'signin' | 'signup' | 'attach' | 'detach';

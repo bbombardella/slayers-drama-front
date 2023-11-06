@@ -1,0 +1,16 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened>
+    <button mat-menu-item routerLink="infos" routerLinkActive="active">
+      <mat-icon>person</mat-icon>
+      <span>Mes informations</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="orders" routerLinkActive="active">
+      <mat-icon>payments</mat-icon>
+      <span>Mes commandes</span>
+    </button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

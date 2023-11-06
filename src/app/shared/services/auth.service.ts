@@ -39,7 +39,10 @@ export class AuthService {
   constructor(private readonly authWebservice: AuthWebservice,
               private readonly router: Router) {
     this.userSubject
-      .pipe(map(v => this.handleNewAuthAndRedirect(v)))
+      .pipe(
+        filter(v => !!v),
+        map(v => this.handleNewAuthAndRedirect(v))
+      )
       .subscribe(res => this.logTokenResponse(res));
 
     this.init();
@@ -149,7 +152,19 @@ export class AuthService {
     if (this.tokenResponse?.access_token) {
       this.authWebservice
         .logout(this.tokenResponse.access_token)
-        .subscribe(() => this.tokenResponse = undefined)
+        .subscribe(() => {
+          this.tokenResponse = undefined;
+          this.router.navigate(['home']);
+        })
     }
+  }
+
+  public updateUser(user: UserEntity): void {
+    if (!this._tokenResponse || !user) {
+      return;
+    }
+
+    this._tokenResponse.user = user;
+    this.storeInLocalStorage(this._tokenResponse);
   }
 }

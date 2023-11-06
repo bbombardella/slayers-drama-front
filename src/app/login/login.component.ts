@@ -30,7 +30,9 @@ export class LoginComponent implements OnInit {
             token: v.idToken
           },
           redirect: true
-        })
+        });
+
+        this.socialAuthService.signOut();
       });
   }
 

@@ -32,4 +32,5 @@ export { UpdateGenreDto } from './models/update-genre-dto';
 export { UpdateMovieDto } from './models/update-movie-dto';
 export { UpdateProductDto } from './models/update-product-dto';
 export { UpdateScreeningDto } from './models/update-screening-dto';
+export { UpdateUserDto } from './models/update-user-dto';
 export { UserEntity } from './models/user-entity';

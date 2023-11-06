@@ -19,6 +19,7 @@ import {ErrorHandlerInterceptor} from "./shared/interceptors/error-handler.inter
 import localeFr from '@angular/common/locales/fr';
 import {MatPaginatorIntl} from "@angular/material/paginator";
 import {FrenchMatPaginatorIntl} from "./shared/translations/french-paginator.translation";
+import {GoogleLoginProvider, MicrosoftLoginProvider, SocialAuthServiceConfig} from "@abacritt/angularx-social-login";
 
 registerLocaleData(localeFr);
 
@@ -55,7 +56,26 @@ registerLocaleData(localeFr);
       multi: true
     },
     Storage,
-    {provide: MatPaginatorIntl, useClass: FrenchMatPaginatorIntl}
+    {provide: MatPaginatorIntl, useClass: FrenchMatPaginatorIntl},
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.providers.google.clientId)
+          },
+          {
+            id: MicrosoftLoginProvider.PROVIDER_ID,
+            provider: new MicrosoftLoginProvider(environment.providers.microsoft.clientId)
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })

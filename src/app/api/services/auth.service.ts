@@ -21,6 +21,8 @@ import { authControllerSignIn } from '../fn/auth/auth-controller-sign-in';
 import { AuthControllerSignIn$Params } from '../fn/auth/auth-controller-sign-in';
 import { authControllerSignUp } from '../fn/auth/auth-controller-sign-up';
 import { AuthControllerSignUp$Params } from '../fn/auth/auth-controller-sign-up';
+import { authControllerUpdate } from '../fn/auth/auth-controller-update';
+import { AuthControllerUpdate$Params } from '../fn/auth/auth-controller-update';
 import { TokenResponseDto } from '../models/token-response-dto';
 import { UserEntity } from '../models/user-entity';
 
@@ -225,6 +227,39 @@ export class AuthService extends BaseService {
   authControllerMicrosoftCallback(params?: AuthControllerMicrosoftCallback$Params, context?: HttpContext): Observable<TokenResponseDto> {
     return this.authControllerMicrosoftCallback$Response(params, context).pipe(
       map((r: StrictHttpResponse<TokenResponseDto>): TokenResponseDto => r.body)
+    );
+  }
+
+  /** Path part for operation `authControllerUpdate()` */
+  static readonly AuthControllerUpdatePath = '/auth/{id}';
+
+  /**
+   * Update an user.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `authControllerUpdate()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  authControllerUpdate$Response(params: AuthControllerUpdate$Params, context?: HttpContext): Observable<StrictHttpResponse<UserEntity>> {
+    return authControllerUpdate(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update an user.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `authControllerUpdate$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  authControllerUpdate(params: AuthControllerUpdate$Params, context?: HttpContext): Observable<UserEntity> {
+    return this.authControllerUpdate$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserEntity>): UserEntity => r.body)
     );
   }
 

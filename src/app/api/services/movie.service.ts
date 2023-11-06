@@ -19,6 +19,8 @@ import { movieControllerDetachGenre } from '../fn/movie/movie-controller-detach-
 import { MovieControllerDetachGenre$Params } from '../fn/movie/movie-controller-detach-genre';
 import { movieControllerFindAll } from '../fn/movie/movie-controller-find-all';
 import { MovieControllerFindAll$Params } from '../fn/movie/movie-controller-find-all';
+import { movieControllerFindAllOnlyPublished } from '../fn/movie/movie-controller-find-all-only-published';
+import { MovieControllerFindAllOnlyPublished$Params } from '../fn/movie/movie-controller-find-all-only-published';
 import { movieControllerFindAllPlanned } from '../fn/movie/movie-controller-find-all-planned';
 import { MovieControllerFindAllPlanned$Params } from '../fn/movie/movie-controller-find-all-planned';
 import { movieControllerFindOne } from '../fn/movie/movie-controller-find-one';
@@ -80,6 +82,47 @@ export class MovieService extends BaseService {
 'data'?: Array<MovieEntity>;
 }> {
     return this.movieControllerFindAll$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>): PaginatedResult & {
+'data'?: Array<MovieEntity>;
+} => r.body)
+    );
+  }
+
+  /** Path part for operation `movieControllerFindAllOnlyPublished()` */
+  static readonly MovieControllerFindAllOnlyPublishedPath = '/movie/only-published/{state}';
+
+  /**
+   * Retrieve all movies with pagination results.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `movieControllerFindAllOnlyPublished()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerFindAllOnlyPublished$Response(params: MovieControllerFindAllOnlyPublished$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}>> {
+    return movieControllerFindAllOnlyPublished(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Retrieve all movies with pagination results.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `movieControllerFindAllOnlyPublished$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  movieControllerFindAllOnlyPublished(params: MovieControllerFindAllOnlyPublished$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<MovieEntity>;
+}> {
+    return this.movieControllerFindAllOnlyPublished$Response(params, context).pipe(
       map((r: StrictHttpResponse<PaginatedResult & {
 'data'?: Array<MovieEntity>;
 }>): PaginatedResult & {

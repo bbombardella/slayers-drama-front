@@ -6,7 +6,7 @@ import {AuthService} from "../services/auth.service";
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  private readonly exception: RegExp = new RegExp('auth\/.*');
+  private readonly exception: RegExp = new RegExp('auth\/[a-zA-Z]+');
 
   private authService: AuthService | undefined;
 
