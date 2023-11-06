@@ -13,6 +13,8 @@ import { orderControllerCreate } from '../fn/order/order-controller-create';
 import { OrderControllerCreate$Params } from '../fn/order/order-controller-create';
 import { orderControllerFindAll } from '../fn/order/order-controller-find-all';
 import { OrderControllerFindAll$Params } from '../fn/order/order-controller-find-all';
+import { orderControllerFindAllMine } from '../fn/order/order-controller-find-all-mine';
+import { OrderControllerFindAllMine$Params } from '../fn/order/order-controller-find-all-mine';
 import { orderControllerFindOne } from '../fn/order/order-controller-find-one';
 import { OrderControllerFindOne$Params } from '../fn/order/order-controller-find-one';
 import { orderControllerPaymentCallback } from '../fn/order/order-controller-payment-callback';
@@ -98,6 +100,47 @@ export class OrderService extends BaseService {
   orderControllerCreate(params: OrderControllerCreate$Params, context?: HttpContext): Observable<OrderPaymentRequiredDto> {
     return this.orderControllerCreate$Response(params, context).pipe(
       map((r: StrictHttpResponse<OrderPaymentRequiredDto>): OrderPaymentRequiredDto => r.body)
+    );
+  }
+
+  /** Path part for operation `orderControllerFindAllMine()` */
+  static readonly OrderControllerFindAllMinePath = '/order/mine';
+
+  /**
+   * Retrieve my orders with pagination results.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `orderControllerFindAllMine()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  orderControllerFindAllMine$Response(params?: OrderControllerFindAllMine$Params, context?: HttpContext): Observable<StrictHttpResponse<PaginatedResult & {
+'data'?: Array<OrderEntity>;
+}>> {
+    return orderControllerFindAllMine(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Retrieve my orders with pagination results.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `orderControllerFindAllMine$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  orderControllerFindAllMine(params?: OrderControllerFindAllMine$Params, context?: HttpContext): Observable<PaginatedResult & {
+'data'?: Array<OrderEntity>;
+}> {
+    return this.orderControllerFindAllMine$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PaginatedResult & {
+'data'?: Array<OrderEntity>;
+}>): PaginatedResult & {
+'data'?: Array<OrderEntity>;
+} => r.body)
     );
   }
 

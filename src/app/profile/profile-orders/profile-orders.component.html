@@ -1,1 +1,7 @@
-<p>profile-orders works!</p>
+<h1>Vos commandes</h1>
+
+<app-table-paginated [displayedColumns]="columns"
+                     [fetchMethod]="fetchMethod"
+                     [displayEye]="true"
+                     [displayEdit]="false">
+</app-table-paginated>

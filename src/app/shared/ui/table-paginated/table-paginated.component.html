@@ -24,7 +24,8 @@
         <mat-header-cell class="actions" *matHeaderCellDef>Actions</mat-header-cell>
         <mat-cell class="actions" *matCellDef="let row">
           <div class="actions-container">
-            <button mat-mini-fab color="none" (click)="editClicked(row)"><mat-icon>edit</mat-icon></button>
+            <button *ngIf="displayEye" mat-mini-fab color="none" (click)="rowClicked(row)"><mat-icon>visibility</mat-icon></button>
+            <button *ngIf="displayEdit" mat-mini-fab color="none" (click)="editClicked(row)"><mat-icon>edit</mat-icon></button>
             <button *ngIf="displayDelete" mat-mini-fab color="accent" (click)="deleteClicked(row)"><mat-icon>delete</mat-icon></button>
           </div>
         </mat-cell>

@@ -16,6 +16,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MicrosoftSocialButtonComponent} from "../shared/ui/microsoft-social-button/microsoft-social-button.component";
 import {GoogleSigninButtonModule, SocialLoginModule} from "@abacritt/angularx-social-login";
+import {TablePaginatedComponent} from "../shared/ui/table-paginated/table-paginated.component";
 
 
 @NgModule({
@@ -25,21 +26,22 @@ import {GoogleSigninButtonModule, SocialLoginModule} from "@abacritt/angularx-so
     ProfileOrdersComponent,
     ProfileInfosFormComponent
   ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    MatDividerModule,
-    MatIconModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatButtonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    SocialLoginModule,
-    MicrosoftSocialButtonComponent,
-    GoogleSigninButtonModule
-  ]
+    imports: [
+        CommonModule,
+        ProfileRoutingModule,
+        MatDividerModule,
+        MatIconModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatButtonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        SocialLoginModule,
+        MicrosoftSocialButtonComponent,
+        GoogleSigninButtonModule,
+        TablePaginatedComponent
+    ]
 })
 export class ProfileModule { }

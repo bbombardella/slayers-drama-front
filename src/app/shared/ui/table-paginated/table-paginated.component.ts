@@ -35,7 +35,10 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
     'data'?: Array<TData>;
   }>;
   @Input({required: false}) displayDelete: boolean = false;
+  @Input({required: false}) displayEye: boolean = false;
+  @Input({required: false}) displayEdit: boolean = true;
   @Input({required: false}) refresh: Subject<void> = new Subject<void>();
+  @Output() rowClickTriggered: EventEmitter<TData> = new EventEmitter();
   @Output() editTriggered: EventEmitter<TData> = new EventEmitter();
   @Output() deleteTriggered: EventEmitter<TData> = new EventEmitter();
 
@@ -86,6 +89,10 @@ export class TablePaginatedComponent<TData> implements AfterViewInit {
         this.totalCount = value.meta.total;
         this.data = value.data;
       });
+  }
+
+  rowClicked(data: TData): void {
+    this.rowClickTriggered.emit(data);
   }
 
   editClicked(data: TData) {
