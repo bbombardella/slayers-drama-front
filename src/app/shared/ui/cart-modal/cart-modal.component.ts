@@ -1,25 +1,28 @@
 import {Component, OnInit} from '@angular/core';
-import {CartManagerService} from "../shared/services/cart-manager.service";
-import {ScreeningService} from "../api/services/screening.service";
-import {ScreeningEntity} from "../api/models/screening-entity";
-import {OrderService} from "../api/services/order.service";
-import { CreateReservationDto } from '../api/models/create-reservation-dto';
+import {CommonModule} from '@angular/common';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {CartManagerService} from "../../services/cart-manager.service";
+import {ScreeningEntity} from "../../../api/models/screening-entity";
+import {ScreeningService} from "../../../api/services/screening.service";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  standalone: true,
+  imports: [CommonModule, MatDialogModule, MatButtonModule, MatIconModule, MatInputModule, RouterLink],
+  templateUrl: './cart-modal.component.html',
+  styleUrls: ['./cart-modal.component.scss']
 })
-/**
- * i dont even care about duplicating code anymore
- * */
-export class CartComponent implements OnInit {
+export class CartModalComponent implements OnInit {
+
   cart: ScreeningEntity[] = [];
 
   constructor(
     private cartManager: CartManagerService,
     private screeningService: ScreeningService,
-    private orderService: OrderService,
   ) {
   }
 
@@ -57,34 +60,5 @@ export class CartComponent implements OnInit {
   deleteScreening(c: ScreeningEntity) {
     this.cartManager.removeScreeningFromCart(c);
     this.cart = this.cart.filter((c2: ScreeningEntity) => c2.id !== c.id);
-  }
-
-  buy() {
-    console.log('buy')
-
-    let resa: CreateReservationDto[] = [];
-
-    this.cartManager.getScreeningFromCart().forEach((screeningId: number) => {
-
-      if(resa.find((r) => r.screeningId === screeningId)) {
-        let r = resa.find((r) => (r.screeningId === screeningId));
-        if(r) r.products[0].number++;
-        return;
-      }
-
-
-      resa.push({
-        screeningId: screeningId,
-        products: [{productId: 1, number: 1}],
-      });
-    });
-
-    this.orderService.orderControllerCreate({
-      body: {
-        reservations: resa
-      }
-    }).subscribe((r) => {
-      window.open(r.url, '_self');
-    });
   }
 }

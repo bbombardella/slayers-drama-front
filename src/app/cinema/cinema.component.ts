@@ -30,10 +30,7 @@ export class CinemaComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.cinemaManagerService.getCinema().subscribe(
-      (c) => {
-        this.cinema = c;
-      });
+    this.cinema = this.cinemaManagerService.getCinema();
 
     this.cinemaService.cinemaControllerFindAll().subscribe(
       (r) => {

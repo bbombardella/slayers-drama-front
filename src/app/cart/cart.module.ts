@@ -3,6 +3,9 @@ import {CommonModule} from '@angular/common';
 
 import {CartRoutingModule} from './cart-routing.module';
 import {CartComponent} from './cart.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {ChipComponent} from "../shared/ui/chip/chip.component";
 
 
 @NgModule({
@@ -11,7 +14,11 @@ import {CartComponent} from './cart.component';
   ],
   imports: [
     CommonModule,
-    CartRoutingModule
+    CartRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    ChipComponent,
   ]
 })
-export class CartModule { }
+export class CartModule {
+}

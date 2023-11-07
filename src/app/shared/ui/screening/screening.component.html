@@ -4,6 +4,7 @@
     <span class="chip-c">
       <app-chip
         *ngFor="let s of os.screenings"
+        [class.disabled]="s.active === false"
         [hoverable]="true"
         [label]="(s.start | date: 'HH:mm') || '---'"
         (click)="chipClicked(s)"

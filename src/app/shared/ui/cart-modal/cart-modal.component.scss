@@ -1,0 +1,22 @@
+:host{
+  .control{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .content{
+    width: 60vw;
+    height: 40vh;
+
+    .screening{
+      padding-top: 3%;;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      input{
+        margin-left: 1%;
+      }
+    }
+  }
+
+}
