@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
   public searchSub$ = new Subject();
 
   async autocompleteSelected(movie: MovieEntity) {
-    await this.router.navigate(['/movie'], {queryParams: {movie: movie.id}});
+    await this.router.navigate(['/movie', movie.id]);
   }
 
   public autocompleteChanged(text: string) {
