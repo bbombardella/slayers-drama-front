@@ -5,6 +5,9 @@
 
 <app-table-paginated [displayedColumns]="columns"
                      [fetchMethod]="fetchMethod"
+                     [refresh]="refresh"
                      [displayDelete]="true"
-                     (editTriggered)="handleClick($event)">
+                     (editTriggered)="handleClick($event)"
+                      (deleteTriggered)="handleDelete($event)">
+>
 </app-table-paginated>

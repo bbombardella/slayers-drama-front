@@ -28,7 +28,6 @@ export class MovieEditorModalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.form
   }
 
   public save(): void {
@@ -51,6 +50,6 @@ export class MovieEditorModalComponent implements OnInit {
   }
 
   public cancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

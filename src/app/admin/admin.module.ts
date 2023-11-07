@@ -12,12 +12,14 @@ import { MovieEditorModalComponent } from './modal/movie-editor-modal/movie-edit
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ScreeningEditorModalComponent } from './modal/screening-editor-modal/screening-editor-modal.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
-    MovieEditorModalComponent
+    MovieEditorModalComponent,
+    ScreeningEditorModalComponent
   ],
   imports: [
     CommonModule,
