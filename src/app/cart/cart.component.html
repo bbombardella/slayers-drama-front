@@ -1,1 +1,24 @@
-<p>cart works!</p>
+<div class="content">
+  <h2>Panier</h2>
+
+  <div class="list">
+    <div *ngFor="let c of filteredCart" class="screening">
+      <span>
+        <span>{{c.movie.title}} <strong>({{c.start | date: 'dd/MM/YYYY - HH:mm'}})</strong> à <strong>{{c.cinema.name}}</strong></span>
+          <input matInput type="number" [value]="getHowMuch(c)" (change)="setAmount(c, $event)">
+      </span>
+      <button
+        mat-mini-fab
+        color="warn"
+        aria-label="Example icon button with a filter list icon"
+        (click)="deleteScreening(c)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="money">
+  <button mat-raised-button color="primary" (click)="buy()">Acheter</button>
+</div>

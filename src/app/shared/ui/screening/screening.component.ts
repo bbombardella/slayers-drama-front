@@ -5,6 +5,7 @@ import {ScreeningEntity} from "../../../api/models/screening-entity";
 import {ChipComponent} from "../chip/chip.component";
 import {CartModalComponent} from "../cart-modal/cart-modal.component";
 import {MatDialog} from "@angular/material/dialog";
+import {CartManagerService} from "../../services/cart-manager.service";
 
 @Component({
   selector: 'app-screening',
@@ -19,7 +20,8 @@ export class ScreeningComponent {
   public movie!: MovieEntity;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private readonly cartManager: CartManagerService,
   ) {
   }
 
@@ -48,6 +50,7 @@ export class ScreeningComponent {
 
   public chipClicked(screening: ScreeningEntity): void {
     console.log('chipClicked : ', screening)
+    this.cartManager.addScreeningToCart(screening);
     const dialogRef = this.dialog.open(CartModalComponent);
 
     dialogRef.afterClosed().subscribe((result: any) => {

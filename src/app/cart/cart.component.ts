@@ -1,10 +1,62 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CartManagerService} from "../shared/services/cart-manager.service";
+import {ScreeningService} from "../api/services/screening.service";
+import {ScreeningEntity} from "../api/models/screening-entity";
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent {
+/**
+ * i dont even care about duplicating code anymore
+ * */
+export class CartComponent implements OnInit {
+  cart: ScreeningEntity[] = [];
 
+  constructor(
+    private cartManager: CartManagerService,
+    private screeningService: ScreeningService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    const screeningIds = this.cartManager.getScreeningFromCart();
+    console.log('screeningIds : ', screeningIds)
+    screeningIds.forEach((screeningId: number) => {
+      this.screeningService.screeningControllerFindOne({id: screeningId}).subscribe(
+        (screening: ScreeningEntity) => {
+          this.cart.push(screening);
+        });
+    });
+  }
+
+  get filteredCart(): ScreeningEntity[] {
+    //select distinct screening
+    return this.cart.filter((c: ScreeningEntity, index: number, array: ScreeningEntity[]) =>
+      array.findIndex((c2: ScreeningEntity) => c2.id === c.id) === index);
+  }
+
+  getHowMuch(c: ScreeningEntity): number {
+    return this.cartManager.getScreeningFromCart().filter((screeningId: number) => screeningId === c.id).length;
+  }
+
+  setAmount(c: ScreeningEntity, $event: Event) {
+    const target = $event.target as HTMLInputElement;
+    const amount = parseInt(target.value);
+    if (amount > 0) {
+      this.cartManager.setAmount(c, amount);
+    } else {
+      this.cartManager.removeScreeningFromCart(c);
+    }
+  }
+
+  deleteScreening(c: ScreeningEntity) {
+    this.cartManager.removeScreeningFromCart(c);
+    this.cart = this.cart.filter((c2: ScreeningEntity) => c2.id !== c.id);
+  }
+
+  buy() {
+    console.log('buy')
+  }
 }

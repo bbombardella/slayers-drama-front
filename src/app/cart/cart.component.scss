@@ -1,0 +1,48 @@
+:host {
+  padding: 1%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .control {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .content {
+    width: 60vw;
+    height: 40vh;
+
+
+    .list {
+      display: flex;
+      height: 65vh;
+      width: 97vw;
+      overflow-y: auto;
+      flex-direction: column;
+
+      .screening {
+        padding-top: 3%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 99%;
+
+        input {
+          margin-left: 1%;
+        }
+      }
+    }
+  }
+
+  .money {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+
+}
