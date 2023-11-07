@@ -97,7 +97,7 @@ export class OrderService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  orderControllerCreate(params: OrderControllerCreate$Params, context?: HttpContext): Observable<OrderPaymentRequiredDto> {
+    orderControllerCreate(params: OrderControllerCreate$Params, context?: HttpContext): Observable<OrderPaymentRequiredDto> {
     return this.orderControllerCreate$Response(params, context).pipe(
       map((r: StrictHttpResponse<OrderPaymentRequiredDto>): OrderPaymentRequiredDto => r.body)
     );

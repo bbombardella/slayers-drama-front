@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Storage} from "@ionic/storage-angular";
 import {ScreeningEntity} from "../../api/models/screening-entity";
 
@@ -7,9 +7,8 @@ import {ScreeningEntity} from "../../api/models/screening-entity";
 })
 export class CartManagerService {
 
-  constructor(
-    private readonly localStorage: Storage,
-  ) { }
+  constructor() {
+  }
 
   public getScreeningFromCart(): number[] {
     return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') as string) : [];

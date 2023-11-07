@@ -4,8 +4,8 @@ export interface UpdateUserDto {
   confirmPassword?: string;
   email?: string;
   firstName?: string;
-  googleId?: string | null;
+  googleId?: null | string;
   lastName?: string;
-  microsoftId?: string | null;
+  microsoftId?: null | string;
   password?: string;
 }

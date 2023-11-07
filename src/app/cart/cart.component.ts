@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CartManagerService} from "../shared/services/cart-manager.service";
 import {ScreeningService} from "../api/services/screening.service";
 import {ScreeningEntity} from "../api/models/screening-entity";
+import {OrderService} from "../api/services/order.service";
+import { CreateReservationDto } from '../api/models/create-reservation-dto';
 
 @Component({
   selector: 'app-cart',
@@ -17,6 +19,7 @@ export class CartComponent implements OnInit {
   constructor(
     private cartManager: CartManagerService,
     private screeningService: ScreeningService,
+    private orderService: OrderService,
   ) {
   }
 
@@ -58,5 +61,30 @@ export class CartComponent implements OnInit {
 
   buy() {
     console.log('buy')
+
+    let resa: CreateReservationDto[] = [];
+
+    this.cartManager.getScreeningFromCart().forEach((screeningId: number) => {
+
+      if(resa.find((r) => r.screeningId === screeningId)) {
+        let r = resa.find((r) => (r.screeningId === screeningId));
+        if(r) r.products[0].number++;
+        return;
+      }
+
+
+      resa.push({
+        screeningId: screeningId,
+        products: [{productId: 1, number: 1}],
+      });
+    });
+
+    this.orderService.orderControllerCreate({
+      body: {
+        reservations: resa
+      }
+    }).subscribe((r) => {
+      window.open(r.url, '_self');
+    });
   }
 }

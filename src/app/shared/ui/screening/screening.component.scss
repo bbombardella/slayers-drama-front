@@ -36,3 +36,8 @@
     }
   }
 }
+
+.disabled{
+  background-color: rgba(169, 149, 178, 0.1);
+  cursor: not-allowed;
+}
