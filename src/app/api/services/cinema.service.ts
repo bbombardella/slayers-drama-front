@@ -17,15 +17,12 @@ import { cinemaControllerFindAllWithNonActive } from '../fn/cinema/cinema-contro
 import { CinemaControllerFindAllWithNonActive$Params } from '../fn/cinema/cinema-controller-find-all-with-non-active';
 import { cinemaControllerFindOne } from '../fn/cinema/cinema-controller-find-one';
 import { CinemaControllerFindOne$Params } from '../fn/cinema/cinema-controller-find-one';
-import { cinemaControllerFindOneDetails } from '../fn/cinema/cinema-controller-find-one-details';
-import { CinemaControllerFindOneDetails$Params } from '../fn/cinema/cinema-controller-find-one-details';
 import { cinemaControllerRemove } from '../fn/cinema/cinema-controller-remove';
 import { CinemaControllerRemove$Params } from '../fn/cinema/cinema-controller-remove';
 import { cinemaControllerSearch } from '../fn/cinema/cinema-controller-search';
 import { CinemaControllerSearch$Params } from '../fn/cinema/cinema-controller-search';
 import { cinemaControllerUpdate } from '../fn/cinema/cinema-controller-update';
 import { CinemaControllerUpdate$Params } from '../fn/cinema/cinema-controller-update';
-import { CinemaDetailsDto } from '../models/cinema-details-dto';
 import { CinemaEntity } from '../models/cinema-entity';
 import { PaginatedResult } from '../models/paginated-result';
 
@@ -188,39 +185,6 @@ export class CinemaService extends BaseService {
 }>): PaginatedResult & {
 'data'?: Array<CinemaEntity>;
 } => r.body)
-    );
-  }
-
-  /** Path part for operation `cinemaControllerFindOneDetails()` */
-  static readonly CinemaControllerFindOneDetailsPath = '/cinema/{id}/details';
-
-  /**
-   * Retrieve cinema's details by its id.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `cinemaControllerFindOneDetails()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  cinemaControllerFindOneDetails$Response(params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<StrictHttpResponse<CinemaDetailsDto>> {
-    return cinemaControllerFindOneDetails(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * Retrieve cinema's details by its id.
-   *
-   *
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `cinemaControllerFindOneDetails$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  cinemaControllerFindOneDetails(params: CinemaControllerFindOneDetails$Params, context?: HttpContext): Observable<CinemaDetailsDto> {
-    return this.cinemaControllerFindOneDetails$Response(params, context).pipe(
-      map((r: StrictHttpResponse<CinemaDetailsDto>): CinemaDetailsDto => r.body)
     );
   }
 

@@ -14,12 +14,18 @@ export interface MovieControllerFindOne$Params {
  * Movie's ID
  */
   id: number;
+
+/**
+ * Add available seats to each screenings
+ */
+  addSeats?: boolean;
 }
 
 export function movieControllerFindOne(http: HttpClient, rootUrl: string, params: MovieControllerFindOne$Params, context?: HttpContext): Observable<StrictHttpResponse<MovieEntity>> {
   const rb = new RequestBuilder(rootUrl, movieControllerFindOne.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
+    rb.query('addSeats', params.addSeats, {});
   }
 
   return http.request(

@@ -7,13 +7,14 @@ import {CartModalComponent} from "../cart-modal/cart-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CartManagerService} from "../../services/cart-manager.service";
 import {CinemaManagerService} from "../../services/cinema-manager.service";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-screening',
   templateUrl: './screening.component.html',
   styleUrls: ['./screening.component.scss'],
   standalone: true,
-  imports: [CommonModule, ChipComponent],
+  imports: [CommonModule, ChipComponent, MatTooltipModule],
 })
 export class ScreeningComponent implements OnInit {
 
@@ -79,6 +80,18 @@ export class ScreeningComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  public isFull(screening: ScreeningEntity): boolean {
+    return screening.availableSeats <= 0;
+  }
+
+  formatPlaces(screening: ScreeningEntity): string {
+    if (this.isFull(screening)) {
+      return 'COMPLET';
+    } else {
+      return `Place(s) restante(s) : ${screening.availableSeats}`;
+    }
   }
 }
 

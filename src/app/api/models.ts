@@ -1,9 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export { BelongsToCollection } from './models/belongs-to-collection';
-export { CinemaDetailsDto } from './models/cinema-details-dto';
 export { CinemaEntity } from './models/cinema-entity';
-export { CinemaMoviesDetailsDto } from './models/cinema-movies-details-dto';
 export { CreateCinemaDto } from './models/create-cinema-dto';
 export { CreateGenreDto } from './models/create-genre-dto';
 export { CreateOrderDto } from './models/create-order-dto';
@@ -13,7 +11,6 @@ export { CreateReservationProduct } from './models/create-reservation-product';
 export { CreateScreeningDto } from './models/create-screening-dto';
 export { CreateUserDto } from './models/create-user-dto';
 export { GenreEntity } from './models/genre-entity';
-export { GroupedScreeningDto } from './models/grouped-screening-dto';
 export { ImageEntity } from './models/image-entity';
 export { LoginDto } from './models/login-dto';
 export { MovieDetails } from './models/movie-details';
