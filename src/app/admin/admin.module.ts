@@ -8,11 +8,16 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatMenuModule} from "@angular/material/menu";
+import { MovieEditorModalComponent } from './modal/movie-editor-modal/movie-editor-modal.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+    MovieEditorModalComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +26,10 @@ import {MatMenuModule} from "@angular/material/menu";
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    MatInputModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule {

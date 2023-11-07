@@ -7,6 +7,7 @@ import {MovieService} from "../../api/services/movie.service";
 import {filter, Subject, switchMap, take} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDialogComponent, ConfirmDialogConfig} from "../../shared/ui/confirm-dialog/confirm-dialog.component";
+import {MovieEditorModalComponent} from "../modal/movie-editor-modal/movie-editor-modal.component";
 
 @Component({
   selector: 'app-admin-movies',
@@ -47,7 +48,8 @@ export class AdminMoviesComponent {
   }
 
   handleClick(movie: MovieEntity): void {
-    this.router.navigate([movie.id], {relativeTo: this.activatedRoute});
+    // this.router.navigate([movie.id], {relativeTo: this.activatedRoute});
+    this.matDialog.open(MovieEditorModalComponent, {data: movie});
   }
 
   handleDelete(movie: MovieEntity): void {
