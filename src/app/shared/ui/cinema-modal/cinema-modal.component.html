@@ -1,8 +1,6 @@
 <h2 mat-dialog-title>Cinémas</h2>
 <mat-dialog-content class="mat-typography body">
-  <div class="state">
-    <span><strong>Cinéma actuel : </strong>{{ currentCinema.name }}</span>
-  </div>
+    <p><strong>Cinéma actuel : </strong>{{ currentCinema.name }}</p>
   <div class="list">
     <mat-selection-list #cinemaList [multiple]="false">
       <mat-list-option
