@@ -6,18 +6,22 @@ import {OrderComponent} from './order.component';
 import {MovieCardComponent} from "../shared/ui/movie-card/movie-card.component";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { StripeVerifyComponent } from './stripe-verify/stripe-verify.component';
 
 
 @NgModule({
   declarations: [
-    OrderComponent
+    OrderComponent,
+    StripeVerifyComponent
   ],
   imports: [
     CommonModule,
     OrderRoutingModule,
     MovieCardComponent,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class OrderModule {

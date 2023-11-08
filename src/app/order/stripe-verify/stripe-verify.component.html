@@ -1,0 +1,31 @@
+<ng-container [ngSwitch]="status">
+  <ng-container *ngSwitchCase="'LOADING'">
+    <mat-spinner></mat-spinner>
+    <p><strong>Commande en cours de vérification...</strong></p>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'CANCELLED'">
+    <h1>🤡</h1>
+    <p><strong>Commande annulée...</strong></p>
+    <ng-container *ngTemplateOutlet="orderActions"></ng-container>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'VALIDATED'">
+    <h1>💅✨</h1>
+    <p><strong>Commande validée !</strong></p>
+    <ng-container *ngTemplateOutlet="orderActions"></ng-container>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'ERROR'">
+    <h1>🤔</h1>
+    <p><strong>Une erreur s'est produite lors de la vérification de votre commande...</strong></p>
+    <button mat-raised-button color="accent" routerLink="/home">Revenir à l'accueil</button>
+  </ng-container>
+</ng-container>
+
+<ng-template #orderActions>
+  <div class="buttons">
+    <button mat-raised-button color="accent" routerLink="/home">Revenir à l'accueil</button>
+    <button *ngIf="order" mat-raised-button [routerLink]="['/order', order.id]">Voir ma commande</button>
+  </div>
+</ng-template>
