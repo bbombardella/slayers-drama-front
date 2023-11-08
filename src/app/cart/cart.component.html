@@ -1,6 +1,7 @@
 <div class="header">
   <h1>Votre panier</h1>
-  <button mat-raised-button color="primary" (click)="buy()" [disabled]="!cart?.length">Payer</button>
+  <button mat-raised-button color="primary" (click)="buy()" [disabled]="!cart?.length || !loggedIn">Payer</button>
+  <p *ngIf="!loggedIn"><strong>Veuillez-vous connecter pour payer</strong></p>
 </div>
 <mat-divider></mat-divider>
 <div class="list">

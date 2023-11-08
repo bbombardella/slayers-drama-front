@@ -4,6 +4,8 @@ import {OrderService} from "../api/services/order.service";
 import {ProductEntity} from "../api/models/product-entity";
 import {ScreeningEntity} from "../api/models/screening-entity";
 import {Reservation} from "../shared/models/cart.model";
+import {AuthService} from "../shared/services/auth.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-cart',
@@ -17,8 +19,14 @@ export class CartComponent {
   constructor(
     private readonly cartManager: CartManagerService,
     private readonly orderService: OrderService,
+    private readonly authService: AuthService,
+    private readonly snackBar: MatSnackBar,
   ) {
     this.cart = this.cartManager.getReservationFromCart();
+  }
+
+  get loggedIn(): boolean {
+    return !!this.authService.currentUser;
   }
 
   reloadCart(): void {
@@ -31,6 +39,16 @@ export class CartComponent {
   }
 
   buy() {
+    if (!this.cart?.length) {
+      this.snackBar.open('Votre panier est vide...', 'OK', {duration: 5 * 1000});
+      return;
+    }
+
+    if (!this.loggedIn) {
+      this.snackBar.open('Veillez-vous connecter avant', 'OK', {duration: 5 * 1000});
+      return;
+    }
+
     this.orderService.orderControllerCreate({
       body: {
         reservations: this.cart.map(r => ({
