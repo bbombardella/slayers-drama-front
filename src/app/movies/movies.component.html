@@ -1,0 +1,20 @@
+<div class="screening-filter">
+  <mat-slide-toggle
+      color="primary"
+      [(ngModel)]="plannedOnly"
+    (change)="togglePlannedOnly()"
+  >
+    Montrer les films à l'affiche uniquement
+  </mat-slide-toggle>
+</div>
+
+<div
+  class="container"
+  infiniteScroll
+  (scrolled)="loadMore($event)"
+
+  [scrollTop]="2"
+  [scrollLeft]="0"
+>
+  <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+</div>

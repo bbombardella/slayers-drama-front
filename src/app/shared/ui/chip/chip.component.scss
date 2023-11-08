@@ -1,0 +1,23 @@
+/* Style de base pour la puce */
+.chip {
+  display: inline-flex;
+  background-color: #A995B2; // Couleur de fond
+  color: #4B3D51; // Couleur du texte
+  border-radius: 16px; // Coins arrondis
+  padding: 6px 10px; // Espacement intérieur
+  margin: 4px; // Marge extérieure
+  font-size: 14px; // Taille de police
+  align-items: center;
+  transition-duration: 500ms;
+
+  .chip-text {
+    text-align: center;
+  }
+}
+
+.hoverable {
+  &:hover {
+    color: #A995B2; // Couleur de fond
+    background-color: #4B3D51; // Couleur du texte
+  }
+}

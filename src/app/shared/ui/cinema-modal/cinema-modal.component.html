@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Cinémas</h2>
+<mat-dialog-content class="mat-typography body">
+    <p><strong>Cinéma actuel : </strong>{{ currentCinema.name }}</p>
+  <div class="list">
+    <mat-selection-list #cinemaList [multiple]="false">
+      <mat-list-option
+        *ngFor="let c of cinemasAvailable"
+        [value]="c"
+        (selectedChange)="cinemaSelected(c)"
+        [selected]="c.id == currentCinema.id">
+        {{c.name}}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="controllers">
+    <button mat-button color="warn" (click)="cancel()">Annuler</button>
+    <button mat-button color="primary" (click)="ok()">Ok</button>
+  </div>
+</mat-dialog-actions>

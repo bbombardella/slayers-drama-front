@@ -1,0 +1,41 @@
+<div class="header">
+  <h1>Votre panier</h1>
+  <button mat-raised-button color="primary" (click)="buy()" [disabled]="!cart?.length || !loggedIn">Payer</button>
+  <p *ngIf="!loggedIn"><strong>Veuillez-vous connecter pour payer</strong></p>
+</div>
+<mat-divider></mat-divider>
+<div class="list">
+  <ng-container *ngIf="cart?.length; else empty">
+    <div *ngFor="let reservation of cart">
+      <div class="reservation">
+        <app-movie-card [movie]="reservation.screening.movie"></app-movie-card>
+        <div class="reservation-movie-details">
+          <p>Séance du <strong>{{reservation.screening.start | date: 'dd/MM/YYYY - HH:mm'}})</strong></p>
+          <p>Au cinéma <strong>{{ reservation.screening.cinema.name }}</strong></p>
+        </div>
+        <div class="reservation-products">
+          <div *ngFor="let productReservation of reservation.products">
+            <p>{{ productReservation.product.name }}<br><small>({{ productReservation.product.price | currency }})</small>
+            </p>
+            <div class="buttons">
+              <button mat-raised-button color="accent"
+                      (click)="setAmount(reservation.screening, productReservation.product, productReservation.number + 1)">
+                +
+              </button>
+              <h1>{{ productReservation.number }}</h1>
+              <button mat-raised-button color="accent" [disabled]="productReservation.number <= 0"
+                      (click)="setAmount(reservation.screening, productReservation.product, productReservation.number - 1)">
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </ng-container>
+
+  <ng-template #empty>
+    <p>Le panier est vide...</p>
+  </ng-template>
+</div>

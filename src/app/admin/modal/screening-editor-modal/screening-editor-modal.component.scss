@@ -1,0 +1,17 @@
+:host {
+
+  .master {
+    width: 70vw;
+    height: 60vh;
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+
+button{
+  margin-bottom: 10px;
+}

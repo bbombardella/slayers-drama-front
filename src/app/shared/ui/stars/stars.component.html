@@ -1,0 +1,19 @@
+<div *ngIf="count > 0; else zero" [matTooltip]="numeric">
+  <ng-container *ngFor="let i of countIterator">
+    <ng-container *ngIf="i == 1; else half_star">
+      <ng-container *ngTemplateOutlet="full_star"/>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #half_star>
+  <span class="star half">&#9733;</span>
+</ng-template>
+
+<ng-template #full_star>
+  <span class="star full">&#9733;</span>
+</ng-template>
+
+<ng-template #zero>
+  <div class="zero">0/5</div>
+</ng-template>

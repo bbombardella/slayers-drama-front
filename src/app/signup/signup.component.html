@@ -1,0 +1,45 @@
+<app-credentials-container label="S'inscrire">
+  <form [formGroup]="signUpForm" (ngSubmit)="signUpClicked()">
+    <div class="multiple-field">
+      <mat-form-field>
+        <mat-label>Prénom</mat-label>
+        <input matInput type="text" name="first-name" id="first-name" formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input matInput type="text" name="last-name" id="last-name" formControlName="lastName">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Adresse mail</mat-label>
+        <input matInput type="text" name="email" id="email" formControlName="email" placeholder="xyz@host.com">
+        <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">
+          L'adresse email est <strong>incorrect</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="multiple-field">
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" name="password" id="password" formControlName="password"
+               placeholder="•••••••••">
+        <mat-error *ngIf="signUpForm.get('password')?.hasError('minlegth')">
+          Le mot de passe doit contenir <strong>au moins 8 caractères</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirmation de mot de passe</mat-label>
+        <input matInput type="password" name="confirm-password" id="confirm-password" formControlName="confirmPassword"
+               placeholder="•••••••••">
+      </mat-form-field>
+    </div>
+
+    <mat-error *ngFor="let error of errors">{{ error }}</mat-error>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signUpForm.valid">S'inscrire</button>
+  </form>
+</app-credentials-container>

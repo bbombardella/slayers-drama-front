@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Ajouter un film via The Movie Database</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>URL de The Movie Database</mat-label>
+    <input matInput
+           placeholder="https://www.themoviedb.org/movie/...."
+           type="text"
+           [(ngModel)]="tmdbUrl" (ngModelChange)="urlChange($event)"/>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="primary" mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="accent" [disabled]="invalid" (click)="addMovie()">Ajouter</button>
+</mat-dialog-actions>

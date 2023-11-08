@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>{{data.movie.title}}</h1>
+<div mat-dialog-content class="master">
+  <form [formGroup]="form" >
+    <mat-form-field>
+      <mat-label>Places</mat-label>
+      <input matInput
+             placeholder="..."
+             type="number"
+             [formGroup]="form"
+             formControlName="seats"
+
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>start</mat-label>
+      <input matInput
+             placeholder="..."
+             type="text"
+             [formGroup]="form"
+             formControlName="start"
+      >
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>end</mat-label>
+      <input matInput
+             placeholder="..."
+             type="text"
+             [formGroup]="form"
+             formControlName="end"
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Id du film (cf panel movie)</mat-label>
+      <input matInput
+             placeholder="..."
+             type="text"
+             [formGroup]="form"
+             formControlName="movieId"
+      >
+    </mat-form-field>
+
+    <hr>
+    <button mat-raised-button color="warn" (click)="cancel()">Annuler</button>
+    <button mat-raised-button color="primary" (click)="save()">Enregistrer</button>
+  </form>
+</div>

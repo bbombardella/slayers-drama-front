@@ -1,3 +1,29 @@
-* { 
-    font-family: comic-sans-ms, sans-serif;
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  margin: 0;
+
+  app-navbar {
+    position: sticky;
+    top: 0;
+  }
+
+  main {
+    flex: 1;
+  }
 }
+
+/* -------   COLOR SET   ------- */
+/* 5D4A66 - English Violet       */
+/* E949CE - Razzle Dazzle Rose   */
+/* DE541E - Flame                */
+/* A995B2 - Rose Quartz          */
+/* F3FCF0 - Honey Dew            */
+/* ------------------------------*/
+
+$English_Violet: #5D4A66;
+$Razzle_Dazzle_Rose: #E949CE;
+$Flame: #DE541E;
+$Rose_Quartz: #A995B2;
+$Honey_Dew: #F3FCF0;

@@ -1,0 +1,13 @@
+<div class="header">
+  <h1>Les séances</h1>
+  <button mat-raised-button color="accent" routerLink="new">Créer une séance</button>
+</div>
+
+<app-table-paginated [displayedColumns]="columns"
+                     [fetchMethod]="fetchMethod"
+                     [refresh]="refresh"
+                     [displayDelete]="true"
+                     (editTriggered)="handleClick($event)"
+                      (deleteTriggered)="handleDelete($event)">
+>
+</app-table-paginated>

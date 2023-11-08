@@ -1,0 +1,12 @@
+<div class="header">
+  <h1>Les cinémas</h1>
+  <button mat-raised-button color="accent" routerLink="new">Créer un cinéma</button>
+</div>
+
+<app-table-paginated [displayedColumns]="columns"
+                     [fetchMethod]="fetchMethod"
+                     [displayDelete]="true"
+                     [refresh]="refreshData"
+                     (deleteTriggered)="handleDelete($event)"
+                     (editTriggered)="handleEdit($event)">
+</app-table-paginated>

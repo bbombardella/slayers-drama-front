@@ -1,0 +1,35 @@
+<div class="description">
+  <div>
+    <h1>Yo sale pétasse !</h1>
+    Bienvenue sur le site du <strong>Sassy's drama</strong>. Ici pas de coca mais les larmes de tes meilleures copines.
+    <br/>
+
+  </div>
+</div>
+
+<hr/>
+
+<div class="movie-list">
+  <h1>Les tendances</h1>
+  <div class="screening-filter">
+    <mat-slide-toggle
+      color="primary"
+      [(ngModel)]="plannedOnly"
+      (change)="togglePlannedOnly()"
+    >
+      Montrer les films à l'affiche uniquement
+    </mat-slide-toggle>
+  </div>
+  <div class="container">
+    <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+  </div>
+</div>
+
+<hr/>
+
+<div class="more-movies">
+  <button (click)="navigateToMovies()">
+    Voir plus de films
+  </button>
+</div>
+

@@ -1,0 +1,69 @@
+<div class="header">
+  <h1>Modifier mes informations</h1>
+  <button mat-raised-button color="accent"
+          (click)="updateInfos()"
+          [disabled]="!!infosForm?.invalid || !infosForm?.dirty">Valider
+  </button>
+</div>
+<form *ngIf="infosForm" [formGroup]="infosForm" (ngSubmit)="updateInfos()">
+  <div>
+    <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input matInput type="text" name="lastName" id="lastName" formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Prénom</mat-label>
+      <input matInput type="text" name="firstName" id="firstName" formControlName="firstName">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Adresse mail</mat-label>
+      <input matInput type="email" name="mail" id="mail" formControlName="email">
+    </mat-form-field>
+  </div>
+</form>
+
+<mat-divider></mat-divider>
+
+<div class="header">
+  <h2>Changer mon mot de passe</h2>
+  <button mat-raised-button color="accent"
+          (click)="updatePassword()"
+          [disabled]="!!passwordForm?.invalid || !passwordForm?.dirty">Valider
+  </button>
+</div>
+<form *ngIf="passwordForm" [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+  <div>
+    <mat-form-field>
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" name="password" id="password" placeholder="•••••••••" formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirmation de mot de passe</mat-label>
+      <input matInput type="password" name="confirmPassword" id="confirmPassword" placeholder="•••••••••"
+             formControlName="confirmPassword">
+    </mat-form-field>
+  </div>
+</form>
+
+<mat-divider></mat-divider>
+
+<h2>Attacher ou détacher des comptes externes</h2>
+<div class="oauth">
+  <ng-container *ngIf="currentUser?.googleId; else attachGoogle">
+    <button mat-raised-button color="accent" (click)="googleDetach()">Détacher son compte Google</button>
+  </ng-container>
+
+  <ng-template #attachGoogle>
+    <asl-google-signin-button type="standard"
+                              logo_alignment="center"
+                              shape="square" text="continue_with"
+                              size="large"></asl-google-signin-button>
+  </ng-template>
+  <app-microsoft-social-button (click)="microsoftLogin()"
+                               [type]="currentUser?.microsoftId ? 'detach' : 'attach'"></app-microsoft-social-button>
+</div>

@@ -1,0 +1,10 @@
+<div *ngIf="currentUser" class="profile-infos">
+  <button mat-raised-button color="accent" class="edit-button" routerLink="edit">Modifier mes informations</button>
+  <mat-icon fontIcon="account_circle"></mat-icon>
+  <h1>{{ currentUser.firstName }} {{ currentUser.lastName }}</h1>
+  <p>{{ currentUser.email }}</p>
+  <p *ngIf="currentUser.role === 'ADMIN'">Administrateur !</p>
+  <p>Compte Google <span *ngIf="!currentUser.googleId">non </span>attaché</p>
+  <p>Compte Microsoft <span *ngIf="!currentUser.microsoftId">non </span>attaché</p>
+  <p *ngIf="currentUser.updatedAt">Dernière mise à jour du compte le {{ currentUser.updatedAt | date:'medium' }}</p>
+</div>

@@ -1,0 +1,21 @@
+@use '../../variables';
+@use "sass:map";
+
+:host {
+  display: block;
+  height: 100%;
+
+  mat-drawer-container {
+    height: 100%;
+  }
+
+  mat-drawer-content {
+    padding: 1em;
+  }
+
+  .active {
+    * {
+      color: map.get(variables.$pnd_palette_s, 500);
+    }
+  }
+}

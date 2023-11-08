@@ -1,0 +1,85 @@
+<header>
+  <nav>
+    <ul>
+      <li><a routerLink="/" class="home">
+        <app-logo/>
+      </a></li>
+      <li><a routerLink="/movies">Tous les films</a></li>
+    </ul>
+    <ul class="mr2">
+      <li>
+        <ng-autocomplete
+          [searchKeyword]="keyword"
+          [placeholder]="'Rechercher un film'"
+          [data]="autocompleteData"
+          (selected)='autocompleteSelected($event)'
+          (inputChanged)="autocompleteChanged($event)"
+
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate"
+        />
+        </li>
+      <li><a routerLink="/about">A propos</a></li>
+      <li>
+        <button
+          mat-icon-button
+          aria-label="panier"
+          matTooltip="Panier"
+          (click)="goToCart()"
+        >
+          <mat-icon>shopping_basket</mat-icon>
+        </button>
+      </li>
+      <li>
+        <button
+          mat-icon-button
+          aria-label="cinema"
+          matTooltip="Cinéma"
+          (click)="goToCinema()"
+        >
+          <mat-icon>camera_outdoor</mat-icon>
+        </button>
+      </li>
+      <li>
+        <button
+          mat-icon-button
+          aria-label="account"
+          matTooltip="Compte"
+          [matMenuTriggerFor]="menu"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <ng-container *ngIf="authService?.currentUser; else noUser">
+            <p class="user-info">Bonjour, <strong>{{ authService.currentUser?.firstName }}</strong></p>
+            <mat-divider></mat-divider>
+            <button mat-menu-item routerLink="/profile/infos">Mes informations</button>
+            <button mat-menu-item routerLink="/profile/orders">Mes commandes</button>
+            <ng-container *ngIf="authService.isAdmin">
+              <mat-divider></mat-divider>
+              <button routerLink="/admin" mat-menu-item>Admin</button>
+            </ng-container>
+            <mat-divider></mat-divider>
+            <button (click)="authService.logout()" mat-menu-item>Se déconnecter</button>
+          </ng-container>
+
+          <ng-template #noUser>
+            <button routerLink="/login" mat-menu-item>Se connecter</button>
+          </ng-template>
+        </mat-menu>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+<ng-template #itemTemplate let-item>
+  <a [innerHTML]="item.title"></a>
+</ng-template>
+
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="'Aucun résultat'"
+       [style.color]="'gray'"
+       [style.font-style]="'italic'"
+  ></div>
+</ng-template>

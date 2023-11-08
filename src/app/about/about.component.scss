@@ -1,0 +1,17 @@
+* {
+  transition-duration: 7s;
+  cursor: help;
+}
+
+*:hover{
+  transition-duration: 1ms;
+  font-family: Algerian, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  letter-spacing: 7px;
+  rotate: -3.5deg;
+  transform: skew(13deg);
+  text-overflow: ellipsis;
+}
+
+

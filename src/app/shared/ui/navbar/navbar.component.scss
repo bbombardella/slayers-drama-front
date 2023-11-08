@@ -1,0 +1,58 @@
+@use "@material/icon-button/styles";
+
+:host {
+  width: 100%;
+
+  nav {
+    display: flex;
+    background: linear-gradient(#A980C2 15%, #A995B2);
+    -webkit-backdrop-filter: blur(10px);
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.75);
+    backdrop-filter: blur(10px);
+    margin: 0;
+    border-radius: 0 0 16px 16px;
+    justify-content: space-between;
+
+    li:has(> a.home) {
+      width: 15%;
+    }
+
+    li:has(> ng-autocomplete){
+      width: 25vw;
+      border-radius: 16px;
+
+      ng-autpcomplete{
+        border-radius: 16px;
+      }
+    }
+
+    .status {
+      font-size: small;
+      font-style: italic;
+      color: gray;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      gap: 1em;
+      align-items: center;
+      margin: 0 2% 0 0;
+    }
+
+    * {
+      color: #4B3D51;
+    }
+  }
+}
+
+.mr2 {
+  margin-right: 2%;
+}
+
+.user-info {
+  margin: 1em;
+}

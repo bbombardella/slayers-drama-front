@@ -1,0 +1,26 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <button mat-menu-item routerLink="cinema" routerLinkActive="active">
+      <mat-icon>camera_outdoor</mat-icon>
+      <span>Cinéma</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="movies" routerLinkActive="active">
+      <mat-icon>movie_edit</mat-icon>
+      <span>Films</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="screenings" routerLinkActive="active">
+      <mat-icon>co_present</mat-icon>
+      <span>Séances</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="genres" routerLinkActive="active">
+      <mat-icon>settings_cinematic_blur</mat-icon>
+      <span>Genres</span>
+    </button>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

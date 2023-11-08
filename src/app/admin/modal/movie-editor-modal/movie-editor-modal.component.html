@@ -1,0 +1,73 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content class="master">
+  <form [formGroup]="form" >
+    <mat-form-field>
+      <mat-label>Titre</mat-label>
+      <input matInput
+             placeholder="titre"
+             type="text"
+             [formGroup]="form"
+             formControlName="title"
+
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Année</mat-label>
+      <input matInput
+             placeholder="année"
+             type="text"
+             [formGroup]="form"
+             formControlName="releaseDate"
+
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Longueur</mat-label>
+      <input matInput
+             placeholder="duration"
+             type="number"
+             [formGroup]="form"
+             formControlName="duration"
+
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vote AVG</mat-label>
+      <input matInput
+             placeholder="voteAverage"
+             type="number"
+             [formGroup]="form"
+             formControlName="voteAverage"
+
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>TagLine</mat-label>
+      <input matInput
+             placeholder="..."
+             type="text"
+             [formGroup]="form"
+             formControlName="tagline"
+
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput
+                placeholder="..."
+                [formGroup]="form"
+                formControlName="overview"
+
+      ></textarea>
+    </mat-form-field>
+
+      <hr>
+      <button mat-raised-button color="warn" (click)="cancel()">Annuler</button>
+      <button mat-raised-button color="primary" (click)="save()">Enregistrer</button>
+  </form>
+</div>

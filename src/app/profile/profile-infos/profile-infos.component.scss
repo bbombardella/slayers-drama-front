@@ -1,0 +1,23 @@
+:host {
+  .profile-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .edit-button {
+      margin-bottom: 0.25em;
+      align-self: end;
+    }
+
+    h1, p {
+      text-align: center;
+    }
+
+    mat-icon {
+      font-size: 7rem;
+      width: 7rem;
+      height: 7rem;
+    }
+  }
+}

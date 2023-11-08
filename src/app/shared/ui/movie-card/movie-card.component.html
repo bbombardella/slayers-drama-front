@@ -1,0 +1,19 @@
+<div class="root" (click)="goToMoviePage()">
+  <div class="movie-card" *ngIf="movie; else invalid_template">
+    <img #poster [src]="movie?.poster?.url" alt="Movie Poster" *ngIf="movie?.poster?.url || loaded; else loading">
+    <h2 class="movie-title">{{ movie.title }}</h2>
+  </div>
+
+  <ng-template #invalid_template>
+    <div class="movie-card">
+      <ng-container class="img-l" *ngTemplateOutlet="loading"/>
+      <h2 class="movie-title">. . .</h2>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+    <app-loading-bar/>
+  </div>
+</ng-template>

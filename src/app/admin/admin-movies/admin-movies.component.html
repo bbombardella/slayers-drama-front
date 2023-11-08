@@ -1,0 +1,12 @@
+<div class="header">
+  <h1>Les films</h1>
+  <button mat-raised-button color="accent" (click)="handleCreate()">Créer un film</button>
+</div>
+
+<app-table-paginated [displayedColumns]="columns"
+                     [fetchMethod]="fetchMethod"
+                     [displayDelete]="true"
+                     [refresh]="refresh"
+                     (deleteTriggered)="handleDelete($event)"
+                     (editTriggered)="handleClick($event)">
+</app-table-paginated>
