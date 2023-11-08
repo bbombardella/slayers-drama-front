@@ -34,6 +34,19 @@ export class CartModalComponent implements OnInit {
     return this.data.screening;
   }
 
+  get tooManyPlaces(): boolean {
+    return this.total >= this.screening.availableSeats;
+  }
+
+  get total(): number {
+    return [...this.cart.values()]
+      .reduce((accumulator, currentValue) => accumulator + currentValue);
+  }
+
+  get nothingSelected(): boolean {
+    return [...this.cart.values()].every(v => v === 0);
+  }
+
   ngOnInit(): void {
     this.productService.productControllerFindAllInsideCinema({
       id: this.screening!.id
@@ -70,10 +83,6 @@ export class CartModalComponent implements OnInit {
     }
 
     this.cart.set(key, count! - 1);
-  }
-
-  nothingSelected(): boolean {
-    return [...this.cart.values()].every(v => v === 0);
   }
 
   mapObjectOnClose(): Reservation {

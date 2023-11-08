@@ -4,7 +4,7 @@
     <div *ngFor="let item of cart | keyvalue" class="cart">
       <p>{{ item.key.name }}<br><small>({{ item.key.price | currency }})</small></p>
       <div class="buttons">
-        <button mat-raised-button color="accent" (click)="add(item.key)">+</button>
+        <button mat-raised-button color="accent" [disabled]="tooManyPlaces" (click)="add(item.key)">+</button>
         <h1>{{ item.value }}</h1>
         <button mat-raised-button color="accent" [disabled]="item.value <= 0" (click)="remove(item.key)">-</button>
       </div>
@@ -12,6 +12,6 @@
   </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions class="control">
-  <button mat-raised-button color="accent" [mat-dialog-close]="mapObjectOnClose()" [disabled]="nothingSelected()">Ajouter au panier</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="mapObjectOnClose()" [disabled]="nothingSelected">Ajouter au panier</button>
   <button mat-button [mat-dialog-close]="false">Fermer</button>
 </mat-dialog-actions>
