@@ -1,23 +1,17 @@
 <h2 mat-dialog-title>Panier</h2>
 <mat-dialog-content class="mat-typography">
-  <div class="content">
-    <p *ngFor="let c of filteredCart" class="screening">
-      <span>
-        <span>{{c.movie.title}} ({{c.start | date: 'dd/MM/YYYY - HH:mm'}}) à <strong>{{c.cinema.name}}</strong></span>
-          <input matInput type="number" [value]="getHowMuch(c)" (change)="setAmount(c, $event)">
-      </span>
-      <button
-        mat-mini-fab
-        color="warn"
-        aria-label="Example icon button with a filter list icon"
-        (click)="deleteScreening(c)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </p>
-  </div>
+  <ng-container *ngIf="cart">
+    <div *ngFor="let item of cart | keyvalue" class="cart">
+      <p>{{ item.key.name }}<br><small>({{ item.key.price | currency }})</small></p>
+      <div class="buttons">
+        <button mat-raised-button color="accent" (click)="add(item.key)">+</button>
+        <h1>{{ item.value }}</h1>
+        <button mat-raised-button color="accent" [disabled]="item.value <= 0" (click)="remove(item.key)">-</button>
+      </div>
+    </div>
+  </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions class="control">
-  <button mat-button routerLink="cart" [mat-dialog-close]="true">Se rendre au panier</button>
-  <button mat-button [mat-dialog-close]="true">Fermer</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="mapObjectOnClose()" [disabled]="nothingSelected()">Ajouter au panier</button>
+  <button mat-button [mat-dialog-close]="false">Fermer</button>
 </mat-dialog-actions>

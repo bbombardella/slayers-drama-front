@@ -1,24 +1,34 @@
-<div class="content">
-  <h2>Panier</h2>
-
-  <div class="list">
-    <div *ngFor="let c of filteredCart" class="screening">
-      <span>
-        <span>{{c.movie.title}} <strong>({{c.start | date: 'dd/MM/YYYY - HH:mm'}})</strong> à <strong>{{c.cinema.name}}</strong></span>
-          <input matInput type="number" [value]="getHowMuch(c)" (change)="setAmount(c, $event)">
-      </span>
-      <button
-        mat-mini-fab
-        color="warn"
-        aria-label="Example icon button with a filter list icon"
-        (click)="deleteScreening(c)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-  </div>
+<div class="header">
+  <h1>Votre panier</h1>
+  <button mat-raised-button color="primary" (click)="buy()" [disabled]="!cart?.length">Payer</button>
 </div>
-
-<div class="money">
-  <button mat-raised-button color="primary" (click)="buy()">Payer</button>
+<mat-divider></mat-divider>
+<div class="list">
+  <div *ngFor="let reservation of cart">
+    <div class="reservation">
+      <app-movie-card [movie]="reservation.screening.movie"></app-movie-card>
+      <div class="reservation-movie-details">
+        <p>Séance du <strong>{{reservation.screening.start | date: 'dd/MM/YYYY - HH:mm'}})</strong></p>
+        <p>Au cinéma <strong>{{ reservation.screening.cinema.name }}</strong></p>
+      </div>
+      <div class="reservation-products">
+        <div *ngFor="let productReservation of reservation.products">
+          <p>{{ productReservation.product.name }}<br><small>({{ productReservation.product.price | currency }})</small>
+          </p>
+          <div class="buttons">
+            <button mat-raised-button color="accent"
+                    (click)="setAmount(reservation.screening, productReservation.product, productReservation.number + 1)">
+              +
+            </button>
+            <h1>{{ productReservation.number }}</h1>
+            <button mat-raised-button color="accent" [disabled]="productReservation.number <= 0"
+                    (click)="setAmount(reservation.screening, productReservation.product, productReservation.number - 1)">
+              -
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
 </div>

@@ -8,6 +8,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {CartManagerService} from "../../services/cart-manager.service";
 import {CinemaManagerService} from "../../services/cinema-manager.service";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {take} from "rxjs";
+import {Reservation} from "../../models/cart.model";
 
 @Component({
   selector: 'app-screening',
@@ -31,12 +33,10 @@ export class ScreeningComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log('screening : ', this.screening)
     this.orderedScreening = this.updateOrderedScreening();
     this.cinemaManager.cinemaUpdated$.subscribe(() => {
       this.orderedScreening = this.updateOrderedScreening();
     });
-    console.log('orderedScreening : ', this.orderedScreening)
   }
 
   get screening(): Array<ScreeningEntity> {
@@ -73,13 +73,18 @@ export class ScreeningComponent implements OnInit {
 
   public chipClicked(screening: ScreeningEntity): void {
     if (!screening.active) return;
-    console.log('chipClicked : ', screening)
-    this.cartManager.addScreeningToCart(screening);
-    const dialogRef = this.dialog.open(CartModalComponent);
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
+    const dialogRef = this.dialog.open(CartModalComponent, {
+      data: {screening, movie: this.movie}
     });
+
+    dialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe((result?: Reservation) => {
+        if (result) {
+          this.cartManager.addReservationToCart(result);
+        }
+      });
   }
 
   public isFull(screening: ScreeningEntity): boolean {

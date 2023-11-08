@@ -14,6 +14,8 @@ import { productControllerCreate } from '../fn/product/product-controller-create
 import { ProductControllerCreate$Params } from '../fn/product/product-controller-create';
 import { productControllerFindAll } from '../fn/product/product-controller-find-all';
 import { ProductControllerFindAll$Params } from '../fn/product/product-controller-find-all';
+import { productControllerFindAllInsideCinema } from '../fn/product/product-controller-find-all-inside-cinema';
+import { ProductControllerFindAllInsideCinema$Params } from '../fn/product/product-controller-find-all-inside-cinema';
 import { productControllerFindOne } from '../fn/product/product-controller-find-one';
 import { ProductControllerFindOne$Params } from '../fn/product/product-controller-find-one';
 import { productControllerRemove } from '../fn/product/product-controller-remove';
@@ -198,6 +200,39 @@ export class ProductService extends BaseService {
   productControllerUpdate(params: ProductControllerUpdate$Params, context?: HttpContext): Observable<ProductEntity> {
     return this.productControllerUpdate$Response(params, context).pipe(
       map((r: StrictHttpResponse<ProductEntity>): ProductEntity => r.body)
+    );
+  }
+
+  /** Path part for operation `productControllerFindAllInsideCinema()` */
+  static readonly ProductControllerFindAllInsideCinemaPath = '/product/cinema/{id}';
+
+  /**
+   * Retrieve all products available in the cinema.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `productControllerFindAllInsideCinema()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  productControllerFindAllInsideCinema$Response(params: ProductControllerFindAllInsideCinema$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ProductEntity>>> {
+    return productControllerFindAllInsideCinema(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Retrieve all products available in the cinema.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `productControllerFindAllInsideCinema$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  productControllerFindAllInsideCinema(params: ProductControllerFindAllInsideCinema$Params, context?: HttpContext): Observable<Array<ProductEntity>> {
+    return this.productControllerFindAllInsideCinema$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ProductEntity>>): Array<ProductEntity> => r.body)
     );
   }
 

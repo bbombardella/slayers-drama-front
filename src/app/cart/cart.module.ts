@@ -6,6 +6,8 @@ import {CartComponent} from './cart.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {ChipComponent} from "../shared/ui/chip/chip.component";
+import {MovieCardComponent} from "../shared/ui/movie-card/movie-card.component";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import {ChipComponent} from "../shared/ui/chip/chip.component";
     MatButtonModule,
     MatIconModule,
     ChipComponent,
+    MovieCardComponent,
+    MatDividerModule,
   ]
 })
 export class CartModule {

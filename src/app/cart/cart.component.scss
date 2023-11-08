@@ -1,48 +1,60 @@
 :host {
-  padding: 1%;
-  height: 95%;
+  height: 100%;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  .control {
+  .header {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
   }
 
   .content {
-    width: 60vw;
-    height: 40vh;
-
-
     .list {
       display: flex;
-      height: 65vh;
-      width: 97vw;
+      flex-grow: 0;
+      flex-shrink: 1;
       overflow-y: auto;
       flex-direction: column;
+    }
+  }
 
-      .screening {
-        padding-top: 3%;
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .list {
+    .reservation {
+      display: flex;
+      align-items: center;
+      gap: 2em;
+
+      app-movie-card {
+        margin: 1em;
+        width: 10%;
+      }
+
+      &-products {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 99%;
+        justify-content: end;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        gap: 1em;
+        margin-right: 2em;
+      }
 
-        input {
-          margin-left: 1%;
+      &-movie-details {
+        flex-grow: 1;
+
+        p {
+          text-align: center;
         }
       }
     }
   }
-
-  .money {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1%;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  }
-
 }

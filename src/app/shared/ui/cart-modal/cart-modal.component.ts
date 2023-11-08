@@ -1,13 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, Inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
-import {CartManagerService} from "../../services/cart-manager.service";
 import {ScreeningEntity} from "../../../api/models/screening-entity";
-import {ScreeningService} from "../../../api/services/screening.service";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {RouterLink} from "@angular/router";
+import {ProductService} from "../../../api/services/product.service";
+import {ProductEntity} from "../../../api/models/product-entity";
+import {take} from "rxjs";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {Reservation} from "../../models/cart.model";
+import {MovieEntity} from "../../../api/models/movie-entity";
 
 @Component({
   selector: 'app-cart',
@@ -17,48 +21,73 @@ import {RouterLink} from "@angular/router";
   styleUrls: ['./cart-modal.component.scss']
 })
 export class CartModalComponent implements OnInit {
+  cart: Map<ProductEntity, number> = new Map<ProductEntity, number>();
 
-  cart: ScreeningEntity[] = [];
+  private products: ProductEntity[] = [];
 
-  constructor(
-    private cartManager: CartManagerService,
-    private screeningService: ScreeningService,
-  ) {
+  constructor(private readonly productService: ProductService,
+              private readonly destroyRef: DestroyRef,
+              @Inject(MAT_DIALOG_DATA) private readonly data: { screening: ScreeningEntity, movie: MovieEntity }) {
+  }
+
+  private get screening() {
+    return this.data.screening;
   }
 
   ngOnInit(): void {
-    const screeningIds = this.cartManager.getScreeningFromCart();
-    console.log('screeningIds : ', screeningIds)
-    screeningIds.forEach((screeningId: number) => {
-      this.screeningService.screeningControllerFindOne({id: screeningId}).subscribe(
-        (screening: ScreeningEntity) => {
-          this.cart.push(screening);
-        });
-    });
+    this.productService.productControllerFindAllInsideCinema({
+      id: this.screening!.id
+    }).pipe(
+      take(1),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(value => {
+      if (value) {
+        this.products = value;
+        this.initCart();
+      }
+    })
   }
 
-  get filteredCart(): ScreeningEntity[] {
-    //select distinct screening
-    return this.cart.filter((c: ScreeningEntity, index: number, array: ScreeningEntity[]) =>
-      array.findIndex((c2: ScreeningEntity) => c2.id === c.id) === index);
+  initCart() {
+    this.products.forEach(p => {
+      this.cart.set(p, 0);
+    })
   }
 
-  getHowMuch(c: ScreeningEntity): number {
-    return this.cartManager.getScreeningFromCart().filter((screeningId: number) => screeningId === c.id).length;
-  }
+  add(key: ProductEntity): void {
+    const count = this.cart.get(key);
 
-  setAmount(c: ScreeningEntity, $event: Event) {
-    const target = $event.target as HTMLInputElement;
-    const amount = parseInt(target.value);
-    if (amount > 0) {
-      this.cartManager.setAmount(c, amount);
-    } else {
-      this.cartManager.removeScreeningFromCart(c);
+    if (!isNaN(Number(count))) {
+      this.cart.set(key, count! + 1);
     }
   }
 
-  deleteScreening(c: ScreeningEntity) {
-    this.cartManager.removeScreeningFromCart(c);
-    this.cart = this.cart.filter((c2: ScreeningEntity) => c2.id !== c.id);
+  remove(key: ProductEntity): void {
+    const count = this.cart.get(key);
+
+    if (isNaN(Number(count)) || count! <= 0) {
+      return;
+    }
+
+    this.cart.set(key, count! - 1);
+  }
+
+  nothingSelected(): boolean {
+    return [...this.cart.values()].every(v => v === 0);
+  }
+
+  mapObjectOnClose(): Reservation {
+    return {
+      screening: {
+        ...this.screening,
+        movie: this.data.movie
+      },
+      products: [...this.cart.entries()]
+        .filter(([k, v]) => v > 0)
+        .map(([k, v]) => ({
+          product: k,
+          number: v
+        }))
+    };
   }
 }

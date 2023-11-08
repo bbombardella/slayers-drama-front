@@ -1,22 +1,24 @@
-:host{
-  .control{
+:host {
+  .control {
     display: flex;
     justify-content: flex-end;
   }
-  .content{
-    width: 60vw;
-    height: 40vh;
 
-    .screening{
-      padding-top: 3%;;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  .cart {
+    display: flex;
+    align-items: center;
+    gap: 2em;
 
-      input{
-        margin-left: 1%;
-      }
+    > p {
+      flex-grow: 1;
     }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
   }
 
 }
