@@ -1,2 +1,31 @@
-<p>order works!</p>
-<pre *ngIf="order">{{ order | json }}</pre>
+<div class="header">
+  <h1>Commande {{order!.id}}</h1>
+</div>
+<mat-divider></mat-divider>
+<div class="list" *ngIf="order?.reservations">
+  <ng-container *ngIf="order!.reservations?.length; else empty">
+    <div *ngFor="let reservation of order!.reservations!">
+      <div class="reservation">
+        <app-movie-card [movie]="reservation.screening.movie"></app-movie-card>
+        <div class="reservation-movie-details">
+          <p>Séance du <strong>{{reservation.screening.start | date: 'dd/MM/YYYY - HH:mm'}})</strong></p>
+          <p>Au cinéma <strong>{{ reservation.screening.cinema.name }}</strong></p>
+        </div>
+        <div class="reservation-products">
+          <div *ngFor="let productReservation of reservation.products">
+            <p>{{ productReservation.product.name }}<br><small>({{ productReservation.product.price | currency }})</small>
+            </p>
+            <div class="buttons">
+              <h1>{{ productReservation.number }}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </ng-container>
+
+  <ng-template #empty>
+    <p>La commande est vide...</p>
+  </ng-template>
+</div>

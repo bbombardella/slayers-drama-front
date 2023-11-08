@@ -1,0 +1,53 @@
+:host {
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .list {
+    flex-grow: 1;
+
+    .reservation {
+      display: flex;
+      align-items: center;
+      gap: 2em;
+
+      app-movie-card {
+        margin: 1em;
+        width: 10%;
+      }
+
+      &-products {
+        display: flex;
+        justify-content: end;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        gap: 1em;
+        margin-right: 2em;
+      }
+
+      &-movie-details {
+        flex-grow: 1;
+
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
