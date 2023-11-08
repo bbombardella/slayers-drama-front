@@ -42,6 +42,11 @@ export class CartComponent {
         }))
       }
     }).subscribe((r) => {
+      if (!r) {
+        return;
+      }
+
+      this.cartManager.setReservationToCart([]);
       window.open(r.url, '_self');
     });
   }

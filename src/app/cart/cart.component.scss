@@ -11,15 +11,6 @@
     gap: 1em;
   }
 
-  .content {
-    .list {
-      display: flex;
-      flex-grow: 0;
-      flex-shrink: 1;
-      overflow-y: auto;
-      flex-direction: column;
-    }
-  }
 
   .buttons {
     display: flex;
@@ -29,6 +20,8 @@
   }
 
   .list {
+    flex-grow: 1;
+
     .reservation {
       display: flex;
       align-items: center;
