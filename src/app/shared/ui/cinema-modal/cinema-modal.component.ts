@@ -1,17 +1,26 @@
 import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CinemaManagerService} from "../shared/services/cinema-manager.service";
-import {CinemaEntity} from "../api/models/cinema-entity";
-import {CinemaService} from "../api/services/cinema.service";
-import {MatSelectionList} from "@angular/material/list";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {CinemaManagerService} from "../../services/cinema-manager.service";
+import {CinemaEntity} from "../../../api/models/cinema-entity";
+import {CinemaService} from "../../../api/services/cinema.service";
+import {MatListModule, MatSelectionList} from "@angular/material/list";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {CommonModule} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
-  selector: 'app-cinema',
-  templateUrl: './cinema.component.html',
-  styleUrls: ['./cinema.component.scss']
+  selector: 'app-cinema-modal',
+  templateUrl: './cinema-modal.component.html',
+  styleUrls: ['./cinema-modal.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatListModule
+  ],
 })
-export class CinemaComponent implements AfterViewInit {
+export class CinemaModalComponent implements AfterViewInit {
 
   private cinema: CinemaEntity | undefined;
   private selectedCinema: CinemaEntity | undefined;
@@ -21,7 +30,7 @@ export class CinemaComponent implements AfterViewInit {
   public matList!: MatSelectionList;
 
   constructor(
-    public readonly dialogRef: MatDialogRef<CinemaComponent>,
+    public readonly dialogRef: MatDialogRef<CinemaModalComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private readonly cinemaManagerService: CinemaManagerService,
     private readonly cinemaService: CinemaService,

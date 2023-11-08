@@ -1,5 +1,14 @@
-import {NgModule} from '@angular/core';
-import {provideRouter, RouterModule, Routes, withComponentInputBinding} from '@angular/router';
+import {Injectable, NgModule} from '@angular/core';
+import {
+  provideRouter,
+  RouterModule,
+  RouterStateSnapshot,
+  Routes,
+  TitleStrategy,
+  withComponentInputBinding
+} from '@angular/router';
+import {Title} from "@angular/platform-browser";
+import {titleTemplate} from "./shared/models/title-template.model";
 
 const routes: Routes = [
   {
@@ -32,10 +41,6 @@ const routes: Routes = [
     loadChildren: () => import('./movies/movies.module').then(m => m.MoviesModule),
   },
   {
-    path: 'cinema',
-    loadChildren: () => import('./cinema/cinema.module').then(m => m.CinemaModule),
-  },
-  {
     path: 'cart',
     loadChildren: () => import('./cart/cart.module').then(m => m.CartModule),
   },
@@ -53,6 +58,20 @@ const routes: Routes = [
   }
 ];
 
+@Injectable({providedIn: 'root'})
+export class TemplatePageTitleStrategy extends TitleStrategy {
+  constructor(private readonly title: Title) {
+    super();
+  }
+
+  override updateTitle(routerState: RouterStateSnapshot) {
+    const title = this.buildTitle(routerState);
+    if (title !== undefined) {
+      this.title.setTitle(titleTemplate(title));
+    }
+  }
+}
+
 @NgModule({
   imports: [RouterModule.forRoot(
     routes,
@@ -63,6 +82,7 @@ const routes: Routes = [
   )],
   providers: [
     provideRouter(routes, withComponentInputBinding()),
+    {provide: TitleStrategy, useClass: TemplatePageTitleStrategy},
   ],
   exports: [RouterModule]
 })

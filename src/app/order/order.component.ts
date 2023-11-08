@@ -4,6 +4,8 @@ import {OrderEntity} from "../api/models/order-entity";
 import {Router} from "@angular/router";
 import {OrderService} from "../api/services/order.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {Title} from "@angular/platform-browser";
+import {titleTemplate} from "../shared/models/title-template.model";
 
 @Component({
   selector: 'app-order',
@@ -18,7 +20,8 @@ export class OrderComponent {
   constructor(
     private readonly router: Router,
     private readonly orderService: OrderService,
-    private readonly destroyRef: DestroyRef
+    private readonly destroyRef: DestroyRef,
+    private readonly titleService: Title
   ) {
   }
 
@@ -38,7 +41,10 @@ export class OrderComponent {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe({
-        next: (r) => this.order = r,
+        next: (r) => {
+          this.order = r;
+          this.titleService.setTitle(titleTemplate(`Commande n°${this.order.id}`))
+        },
         error: () => this.handleError()
       });
   }

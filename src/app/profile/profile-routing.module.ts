@@ -20,14 +20,17 @@ const routes: Routes = [
       {
         path: 'infos',
         component: ProfileInfosComponent,
+        title: 'Mes informations'
       },
       {
         path: 'infos/edit',
         component: ProfileInfosFormComponent,
+        title: 'Modifier mes informations'
       },
       {
         path: 'orders',
         component: ProfileOrdersComponent,
+        title: 'Mes commandes'
       }
     ]
   }

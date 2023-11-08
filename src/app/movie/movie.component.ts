@@ -4,6 +4,8 @@ import {MovieService} from "../api/services/movie.service";
 import {MovieEntity} from "../api/models/movie-entity";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {Subject, takeUntil} from "rxjs";
+import {Title} from "@angular/platform-browser";
+import {titleTemplate} from "../shared/models/title-template.model";
 
 @Component({
   selector: 'app-movie',
@@ -18,7 +20,7 @@ export class MovieComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute,
+    private readonly titleService: Title,
     private readonly movieService: MovieService,
     private readonly destroyRef: DestroyRef
   ) {
@@ -40,7 +42,10 @@ export class MovieComponent {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe({
-        next: (r) => this.movie = r,
+        next: (r) => {
+          this.movie = r;
+          this.titleService.setTitle(titleTemplate(r.title));
+        },
         error: () => this.handleError()
       });
   }

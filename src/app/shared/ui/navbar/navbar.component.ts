@@ -11,10 +11,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialog} from "@angular/material/dialog";
-import {CinemaComponent} from "../../../cinema/cinema.component";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatListModule} from "@angular/material/list";
-import {UserEntity} from "../../../api/models/user-entity";
+import {CinemaModalComponent} from "../cinema-modal/cinema-modal.component";
 
 @Component({
   standalone: true,
@@ -73,7 +72,7 @@ export class NavbarComponent implements OnInit {
 
   goToCinema() {
     // this.router.navigate(['cinema']);
-    const dialogRef = this.dialog.open(CinemaComponent,
+    const dialogRef = this.dialog.open(CinemaModalComponent,
       {
         width: '50%',
         height: '55%',
