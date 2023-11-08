@@ -11,15 +11,18 @@ import {MatMenuModule} from "@angular/material/menu";
 import { MovieEditorModalComponent } from './modal/movie-editor-modal/movie-editor-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ScreeningEditorModalComponent } from './modal/screening-editor-modal/screening-editor-modal.component';
+import { AddMovieModalComponent } from './modal/add-movie-modal/add-movie-modal.component';
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     MovieEditorModalComponent,
-    ScreeningEditorModalComponent
+    ScreeningEditorModalComponent,
+    AddMovieModalComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,9 @@ import { ScreeningEditorModalComponent } from './modal/screening-editor-modal/sc
     MatDividerModule,
     MatDialogModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule,
+    FormsModule
   ]
 })
 export class AdminModule {

@@ -1,6 +1,6 @@
 <div class="header">
   <h1>Les films</h1>
-  <button mat-raised-button color="accent" routerLink="new">Créer un film</button>
+  <button mat-raised-button color="accent" (click)="handleCreate()">Créer un film</button>
 </div>
 
 <app-table-paginated [displayedColumns]="columns"

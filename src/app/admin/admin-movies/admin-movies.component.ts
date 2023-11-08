@@ -8,6 +8,7 @@ import {filter, Subject, switchMap, take} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDialogComponent, ConfirmDialogConfig} from "../../shared/ui/confirm-dialog/confirm-dialog.component";
 import {MovieEditorModalComponent} from "../modal/movie-editor-modal/movie-editor-modal.component";
+import {AddMovieModalComponent} from "../modal/add-movie-modal/add-movie-modal.component";
 
 @Component({
   selector: 'app-admin-movies',
@@ -72,5 +73,9 @@ export class AdminMoviesComponent {
           this.refresh.next();
         }
       });
+  }
+
+  handleCreate(): void {
+    this.matDialog.open(AddMovieModalComponent);
   }
 }
